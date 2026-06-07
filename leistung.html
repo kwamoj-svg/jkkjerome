@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Leistung · JKK JEROME</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#000;--fg:#fff;--fg-2:#b8b8b8;--fg-3:#6a6a6a;--line:#1c1c1c;--line-bright:#3a3a3a;
+    --gold:oklch(0.82 0.095 82);--gold-2:oklch(0.74 0.105 75);--gold-dim:oklch(0.45 0.06 70);
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+    --display:"Archivo",system-ui,sans-serif;
+    --serif:"Cormorant Garamond","Times New Roman",serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--fg);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.5;min-height:100vh;}
+  [data-de]{display:none}
+  html[lang="de"] [data-de]{display:revert}
+  html[lang="de"] [data-en]{display:none}
+
+  .grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+    background-image:linear-gradient(to right,var(--line) 1px,transparent 1px),linear-gradient(to bottom,var(--line) 1px,transparent 1px);
+    background-size:72px 72px;
+    -webkit-mask-image:radial-gradient(130% 100% at 50% 0%,#000 30%,transparent 85%);
+    mask-image:radial-gradient(130% 100% at 50% 0%,#000 30%,transparent 85%);}
+
+  .wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 32px;}
+
+  /* top bar */
+  .bar{display:flex;align-items:center;justify-content:space-between;padding:28px 0;border-bottom:1px solid var(--line);
+    font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--fg-3);}
+  .bar a{color:var(--fg-2);text-decoration:none;display:inline-flex;align-items:center;gap:9px;transition:color .25s}
+  .bar a:hover{color:#fff}
+  .bar .home .mk{color:#fff;font-family:var(--display);font-weight:900;letter-spacing:.04em}
+
+  /* hero */
+  .head{padding:84px 0 0;}
+  .kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin-bottom:26px;display:flex;gap:16px;flex-wrap:wrap}
+  .kicker .sep{color:var(--fg-3)}
+  h1{font-family:var(--display);font-weight:900;text-transform:uppercase;letter-spacing:-.02em;line-height:.98;
+    font-size:clamp(44px,7vw,104px);margin-bottom:30px;}
+  .lead{font-family:var(--serif);font-weight:500;font-size:clamp(21px,2.5vw,30px);line-height:1.34;color:#e9e9e9;max-width:30ch;}
+
+  /* body grid */
+  .content{display:grid;grid-template-columns:1fr 1fr;gap:64px;padding:72px 0 0;align-items:start;}
+  @media(max-width:760px){.content{grid-template-columns:1fr;gap:46px}}
+  .col-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--fg-3);
+    padding-bottom:16px;margin-bottom:26px;border-bottom:1px solid var(--line);}
+  .intro p{font-size:15.5px;line-height:1.78;color:#a7a7a7;margin-bottom:18px;max-width:46ch;}
+
+  .includes{list-style:none;display:flex;flex-direction:column;}
+  .includes li{display:flex;gap:18px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--line);}
+  .includes li .n{font-family:var(--mono);font-size:11px;color:var(--gold);letter-spacing:.1em;flex:none;width:26px;}
+  .includes li .t{font-family:var(--display);font-weight:500;font-size:17px;letter-spacing:-.005em;color:#ededed;}
+
+  /* meta row */
+  .specs{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);margin:80px 0 0;border:1px solid var(--line)}
+  .specs .s{background:#050505;padding:22px 24px;display:flex;flex-direction:column;gap:9px}
+  .specs .s .k{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--fg-3)}
+  .specs .s .v{font-family:var(--display);font-weight:700;font-size:19px;color:#fff;letter-spacing:-.01em}
+  @media(max-width:760px){.specs{grid-template-columns:1fr}}
+
+  /* cta */
+  .cta-row{display:flex;flex-wrap:wrap;gap:16px;align-items:center;padding:80px 0 120px;}
+  .btn{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;
+    display:inline-flex;align-items:center;gap:12px;padding:18px 30px;transition:all .3s}
+  .btn.primary{background:var(--gold);color:#0a0a0a;font-weight:500}
+  .btn.primary:hover{background:var(--gold-2);transform:translateY(-2px)}
+  .btn.ghost{border:1px solid var(--line-bright);color:var(--fg-2)}
+  .btn.ghost:hover{border-color:#fff;color:#fff}
+  .btn .arr{font-family:var(--display);font-weight:900;font-size:15px}
+
+  .nf{padding:120px 0;text-align:center;font-family:var(--mono);color:var(--fg-3);letter-spacing:.2em;text-transform:uppercase}
+  .nf a{color:var(--gold);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="wrap">
+  <div class="bar">
+    <a class="home" href="index v4.html#services"><span class="arr" style="font-family:var(--display);font-weight:900">←</span> <span class="mk">JKK JEROME</span></a>
+    <a href="index v4.html#services"><span data-de>Alle Leistungen</span><span data-en>All services</span></a>
+  </div>
+
+  <main id="view"></main>
+</div>
+
+<script>
+const MODULES = {
+  "photography": {
+    num:"M-01", call:"KILO-ONE",
+    titleDe:"Fotografie", titleEn:"Photography",
+    leadDe:"Das eine Bild, das den Käufer bewegt — vom Hafenliegeplatz bis ins Detail der Eignerkabine.",
+    leadEn:"The one frame that moves the buyer — from dockside to the detail of the owner's cabin.",
+    introDe:["Professionelle Boots- und Yachtfotografie an Land und auf dem Wasser. Exterieur, Interieur, Lifestyle und Detail — komponiert für Listing, Charter und Markenauftritt.","Komplette RAW-Lieferung, retuschiert auf 8K. Bildsprache, die zum Verkauf führt, nicht nur zum Like."],
+    introEn:["Professional boat & yacht photography on land and on the water. Exterior, interior, lifestyle and detail — composed for listing, charter and brand.","Full RAW delivery, retouched in 8K. Imagery built to sell, not just to be liked."],
+    inc:[["Exterieur & Luftaufnahmen","Exterior & aerial"],["Deck & Interieur","Deck & interior"],["Detail & Lifestyle","Detail & lifestyle"],["8K-Retusche & RAW","8K retouch & RAW"],["Lieferung in 72 h","Delivery in 72 h"]],
+    specs:[["Einsatz","Verkauf · Charter","Use","Sale · charter"],["Format","8K · RAW","Format","8K · RAW"],["Dauer","2–4 Tage","Lead time","2–4 days"]]
+  },
+  "film": {
+    num:"M-02", call:"KILO-TWO",
+    titleDe:"Film & Imagevideo", titleEn:"Film & Brand Video",
+    leadDe:"Bewegung, die ein Listing zum Verkauf bringt — und jeden Frame, der den Käufer bewegt.",
+    leadEn:"Motion that turns a listing into a sale — and every frame that moves the buyer.",
+    introDe:["Imagevideos, Werbespots, Listing-Videos und Charter-Reels. Gedreht mit FPV-Drohne, RED Komodo und Sony Venice.","Color-Grading in DaVinci Resolve, geschnitten in Fassungen für Web, Social und Sales — aus einer Produktion."],
+    introEn:["Brand films, ad spots, listing videos and charter reels. Shot with FPV drone, RED Komodo and Sony Venice.","Color graded in DaVinci Resolve, cut into versions for web, social and sales — from one production."],
+    inc:[["Imagefilm & Werbespot","Brand film & ad spot"],["Listing-Video & Charter-Reel","Listing video & charter reel"],["FPV-Drohne & A2A","FPV drone & A2A"],["Color-Grading DaVinci","DaVinci color grade"],["Schnitt für Web & Social","Cuts for web & social"]],
+    specs:[["Kamera","RED · Sony Venice","Camera","RED · Sony Venice"],["Auflösung","bis 8K","Resolution","up to 8K"],["Dauer","2–3 Wochen","Lead time","2–3 weeks"]]
+  },
+  "ai-visuals": {
+    num:"M-03", call:"ALPHA-ONE",
+    titleDe:"KI-Visuals & Exposé", titleEn:"AI Visuals & Copy",
+    leadDe:"Sehen Sie das Schiff, bevor es existiert — und das Exposé, das es verkauft.",
+    leadEn:"See the vessel before it exists — and the brochure that sells it.",
+    introDe:["KI-Retusche von Boots-Fotos, Sky-Replacement und Wasser-Simulation. Generative Pre-Vis für Refits und Neubauten.","KI-generierte Exposés und Verkaufstexte — exakt in Ihrer Markenstimme, in jeder Sprache."],
+    introEn:["AI retouching of boat photography, sky replacement and water simulation. Generative pre-vis for refits and newbuilds.","AI-generated brochures and sales copy — precisely in your brand voice, in any language."],
+    inc:[["KI-Retusche & Sky-Replacement","AI retouch & sky replace"],["Wasser-Simulation","Water simulation"],["Pre-Vis für Refit & Neubau","Pre-vis for refit & newbuild"],["KI-Exposés & Texte","AI brochures & copy"],["Markenstimme & Tonalität","Brand voice & tone"]],
+    specs:[["Einsatz","Refit · Neubau","Use","Refit · newbuild"],["Sprachen","beliebig","Languages","any"],["Dauer","3–7 Tage","Lead time","3–7 days"]]
+  },
+  "ai-sales": {
+    num:"M-04", call:"ALPHA-TWO",
+    titleDe:"KI-Sales & Chatbot", titleEn:"AI Sales & Chatbot",
+    leadDe:"Ein Vertriebsassistent, der nie schläft — qualifiziert Leads, während Sie segeln.",
+    leadEn:"A sales assistant that never sleeps — qualifying leads while you sail.",
+    introDe:["Automatisierte Lead-Qualifizierung und 24/7-Chatbots für Charter-Anfragen. KI-gestützte Marktpreisanalysen.","Personalisierte E-Mail-Kampagnen mit voller CRM-Anbindung — jede Anfrage landet sortiert in der richtigen Pipeline."],
+    introEn:["Automated lead qualifying and 24/7 chatbots for charter inquiries. AI-assisted market pricing.","Personalised email campaigns with full CRM integration — every inquiry routed into the right pipeline."],
+    inc:[["24/7 Charter-Chatbot","24/7 charter chatbot"],["Lead-Scoring & Qualifizierung","Lead scoring & qualifying"],["KI-Marktpreisanalyse","AI market pricing"],["E-Mail-Automation","Email automation"],["CRM-Anbindung","CRM integration"]],
+    specs:[["Modell","Retainer","Model","Retainer"],["Verfügbar","24/7","Available","24/7"],["Setup","1–2 Wochen","Setup","1–2 weeks"]]
+  },
+  "social": {
+    num:"M-05", call:"BRAVO-ONE",
+    titleDe:"Social & Content", titleEn:"Social & Content",
+    leadDe:"Präsenz, die zwischen den Drehs weiterläuft — kuratiert für die Bootswelt.",
+    leadEn:"Presence that keeps running between shoots — curated for the boating world.",
+    introDe:["Social-Media-Management für Instagram, Facebook, YouTube und TikTok. Redaktionsplan, Reels und Editorial Drops.","Kuratierte Influencer-Kooperationen aus der Bootswelt — Reichweite, die zur richtigen Zielgruppe passt."],
+    introEn:["Social media management across Instagram, Facebook, YouTube and TikTok. Editorial calendar, reels and drops.","Curated influencer collabs from the boating world — reach that matches the right audience."],
+    inc:[["Redaktionsplan & Content","Editorial calendar & content"],["Reels & Shortform","Reels & shortform"],["Community-Management","Community management"],["Influencer-Kooperationen","Influencer collabs"],["IG · FB · YT · TikTok","IG · FB · YT · TikTok"]],
+    specs:[["Modell","Retainer","Model","Retainer"],["Kanäle","4","Channels","4"],["Rhythmus","monatlich","Cadence","monthly"]]
+  },
+  "paid-seo": {
+    num:"M-06", call:"BRAVO-TWO",
+    titleDe:"Paid & SEO", titleEn:"Paid & SEO",
+    leadDe:"Sichtbarkeit als Vermögen — Kreativ, Tracking und Skalierung in einer Hand.",
+    leadEn:"Visibility as an asset — creative, tracking and scaling under one roof.",
+    introDe:["Google Ads, Meta Ads und YouTube-Pre-Roll, gebaut für Bootshändler, Charter und Werften.","SEO für den Bootsmarkt mit sauberem Tracking und Reporting — kreative Skalierung statt Streuverlust."],
+    introEn:["Google Ads, Meta Ads and YouTube pre-roll, built for boat dealers, charter and shipyards.","SEO for the boat market with clean tracking and reporting — creative scaling, not wasted spend."],
+    inc:[["Google & Meta Ads","Google & Meta Ads"],["YouTube Pre-Roll","YouTube pre-roll"],["SEO für Bootsmarkt","SEO for boat market"],["Tracking & Reporting","Tracking & reporting"],["Kreativ & Skalierung","Creative & scaling"]],
+    specs:[["Ø Sichtbarkeit","+312 %","Avg visibility","+312%"],["Modell","Retainer","Model","Retainer"],["Reporting","wöchentlich","Reporting","weekly"]]
+  },
+  "websites": {
+    num:"M-07", call:"DELTA-ONE",
+    titleDe:"Websites & Showrooms", titleEn:"Websites & Showrooms",
+    leadDe:"Der digitale Showroom, der nie schließt — vom Wireframe bis zum Go-Live.",
+    leadEn:"The digital showroom that never closes — from wireframe to go-live.",
+    introDe:["Landingpages, Verkaufsseiten, Online-Showrooms und digitale Kataloge. Inserate-Optimierung für Plattformen und Mobile.","Designt, gebaut und live geschaltet — eine Quelle für jede Anfrage, sauber an Ihr CRM angebunden."],
+    introEn:["Landing pages, sales pages, online showrooms and digital catalogues. Listing optimisation for marketplaces and mobile.","Designed, built and shipped — one source for every inquiry, cleanly wired into your CRM."],
+    inc:[["Landing- & Verkaufsseiten","Landing & sales pages"],["Online-Showroom","Online showroom"],["Digitale Kataloge","Digital catalogues"],["Listing-Optimierung","Listing optimisation"],["Wireframe bis Go-Live","Wireframe to go-live"]],
+    specs:[["Plattform","Web · Mobile","Platform","Web · mobile"],["Stack","modern","Stack","modern"],["Dauer","3–6 Wochen","Lead time","3–6 weeks"]]
+  },
+  "funnel-crm": {
+    num:"M-08", call:"SIERRA-ONE",
+    titleDe:"Funnel, CRM & Reputation", titleEn:"Funnel, CRM & Reputation",
+    leadDe:"Vom Listing zur Buchung — automatisch. Das System hinter dem Verkauf.",
+    leadEn:"From listing to booking — automated. The system behind the sale.",
+    introDe:["Digitale Verkaufsprozesse und Funnel-Aufbau, CRM-Einrichtung und Automatisierung (HubSpot, Pipedrive, Salesforce).","Bewertungsmanagement und Online-Reputation — damit aus Sichtbarkeit Vertrauen und aus Vertrauen Umsatz wird."],
+    introEn:["Digital sales pipelines and funnel build-out, CRM setup and automation (HubSpot, Pipedrive, Salesforce).","Review management and online reputation — turning visibility into trust, and trust into revenue."],
+    inc:[["Funnel-Architektur","Funnel architecture"],["CRM-Setup & Migration","CRM setup & migration"],["Automatisierung & Workflows","Automation & workflows"],["Bewertungsmanagement","Review management"],["Online-Reputation","Online reputation"]],
+    specs:[["CRM","HubSpot · Pipedrive","CRM","HubSpot · Pipedrive"],["Modell","Retainer + Share","Model","Retainer + share"],["Setup","2–4 Wochen","Setup","2–4 weeks"]]
+  },
+  "beratung": {
+    num:"M-09", call:"ECHO-ONE",
+    titleDe:"Marketing-Beratung", titleEn:"Marketing Consulting",
+    leadDe:"Eine Stunde Klarheit. Strategie, Standortbestimmung und der nächste Schritt.",
+    leadEn:"One hour of clarity. Strategy, status assessment and the next move.",
+    introDe:["Die allgemeine Marketing-Beratungsstunde: ein fokussiertes Gespräch über Marke, Markt und Maßnahmen — unabhängig vom einzelnen Modul.","Wir bestimmen Ihren Standort, schärfen die Positionierung und legen einen konkreten Fahrplan für die nächsten Schritte fest."],
+    introEn:["The general marketing consulting hour: a focused conversation about brand, market and measures — independent of any single module.","We assess where you stand, sharpen your positioning and set a concrete roadmap for the next steps."],
+    inc:[["Standortbestimmung","Status assessment"],["Markenpositionierung","Brand positioning"],["Kanal- & Budgetstrategie","Channel & budget strategy"],["Kampagnen-Fahrplan","Campaign roadmap"],["Handlungsempfehlungen","Action recommendations"]],
+    specs:[["Format","Call · vor Ort","Format","Call · on-site"],["Dauer","60 Minuten","Duration","60 minutes"],["Anschluss","schriftliches Resümee","Follow-up","written summary"]]
+  }
+};
+
+(function(){
+  // mirror the main site's language choice
+  let lang = 'en';
+  try { lang = (localStorage.getItem('jkk_lang') === 'de') ? 'de' : (localStorage.getItem('jkk_lang') ? 'en' : 'en'); } catch(e){}
+  document.documentElement.lang = lang;
+
+  const params = new URLSearchParams(location.search);
+  const id = params.get('m');
+  const m = MODULES[id];
+  const view = document.getElementById('view');
+
+  if(!m){
+    view.innerHTML = '<div class="nf">'+(lang==='de'?'Leistung nicht gefunden — ':'Service not found — ')+'<a href="index v4.html#services">'+(lang==='de'?'zurück zu den Leistungen':'back to services')+'</a></div>';
+    return;
+  }
+
+  const incHtml = m.inc.map((it,i)=>'<li><span class="n">'+String(i+1).padStart(2,'0')+'</span><span class="t">'+(lang==='de'?it[0]:it[1])+'</span></li>').join('');
+  const introHtml = (lang==='de'?m.introDe:m.introEn).map(p=>'<p>'+p+'</p>').join('');
+  const specHtml = m.specs.map(s=>'<div class="s"><span class="k">'+(lang==='de'?s[0]:s[2])+'</span><span class="v">'+(lang==='de'?s[1]:s[3])+'</span></div>').join('');
+
+  view.innerHTML =
+    '<section class="head">'+
+      '<div class="kicker"><span>'+m.num+'</span><span class="sep">·</span><span>'+(lang==='de'?'MODUL':'MODULE')+'</span><span class="sep">·</span><span>CALLSIGN '+m.call+'</span></div>'+
+      '<h1>'+(lang==='de'?m.titleDe:m.titleEn)+'</h1>'+
+      '<p class="lead">'+(lang==='de'?m.leadDe:m.leadEn)+'</p>'+
+    '</section>'+
+    '<div class="content">'+
+      '<div class="intro"><div class="col-label">'+(lang==='de'?'// ÜBERBLICK':'// OVERVIEW')+'</div>'+introHtml+'</div>'+
+      '<div class="inc-col"><div class="col-label">'+(lang==='de'?'// WAS ENTHALTEN IST':'// WHAT\'S INCLUDED')+'</div><ul class="includes">'+incHtml+'</ul></div>'+
+    '</div>'+
+    '<div class="specs">'+specHtml+'</div>'+
+    '<div class="cta-row">'+
+      '<a class="btn primary" href="index v4.html#contact">'+(lang==='de'?'Briefing anfragen':'Request a briefing')+' <span class="arr">→</span></a>'+
+      '<a class="btn ghost" href="index v4.html#services">'+(lang==='de'?'Alle Module':'All modules')+'</a>'+
+    '</div>';
+
+  document.title = (lang==='de'?m.titleDe:m.titleEn) + ' · JKK JEROME';
+})();
+</script>
+</body>
+</html>
