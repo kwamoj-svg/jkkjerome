@@ -1580,7 +1580,7 @@
 </aside>
 
 <!-- ─── HERO · SCROLL-PARALLAX VIDEO ─── -->
-<section class="scrub" id="top" data-screen-label="Hero" aria-label="Hero" style="height:560vh">
+<section class="scrub" id="top" data-screen-label="Hero" aria-label="Hero" style="height:100vh">
   <div class="sticky">
     <div class="scrub-media"><video src="showreel.mp4" poster="showreel-poster.jpg" muted playsinline loop autoplay preload="metadata" fetchpriority="high"></video></div>
     <div class="scrim"></div>
@@ -3433,8 +3433,8 @@
   .scrub .reg.tl{top:20px;left:24px}
   .scrub .reg.br{bottom:20px;right:24px}
   @media(max-width:760px){
-    .scrub{height:360vh}
-    .scrub .sticky{height:70vh;top:14vh;width:auto;margin:0 12px;border-radius:16px;border:1px solid var(--line-2)}
+    .scrub{height:100vh}
+    .scrub .sticky{height:100vh;top:0}
     .scrub .reg{font-size:9.5px;letter-spacing:.16em}
   }
 </style>
@@ -4755,33 +4755,19 @@
       else video.addEventListener('loadeddata', play, {once:true});
     }
 
-    let scrollP=0, dispP=0, raf=0, settled=true;
-
-    function render(){
-      raf=0;
-      // inertial smoothing: ease the rendered position toward the scroll target
-      const d = scrollP - dispP;
-      if(Math.abs(d) < 0.00015){ dispP = scrollP; settled = true; }
-      else { dispP += d * 0.16; settled = false; }
-      const p = dispP;
-      applyBeats(p);
-      const vp = videoProgress(p);
-      const sc = (1.05+vp*0.14).toFixed(4);
-      const ty = ((vp-0.5)*60).toFixed(2);
-      media.style.transform='translate3d(0,'+ty+'px,0) scale('+sc+')';
-      if(!settled) raf=requestAnimationFrame(render);
+    // Static hero — no scroll parallax. Pin the headline at its first
+    // resting position (bottom-left) showing only the first text, and
+    // hold the background video still.
+    function place(){
+      measure();
+      applyBeats(0);
+      if(media) media.style.transform='scale(1.05)';
+      // guarantee the headline is fully revealed (the scroll-driven
+      // mask-reveal could otherwise hang mid-transition on load)
+      soloLines.forEach(el=>{ el.style.transition='none'; el.style.transform='translateY(0)'; });
     }
-    function schedule(){ settled=false; if(!raf) raf=requestAnimationFrame(render); }
-    function onScroll(){
-      const scrollable=section.offsetHeight-window.innerHeight;
-      const top=section.getBoundingClientRect().top;
-      scrollP=clamp(-top/(scrollable||1),0,1);
-      schedule();
-    }
-    window.addEventListener('scroll',onScroll,{passive:true});
-    window.addEventListener('resize',()=>{ measure(); onScroll(); },{passive:true});
-    measure();
-    onScroll();
+    place();
+    window.addEventListener('resize', place, {passive:true});
   };
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init);
   else init();
@@ -5025,8 +5011,7 @@
   closeBtn.addEventListener('click', function(e){ e.stopPropagation(); close(); });
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && overlay.classList.contains('open')) close(); });
 
-  // Lightbox for portrait and archive images
-  const lbTargets = [
+  var lbTargets = [
     { sel:'.specsheet .portrait img', cap:'Jerome Kwamo' },
     { sel:'.specsheet .arch-cell:nth-child(1) img', cap:'Archiv · 01' },
     { sel:'.specsheet .arch-cell:nth-child(2) img', cap:'Archiv · 02' },
@@ -5034,7 +5019,7 @@
     { sel:'.specsheet .arch-cell:nth-child(4) img', cap:'Archiv · 04' },
   ];
   lbTargets.forEach(function(t){
-    const el = document.querySelector(t.sel);
+    var el = document.querySelector(t.sel);
     if(!el) return;
     el.style.cursor = 'zoom-in';
     el.addEventListener('click', function(){
