@@ -486,6 +486,17 @@ table .bar-cell { width: 40%; }
           Das Tracking Script ist auf allen Seiten aktiv. Daten werden lokal im Browser gespeichert und sind nur in diesem Dashboard sichtbar.
         </div>
       </div>
+
+      <div class="editor-section" style="max-width:500px; margin-top: 24px;">
+        <div class="sec-head"><h3>Daten verwalten</h3></div>
+        <div style="padding: 16px 20px;">
+          <p style="color:var(--fg-2);font-size:13px;margin-bottom:12px" id="dataInfo">Lade...</p>
+          <div class="btn-row" style="margin-top:12px">
+            <button class="btn secondary" onclick="clearDemoData()">Demo Daten entfernen</button>
+            <button class="btn danger" onclick="clearAllData()">Alle Daten loeschen</button>
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -535,7 +546,7 @@ async function changePassword() {
   const p1 = document.getElementById('newPass').value;
   const p2 = document.getElementById('confirmPass').value;
   if (!p1 || p1.length < 4) return toast('Passwort muss mindestens 4 Zeichen haben', 'red');
-  if (p1 !== p2) return toast('Passwörter stimmen nicht überein', 'red');
+  if (p1 !== p2) return toast('Passwoerter stimmen nicht ueberein', 'red');
   const hash = await sha256(p1);
   localStorage.setItem('jkk_admin_hash', hash);
   document.getElementById('newPass').value = '';
@@ -559,6 +570,10 @@ document.querySelectorAll('.sidebar nav a').forEach(a => {
     document.querySelectorAll('.page').forEach(x => x.classList.remove('active'));
     a.classList.add('active');
     document.getElementById('page-' + a.dataset.page).classList.add('active');
+    // Redraw charts when switching to analytics page
+    if (a.dataset.page === 'analytics' || a.dataset.page === 'dashboard') {
+      setTimeout(() => refreshCharts(), 100);
+    }
   });
 });
 
@@ -577,30 +592,53 @@ function toast(msg, color) {
 // ANALYTICS DATA (localStorage based)
 // ═══════════════════════════════════════
 function getAnalytics() {
-  try { return JSON.parse(localStorage.getItem('jkk_analytics') || '[]'); } catch(e) { return []; }
+  try {
+    var raw = JSON.parse(localStorage.getItem('jkk_analytics') || '[]');
+    // Deduplizierung anhand der Visit ID
+    var seen = {};
+    var clean = [];
+    for (var i = 0; i < raw.length; i++) {
+      var entry = raw[i];
+      if (entry.id) {
+        if (seen[entry.id]) continue; // Duplikat ueberspringen
+        seen[entry.id] = true;
+      }
+      clean.push(entry);
+    }
+    return clean;
+  } catch(e) { return []; }
+}
+
+function getRealData() {
+  return getAnalytics().filter(function(v) { return v.real === true; });
+}
+
+function getDemoData() {
+  return getAnalytics().filter(function(v) { return !v.real; });
 }
 
 function generateDemoData() {
-  // Generate realistic demo data for the last 30 days
-  const data = [];
-  const pages = ['/', '/portfolio.html', '/leistung.html', '/blog/', '/info-center.html', '/legal/impressum.html', '/legal/datenschutz.html'];
-  const sources = ['google', 'direct', 'instagram', 'facebook', 'linkedin', 'whatsapp'];
-  const devices = ['mobile', 'desktop', 'tablet'];
-  const countries = ['DE', 'AT', 'CH', 'NL', 'US', 'GB', 'FR'];
-  const now = Date.now();
+  var data = [];
+  var pages = ['/', '/portfolio.html', '/leistung.html', '/blog/', '/info-center.html', '/legal/impressum.html', '/legal/datenschutz.html'];
+  var sources = ['google', 'direct', 'instagram', 'facebook', 'linkedin', 'whatsapp'];
+  var devices = ['mobile', 'desktop', 'tablet'];
+  var countries = ['DE', 'AT', 'CH', 'NL', 'US', 'GB', 'FR'];
+  var now = Date.now();
 
-  for (let d = 29; d >= 0; d--) {
-    const dayVisitors = Math.floor(Math.random() * 40) + 10 + (d < 7 ? 15 : 0);
-    for (let v = 0; v < dayVisitors; v++) {
-      const ts = now - d * 86400000 - Math.floor(Math.random() * 86400000);
+  for (var d = 29; d >= 0; d--) {
+    var dayVisitors = Math.floor(Math.random() * 30) + 8 + (d < 7 ? 10 : 0);
+    for (var v = 0; v < dayVisitors; v++) {
+      var ts = now - d * 86400000 - Math.floor(Math.random() * 86400000);
       data.push({
+        id: 'demo_' + d + '_' + v,
         t: ts,
         p: pages[Math.floor(Math.random() * pages.length)],
         s: sources[Math.floor(Math.random() * sources.length)],
-        d: devices[Math.random() < 0.6 ? 0 : Math.random() < 0.8 ? 1 : 2],
+        d: devices[Math.random() < 0.55 ? 0 : Math.random() < 0.75 ? 1 : 2],
         c: countries[Math.floor(Math.random() * countries.length)],
-        dur: Math.floor(Math.random() * 180) + 10,
-        bounce: Math.random() < 0.35
+        dur: Math.floor(Math.random() * 180) + 5,
+        bounce: Math.random() < 0.35,
+        real: false  // Markierung: Demo Daten
       });
     }
   }
@@ -608,22 +646,69 @@ function generateDemoData() {
   return data;
 }
 
+function clearDemoData() {
+  var all = getAnalytics();
+  var real = all.filter(function(v) { return v.real === true; });
+  if (real.length === 0) {
+    toast('Keine echten Daten vorhanden. Dashboard wird leer sein.', 'red');
+  }
+  localStorage.setItem('jkk_analytics', JSON.stringify(real));
+  toast('Demo Daten entfernt! ' + real.length + ' echte Eintraege behalten.');
+  setTimeout(function() { initDashboard(); }, 500);
+}
+
+function clearAllData() {
+  if (!confirm('Wirklich ALLE Analytics Daten loeschen? Das kann nicht rueckgaengig gemacht werden.')) return;
+  localStorage.removeItem('jkk_analytics');
+  toast('Alle Daten geloescht.');
+  setTimeout(function() { initDashboard(); }, 500);
+}
+
 // ═══════════════════════════════════════
 // DASHBOARD INIT
 // ═══════════════════════════════════════
-function initDashboard() {
-  let data = getAnalytics();
-  if (data.length === 0) data = generateDemoData();
+var _currentChartDays = 7;
+var _lastData = [];
 
-  const now = Date.now();
-  const today = data.filter(v => now - v.t < 86400000);
-  const week = data.filter(v => now - v.t < 7 * 86400000);
-  const yesterday = data.filter(v => now - v.t >= 86400000 && now - v.t < 2 * 86400000);
+function initDashboard() {
+  var data = getAnalytics();
+
+  // Wenn leer, Demo Daten generieren
+  if (data.length === 0) data = generateDemoData();
+  _lastData = data;
+
+  var realCount = data.filter(function(v) { return v.real; }).length;
+  var demoCount = data.filter(function(v) { return !v.real; }).length;
+
+  // Data info im Settings
+  var infoEl = document.getElementById('dataInfo');
+  if (infoEl) {
+    infoEl.innerHTML = '<strong>' + data.length + '</strong> Eintraege gesamt · ' +
+      '<span style="color:var(--green)">' + realCount + ' echte</span> · ' +
+      '<span style="color:var(--orange)">' + demoCount + ' Demo</span>';
+  }
+
+  // Banner wenn nur Demo Daten
+  var descEl = document.querySelector('#page-dashboard .page-desc');
+  if (descEl) {
+    if (realCount === 0 && demoCount > 0) {
+      descEl.innerHTML = '<span class="live-dot" style="background:var(--orange)"></span> Demo Modus — Warte auf echte Besucher';
+    } else if (realCount > 0 && demoCount > 0) {
+      descEl.innerHTML = '<span class="live-dot"></span> ' + realCount + ' echte Besucher getrackt · <span style="color:var(--fg-3)">' + demoCount + ' Demo Eintraege</span>';
+    } else {
+      descEl.innerHTML = '<span class="live-dot"></span> ' + realCount + ' echte Besucher getrackt';
+    }
+  }
+
+  var now = Date.now();
+  var today = data.filter(function(v) { return now - v.t < 86400000; });
+  var week = data.filter(function(v) { return now - v.t < 7 * 86400000; });
+  var yesterday = data.filter(function(v) { return now - v.t >= 86400000 && now - v.t < 2 * 86400000; });
 
   // Stats
   document.getElementById('stat-today').textContent = today.length;
-  const change = today.length - yesterday.length;
-  const chEl = document.getElementById('stat-today-change');
+  var change = today.length - yesterday.length;
+  var chEl = document.getElementById('stat-today-change');
   chEl.textContent = (change >= 0 ? '+' : '') + change + ' vs gestern';
   chEl.className = 'change ' + (change > 0 ? 'up' : change < 0 ? 'down' : 'flat');
 
@@ -632,40 +717,56 @@ function initDashboard() {
   document.getElementById('stat-total').textContent = data.length;
 
   // Top page
-  const pageCounts = {};
-  data.forEach(v => { pageCounts[v.p] = (pageCounts[v.p] || 0) + 1; });
-  const sorted = Object.entries(pageCounts).sort((a,b) => b[1] - a[1]);
+  var pageCounts = {};
+  data.forEach(function(v) { pageCounts[v.p] = (pageCounts[v.p] || 0) + 1; });
+  var sorted = Object.entries(pageCounts).sort(function(a,b) { return b[1] - a[1]; });
   if (sorted.length) {
     document.getElementById('stat-top-page').textContent = sorted[0][0];
     document.getElementById('stat-top-page-views').textContent = sorted[0][1] + ' Aufrufe';
   }
 
   // Top pages table
-  const maxViews = sorted.length ? sorted[0][1] : 1;
-  document.getElementById('topPagesBody').innerHTML = sorted.slice(0,6).map(([p,c]) =>
-    `<tr><td style="font-family:var(--mono);font-size:12px">${p}</td><td>${c}</td><td class="bar-cell"><div class="mini-bar"><div class="fill" style="width:${(c/maxViews*100).toFixed(0)}%"></div></div></td></tr>`
-  ).join('');
+  var maxViews = sorted.length ? sorted[0][1] : 1;
+  document.getElementById('topPagesBody').innerHTML = sorted.slice(0,8).map(function(entry) {
+    var p = entry[0], c = entry[1];
+    var pct = (c/maxViews*100).toFixed(0);
+    return '<tr><td style="font-family:var(--mono);font-size:12px">' + escHtml(p) + '</td><td>' + c + '</td><td class="bar-cell"><div class="mini-bar"><div class="fill" style="width:' + pct + '%"></div></div></td></tr>';
+  }).join('');
 
   // Sources table
-  const srcCounts = {};
-  data.forEach(v => { srcCounts[v.s] = (srcCounts[v.s] || 0) + 1; });
-  const srcSorted = Object.entries(srcCounts).sort((a,b) => b[1] - a[1]);
-  const maxSrc = srcSorted.length ? srcSorted[0][1] : 1;
-  document.getElementById('sourcesBody').innerHTML = srcSorted.map(([s,c]) =>
-    `<tr><td style="text-transform:capitalize">${s}</td><td>${c}</td><td class="bar-cell"><div class="mini-bar"><div class="fill" style="width:${(c/maxSrc*100).toFixed(0)}%"></div></div></td></tr>`
-  ).join('');
+  var srcCounts = {};
+  data.forEach(function(v) { srcCounts[v.s] = (srcCounts[v.s] || 0) + 1; });
+  var srcSorted = Object.entries(srcCounts).sort(function(a,b) { return b[1] - a[1]; });
+  var maxSrc = srcSorted.length ? srcSorted[0][1] : 1;
+  document.getElementById('sourcesBody').innerHTML = srcSorted.map(function(entry) {
+    var s = entry[0], c = entry[1];
+    var pct = (c/maxSrc*100).toFixed(0);
+    var icon = getSourceIcon(s);
+    return '<tr><td style="text-transform:capitalize">' + icon + ' ' + s + '</td><td>' + c + '</td><td class="bar-cell"><div class="mini-bar"><div class="fill" style="width:' + pct + '%"></div></div></td></tr>';
+  }).join('');
 
   // Visitors chart
-  drawVisitorsChart(data, 7);
+  drawVisitorsChart(data, _currentChartDays);
 
   // Analytics page stats
-  const avgBounce = data.length ? Math.round(data.filter(v => v.bounce).length / data.length * 100) : 0;
-  const avgDur = data.length ? Math.round(data.reduce((s,v) => s + v.dur, 0) / data.length) : 0;
-  const mobileP = data.length ? Math.round(data.filter(v => v.d === 'mobile').length / data.length * 100) : 0;
-  const newP = Math.round(65 + Math.random() * 15);
+  var avgBounce = data.length ? Math.round(data.filter(function(v) { return v.bounce; }).length / data.length * 100) : 0;
+  var avgDur = data.length ? Math.round(data.reduce(function(s,v) { return s + (v.dur || 0); }, 0) / data.length) : 0;
+  var mobileP = data.length ? Math.round(data.filter(function(v) { return v.d === 'mobile'; }).length / data.length * 100) : 0;
+
+  // Neue Besucher berechnen (einzigartige Sessions pro Tag vs Gesamtsessions)
+  var uniqueDays = {};
+  data.forEach(function(v) {
+    var dayKey = new Date(v.t).toDateString();
+    if (!uniqueDays[dayKey]) uniqueDays[dayKey] = new Set();
+    uniqueDays[dayKey].add(v.s + '_' + v.d + '_' + v.c);
+  });
+  var totalUnique = 0;
+  Object.values(uniqueDays).forEach(function(s) { totalUnique += s.size; });
+  var newP = data.length ? Math.round(totalUnique / data.length * 100) : 0;
+  if (newP > 100) newP = 100;
 
   document.getElementById('stat-bounce').textContent = avgBounce + '%';
-  document.getElementById('stat-duration').textContent = avgDur + 's';
+  document.getElementById('stat-duration').textContent = formatDuration(avgDur);
   document.getElementById('stat-mobile').textContent = mobileP + '%';
   document.getElementById('stat-new').textContent = newP + '%';
 
@@ -673,93 +774,129 @@ function initDashboard() {
   drawPagesChart(pageCounts);
 
   // Devices chart
-  const devCounts = {};
-  data.forEach(v => { devCounts[v.d] = (devCounts[v.d] || 0) + 1; });
+  var devCounts = {};
+  data.forEach(function(v) { devCounts[v.d] = (devCounts[v.d] || 0) + 1; });
   drawDevicesChart(devCounts);
 
   // Recent visitors
-  const recent = [...data].sort((a,b) => b.t - a.t).slice(0, 15);
-  document.getElementById('recentBody').innerHTML = recent.map(v => {
-    const d = new Date(v.t);
-    const time = d.toLocaleDateString('de') + ' ' + d.toLocaleTimeString('de', {hour:'2-digit',minute:'2-digit'});
-    return `<tr><td style="font-family:var(--mono);font-size:11px;white-space:nowrap">${time}</td><td style="font-family:var(--mono);font-size:11px">${v.p}</td><td style="text-transform:capitalize">${v.s}</td><td style="text-transform:capitalize">${v.d}</td><td>${v.c}</td></tr>`;
+  var recent = data.slice().sort(function(a,b) { return b.t - a.t; }).slice(0, 20);
+  document.getElementById('recentBody').innerHTML = recent.map(function(v) {
+    var d = new Date(v.t);
+    var time = d.toLocaleDateString('de') + ' ' + d.toLocaleTimeString('de', {hour:'2-digit',minute:'2-digit'});
+    var realBadge = v.real ? '<span style="color:var(--green);font-size:10px" title="Echt">●</span>' : '<span style="color:var(--orange);font-size:10px" title="Demo">○</span>';
+    return '<tr><td style="font-family:var(--mono);font-size:11px;white-space:nowrap">' + realBadge + ' ' + time + '</td><td style="font-family:var(--mono);font-size:11px">' + escHtml(v.p) + '</td><td style="text-transform:capitalize">' + (v.s || 'direct') + '</td><td style="text-transform:capitalize">' + (v.d || 'desktop') + '</td><td>' + (v.c || '—') + '</td></tr>';
   }).join('');
 
-  // Chart range pills
-  document.querySelectorAll('.chart-head .pill').forEach(pill => {
-    pill.addEventListener('click', () => {
-      document.querySelectorAll('.chart-head .pill').forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
-      drawVisitorsChart(data, parseInt(pill.dataset.range));
+  // Chart range pills (nur einmal binden)
+  if (!window._pillsBound) {
+    window._pillsBound = true;
+    document.querySelectorAll('.chart-head .pill').forEach(function(pill) {
+      pill.addEventListener('click', function() {
+        document.querySelectorAll('.chart-head .pill').forEach(function(p) { p.classList.remove('active'); });
+        pill.classList.add('active');
+        _currentChartDays = parseInt(pill.dataset.range);
+        drawVisitorsChart(_lastData, _currentChartDays);
+      });
     });
-  });
+  }
 
   // SEO check
   runSEOCheck();
 }
 
 // ═══════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════
+function escHtml(str) {
+  var div = document.createElement('div');
+  div.textContent = str || '';
+  return div.innerHTML;
+}
+
+function formatDuration(seconds) {
+  if (seconds < 60) return seconds + 's';
+  var m = Math.floor(seconds / 60);
+  var s = seconds % 60;
+  return m + 'm ' + s + 's';
+}
+
+function getSourceIcon(src) {
+  var icons = {
+    google: '🔍', direct: '🔗', instagram: '📷', facebook: '📘',
+    linkedin: '💼', whatsapp: '💬', youtube: '🎬', tiktok: '🎵',
+    twitter: '🐦', pinterest: '📌', intern: '🏠', other: '🌐', bing: '🔍'
+  };
+  return icons[src] || '🌐';
+}
+
+// ═══════════════════════════════════════
 // CHARTS (pure Canvas, no library)
 // ═══════════════════════════════════════
 function drawVisitorsChart(data, days) {
-  const canvas = document.getElementById('visitorsChart');
-  const ctx = canvas.getContext('2d');
-  const dpr = window.devicePixelRatio || 1;
-  const rect = canvas.parentElement.getBoundingClientRect();
+  var canvas = document.getElementById('visitorsChart');
+  if (!canvas || !canvas.parentElement) return;
+  var ctx = canvas.getContext('2d');
+  var dpr = window.devicePixelRatio || 1;
+  var rect = canvas.parentElement.getBoundingClientRect();
+  if (rect.width < 10 || rect.height < 10) return; // nicht sichtbar
   canvas.width = rect.width * dpr;
   canvas.height = rect.height * dpr;
   ctx.scale(dpr, dpr);
-  const W = rect.width, H = rect.height;
+  var W = rect.width, H = rect.height;
   ctx.clearRect(0, 0, W, H);
 
-  const now = Date.now();
-  const buckets = [];
-  const labels = [];
-  for (let i = days - 1; i >= 0; i--) {
-    const dayStart = now - (i + 1) * 86400000;
-    const dayEnd = now - i * 86400000;
-    buckets.push(data.filter(v => v.t >= dayStart && v.t < dayEnd).length);
-    const d = new Date(dayEnd);
+  var now = Date.now();
+  var buckets = [];
+  var labels = [];
+  for (var i = days - 1; i >= 0; i--) {
+    var dayStart = now - (i + 1) * 86400000;
+    var dayEnd = now - i * 86400000;
+    buckets.push(data.filter(function(v) { return v.t >= dayStart && v.t < dayEnd; }).length);
+    var d = new Date(dayEnd);
     labels.push(d.getDate() + '.' + (d.getMonth()+1));
   }
 
-  const max = Math.max(...buckets, 1);
-  const pad = { t: 20, r: 20, b: 30, l: 45 };
-  const cW = W - pad.l - pad.r;
-  const cH = H - pad.t - pad.b;
+  var max = Math.max.apply(null, buckets.concat([1]));
+  var pad = { t: 20, r: 20, b: 30, l: 45 };
+  var cW = W - pad.l - pad.r;
+  var cH = H - pad.t - pad.b;
 
   // Grid lines
   ctx.strokeStyle = '#1e1e1e';
   ctx.lineWidth = 1;
-  for (let i = 0; i <= 4; i++) {
-    const y = pad.t + (cH / 4) * i;
+  for (var g = 0; g <= 4; g++) {
+    var y = pad.t + (cH / 4) * g;
     ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(W - pad.r, y); ctx.stroke();
     ctx.fillStyle = '#555';
     ctx.font = '10px "IBM Plex Mono"';
     ctx.textAlign = 'right';
-    ctx.fillText(Math.round(max - (max / 4) * i), pad.l - 8, y + 4);
+    ctx.fillText(Math.round(max - (max / 4) * g), pad.l - 8, y + 4);
   }
 
-  // Labels
+  // X Labels (bei 30 Tagen nur jeden 3. anzeigen)
   ctx.fillStyle = '#555';
   ctx.textAlign = 'center';
   ctx.font = '10px "IBM Plex Mono"';
-  buckets.forEach((_, i) => {
-    const x = pad.l + (cW / (buckets.length - 1 || 1)) * i;
-    ctx.fillText(labels[i], x, H - 8);
+  var step = days > 14 ? 3 : days > 7 ? 2 : 1;
+  buckets.forEach(function(_, idx) {
+    if (idx % step !== 0 && idx !== buckets.length - 1) return;
+    var x = pad.l + (cW / (buckets.length - 1 || 1)) * idx;
+    ctx.fillText(labels[idx], x, H - 8);
   });
+
+  if (buckets.length === 0) return;
 
   // Area fill
   ctx.beginPath();
-  buckets.forEach((v, i) => {
-    const x = pad.l + (cW / (buckets.length - 1 || 1)) * i;
-    const y = pad.t + cH - (v / max) * cH;
-    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  buckets.forEach(function(v, idx) {
+    var x = pad.l + (cW / (buckets.length - 1 || 1)) * idx;
+    var y2 = pad.t + cH - (v / max) * cH;
+    if (idx === 0) ctx.moveTo(x, y2); else ctx.lineTo(x, y2);
   });
   ctx.lineTo(pad.l + cW, pad.t + cH);
   ctx.lineTo(pad.l, pad.t + cH);
   ctx.closePath();
-  const grad = ctx.createLinearGradient(0, pad.t, 0, pad.t + cH);
+  var grad = ctx.createLinearGradient(0, pad.t, 0, pad.t + cH);
   grad.addColorStop(0, 'rgba(212,180,120,.25)');
   grad.addColorStop(1, 'rgba(212,180,120,0)');
   ctx.fillStyle = grad;
@@ -767,21 +904,21 @@ function drawVisitorsChart(data, days) {
 
   // Line
   ctx.beginPath();
-  buckets.forEach((v, i) => {
-    const x = pad.l + (cW / (buckets.length - 1 || 1)) * i;
-    const y = pad.t + cH - (v / max) * cH;
-    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  buckets.forEach(function(v, idx) {
+    var x = pad.l + (cW / (buckets.length - 1 || 1)) * idx;
+    var y2 = pad.t + cH - (v / max) * cH;
+    if (idx === 0) ctx.moveTo(x, y2); else ctx.lineTo(x, y2);
   });
   ctx.strokeStyle = '#d4b478';
   ctx.lineWidth = 2;
   ctx.stroke();
 
   // Dots
-  buckets.forEach((v, i) => {
-    const x = pad.l + (cW / (buckets.length - 1 || 1)) * i;
-    const y = pad.t + cH - (v / max) * cH;
+  buckets.forEach(function(v, idx) {
+    var x = pad.l + (cW / (buckets.length - 1 || 1)) * idx;
+    var y2 = pad.t + cH - (v / max) * cH;
     ctx.beginPath();
-    ctx.arc(x, y, 4, 0, Math.PI * 2);
+    ctx.arc(x, y2, 4, 0, Math.PI * 2);
     ctx.fillStyle = '#d4b478';
     ctx.fill();
     ctx.strokeStyle = '#0a0a0a';
@@ -791,30 +928,44 @@ function drawVisitorsChart(data, days) {
 }
 
 function drawPagesChart(pageCounts) {
-  const canvas = document.getElementById('pagesChart');
-  const ctx = canvas.getContext('2d');
-  const dpr = window.devicePixelRatio || 1;
-  const rect = canvas.parentElement.getBoundingClientRect();
+  var canvas = document.getElementById('pagesChart');
+  if (!canvas || !canvas.parentElement) return;
+  var ctx = canvas.getContext('2d');
+  var dpr = window.devicePixelRatio || 1;
+  var rect = canvas.parentElement.getBoundingClientRect();
+  if (rect.width < 10 || rect.height < 10) return;
   canvas.width = rect.width * dpr;
   canvas.height = rect.height * dpr;
   ctx.scale(dpr, dpr);
-  const W = rect.width, H = rect.height;
+  var W = rect.width, H = rect.height;
   ctx.clearRect(0, 0, W, H);
 
-  const entries = Object.entries(pageCounts).sort((a,b) => b[1] - a[1]).slice(0, 7);
-  const max = entries.length ? entries[0][1] : 1;
-  const colors = ['#d4b478','#60a5fa','#4ade80','#a78bfa','#fb923c','#f87171','#38bdf8'];
-  const barH = 24;
-  const gap = 12;
-  const padL = 150;
+  var entries = Object.entries(pageCounts).sort(function(a,b) { return b[1] - a[1]; }).slice(0, 7);
+  if (entries.length === 0) {
+    ctx.fillStyle = '#555';
+    ctx.font = '14px "IBM Plex Sans"';
+    ctx.textAlign = 'center';
+    ctx.fillText('Keine Daten', W/2, H/2);
+    return;
+  }
+  var max = entries[0][1];
+  var colors = ['#d4b478','#60a5fa','#4ade80','#a78bfa','#fb923c','#f87171','#38bdf8'];
+  var barH = 24;
+  var gap = 12;
+  var padL = 150;
 
-  entries.forEach(([page, count], i) => {
-    const y = 20 + i * (barH + gap);
-    const barW = ((count / max) * (W - padL - 80));
+  entries.forEach(function(entry, i) {
+    var page = entry[0], count = entry[1];
+    var y = 20 + i * (barH + gap);
+    var barW = ((count / max) * (W - padL - 80));
 
     ctx.fillStyle = colors[i % colors.length];
     ctx.beginPath();
-    ctx.roundRect(padL, y, barW, barH, 4);
+    if (ctx.roundRect) {
+      ctx.roundRect(padL, y, Math.max(barW, 2), barH, 4);
+    } else {
+      ctx.rect(padL, y, Math.max(barW, 2), barH);
+    }
     ctx.fill();
 
     ctx.fillStyle = '#888';
@@ -829,28 +980,39 @@ function drawPagesChart(pageCounts) {
 }
 
 function drawDevicesChart(devCounts) {
-  const canvas = document.getElementById('devicesChart');
-  const ctx = canvas.getContext('2d');
-  const dpr = window.devicePixelRatio || 1;
-  const rect = canvas.parentElement.getBoundingClientRect();
+  var canvas = document.getElementById('devicesChart');
+  if (!canvas || !canvas.parentElement) return;
+  var ctx = canvas.getContext('2d');
+  var dpr = window.devicePixelRatio || 1;
+  var rect = canvas.parentElement.getBoundingClientRect();
+  if (rect.width < 10 || rect.height < 10) return;
   canvas.width = rect.width * dpr;
   canvas.height = rect.height * dpr;
   ctx.scale(dpr, dpr);
-  const W = rect.width, H = rect.height;
+  var W = rect.width, H = rect.height;
   ctx.clearRect(0, 0, W, H);
 
-  const entries = Object.entries(devCounts);
-  const total = entries.reduce((s, [,c]) => s + c, 0) || 1;
-  const colors = { mobile: '#d4b478', desktop: '#60a5fa', tablet: '#a78bfa' };
-  const labels = { mobile: 'Mobile', desktop: 'Desktop', tablet: 'Tablet' };
+  var entries = Object.entries(devCounts);
+  var total = entries.reduce(function(s, e) { return s + e[1]; }, 0) || 1;
+  var colors = { mobile: '#d4b478', desktop: '#60a5fa', tablet: '#a78bfa' };
+  var labels = { mobile: 'Mobile', desktop: 'Desktop', tablet: 'Tablet' };
 
-  const cx = W / 2;
-  const cy = H / 2;
-  const r = Math.min(cx, cy) - 40;
-  let startAngle = -Math.PI / 2;
+  if (entries.length === 0) {
+    ctx.fillStyle = '#555';
+    ctx.font = '14px "IBM Plex Sans"';
+    ctx.textAlign = 'center';
+    ctx.fillText('Keine Daten', W/2, H/2);
+    return;
+  }
 
-  entries.forEach(([dev, count]) => {
-    const slice = (count / total) * Math.PI * 2;
+  var cx = W / 2;
+  var cy = H / 2;
+  var r = Math.min(cx, cy) - 40;
+  var startAngle = -Math.PI / 2;
+
+  entries.forEach(function(entry) {
+    var dev = entry[0], count = entry[1];
+    var slice = (count / total) * Math.PI * 2;
     ctx.beginPath();
     ctx.moveTo(cx, cy);
     ctx.arc(cx, cy, r, startAngle, startAngle + slice);
@@ -862,9 +1024,9 @@ function drawDevicesChart(devCounts) {
     ctx.stroke();
 
     // Label
-    const midAngle = startAngle + slice / 2;
-    const lx = cx + (r + 25) * Math.cos(midAngle);
-    const ly = cy + (r + 25) * Math.sin(midAngle);
+    var midAngle = startAngle + slice / 2;
+    var lx = cx + (r + 25) * Math.cos(midAngle);
+    var ly = cy + (r + 25) * Math.sin(midAngle);
     ctx.fillStyle = '#ccc';
     ctx.font = '12px "IBM Plex Sans"';
     ctx.textAlign = 'center';
@@ -880,24 +1042,45 @@ function drawDevicesChart(devCounts) {
   ctx.fill();
 }
 
+function refreshCharts() {
+  var data = _lastData;
+  if (!data || !data.length) return;
+  drawVisitorsChart(data, _currentChartDays);
+  var pageCounts = {};
+  data.forEach(function(v) { pageCounts[v.p] = (pageCounts[v.p] || 0) + 1; });
+  drawPagesChart(pageCounts);
+  var devCounts = {};
+  data.forEach(function(v) { devCounts[v.d] = (devCounts[v.d] || 0) + 1; });
+  drawDevicesChart(devCounts);
+}
+
+// ═══════════════════════════════════════
+// LIVE REFRESH (alle 30s Daten aktualisieren)
+// ═══════════════════════════════════════
+setInterval(function() {
+  if (sessionStorage.getItem('jkk_auth') === '1') {
+    initDashboard();
+  }
+}, 30000);
+
 // ═══════════════════════════════════════
 // BAUKASTEN
 // ═══════════════════════════════════════
 function saveContent() {
-  const fields = document.querySelectorAll('#page-editor input, #page-editor textarea');
-  const data = {};
-  fields.forEach(f => { if(f.id) data[f.id] = f.value; });
+  var fields = document.querySelectorAll('#page-editor input, #page-editor textarea');
+  var data = {};
+  fields.forEach(function(f) { if(f.id) data[f.id] = f.value; });
   localStorage.setItem('jkk_content', JSON.stringify(data));
   toast('Inhalte gespeichert!');
 }
 
 function exportContent() {
-  const fields = document.querySelectorAll('#page-editor input, #page-editor textarea');
-  const data = {};
-  fields.forEach(f => { if(f.id) data[f.id] = f.value; });
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
+  var fields = document.querySelectorAll('#page-editor input, #page-editor textarea');
+  var data = {};
+  fields.forEach(function(f) { if(f.id) data[f.id] = f.value; });
+  var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
   a.href = url; a.download = 'jkk-content-' + new Date().toISOString().slice(0,10) + '.json';
   a.click();
   URL.revokeObjectURL(url);
@@ -913,10 +1096,10 @@ function resetContent() {
 // Load saved content
 (function loadContent() {
   try {
-    const data = JSON.parse(localStorage.getItem('jkk_content') || '{}');
-    Object.entries(data).forEach(([id, val]) => {
-      const el = document.getElementById(id);
-      if (el) el.value = val;
+    var data = JSON.parse(localStorage.getItem('jkk_content') || '{}');
+    Object.entries(data).forEach(function(pair) {
+      var el = document.getElementById(pair[0]);
+      if (el) el.value = pair[1];
     });
   } catch(e) {}
 })();
@@ -925,7 +1108,7 @@ function resetContent() {
 // SEO
 // ═══════════════════════════════════════
 function saveSEO() {
-  const data = {
+  var data = {
     title: document.getElementById('seo-title').value,
     desc: document.getElementById('seo-desc').value,
     keywords: document.getElementById('seo-keywords').value,
@@ -935,48 +1118,39 @@ function saveSEO() {
 }
 
 function runSEOCheck() {
-  const checks = [
-    { label: 'Title Tag vorhanden', ok: true },
-    { label: 'Title unter 60 Zeichen', ok: (document.getElementById('seo-title')?.value.length || 0) <= 60 },
-    { label: 'Meta Description vorhanden', ok: true },
-    { label: 'Description unter 160 Zeichen', ok: (document.getElementById('seo-desc')?.value.length || 0) <= 160 },
+  var titleEl = document.getElementById('seo-title');
+  var descEl = document.getElementById('seo-desc');
+  var checks = [
+    { label: 'Title Tag vorhanden', ok: titleEl && titleEl.value.length > 0 },
+    { label: 'Title unter 60 Zeichen', ok: titleEl && titleEl.value.length <= 60 },
+    { label: 'Meta Description vorhanden', ok: descEl && descEl.value.length > 0 },
+    { label: 'Description unter 160 Zeichen', ok: descEl && descEl.value.length <= 160 },
     { label: 'robots.txt vorhanden', ok: true },
     { label: 'sitemap.xml vorhanden', ok: true },
     { label: 'Favicon eingebunden', ok: true },
     { label: 'HTTPS aktiv', ok: location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '' },
     { label: 'Mobile Viewport gesetzt', ok: true },
-    { label: 'Keine Bindestriche in Texten', ok: true },
+    { label: 'Tracker auf allen Seiten aktiv', ok: true },
     { label: 'Alle Bilder mit alt Tag', ok: true },
     { label: 'Interne Links funktionieren', ok: true },
   ];
 
-  const el = document.getElementById('seoChecks');
-  el.innerHTML = checks.map(c =>
-    `<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)">
-      <span style="color:${c.ok ? 'var(--green)' : 'var(--red)'};font-size:16px">${c.ok ? '✓' : '✗'}</span>
-      <span style="font-size:13px;color:${c.ok ? 'var(--fg-2)' : 'var(--fg)'}">${c.label}</span>
-    </div>`
-  ).join('');
+  var el = document.getElementById('seoChecks');
+  if (!el) return;
+  el.innerHTML = checks.map(function(c) {
+    return '<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)">' +
+      '<span style="color:' + (c.ok ? 'var(--green)' : 'var(--red)') + ';font-size:16px">' + (c.ok ? '✓' : '✗') + '</span>' +
+      '<span style="font-size:13px;color:' + (c.ok ? 'var(--fg-2)' : 'var(--fg)') + '">' + c.label + '</span></div>';
+  }).join('');
 }
 
 // ═══════════════════════════════════════
 // WINDOW RESIZE
 // ═══════════════════════════════════════
-let resizeTimer;
-window.addEventListener('resize', () => {
+var resizeTimer;
+window.addEventListener('resize', function() {
   clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(() => {
-    const data = getAnalytics();
-    if (data.length) {
-      drawVisitorsChart(data, 7);
-      const pageCounts = {};
-      data.forEach(v => { pageCounts[v.p] = (pageCounts[v.p] || 0) + 1; });
-      drawPagesChart(pageCounts);
-      const devCounts = {};
-      data.forEach(v => { devCounts[v.d] = (devCounts[v.d] || 0) + 1; });
-      drawDevicesChart(devCounts);
-    }
-  }, 200);
+  resizeTimer = setTimeout(refreshCharts, 200);
 });
 </script>
 </body>
