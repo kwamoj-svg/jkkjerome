@@ -595,9 +595,10 @@
       radial-gradient(ellipse 60% 40% at 50% 40%, rgba(255,255,255,.08), transparent 60%);
   }
   .specsheet .subject .portrait-wrap{margin-bottom:18px}
-  .specsheet .subject .portrait .port-slot{
+  .specsheet .subject .portrait .port-slot,
+  .specsheet .subject .portrait > img{
     position:absolute;inset:0;width:100%;height:100%;
-    --slot-bg:transparent;z-index:1;
+    --slot-bg:transparent;z-index:1;object-fit:cover;
   }
   .specsheet .subject .portrait::before,
   .specsheet .subject .portrait::after{
@@ -639,9 +640,10 @@
   }
   .specsheet .subject .arch-cell::before{top:4px;left:4px;border-right:0;border-bottom:0}
   .specsheet .subject .arch-cell::after{bottom:4px;right:4px;border-left:0;border-top:0}
-  .specsheet .subject .arch-cell image-slot{
+  .specsheet .subject .arch-cell image-slot,
+  .specsheet .subject .arch-cell > img{
     position:absolute;inset:0;width:100%;height:100%;
-    --slot-bg:transparent;z-index:1;
+    --slot-bg:transparent;z-index:1;object-fit:cover;
   }
   .specsheet .subject .arch-cell .arch-lot{
     position:absolute;top:5px;right:14px;z-index:2;
@@ -1773,7 +1775,8 @@
 <style>
   .clients-label .v{max-width:220px}
   .clients-grid .logo-slot{position:relative;padding:0;overflow:hidden}
-  .clients-grid .logo-slot image-slot{position:absolute;inset:0;width:100%;height:100%;--slot-bg:transparent;display:block}
+  .clients-grid .logo-slot image-slot,
+  .clients-grid .logo-slot > img{position:absolute;inset:0;width:100%;height:100%;--slot-bg:transparent;display:block;object-fit:cover}
   .clients-grid .logo-slot .ph-num{position:absolute;top:7px;left:10px;z-index:2;font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:rgba(0,0,0,.42);pointer-events:none}
   .clients-grid .logo-slot::before,.clients-grid .logo-slot::after{content:"";position:absolute;width:9px;height:9px;border:1px solid rgba(0,0,0,.28);pointer-events:none;z-index:2}
   .clients-grid .logo-slot::before{top:5px;right:5px;border-left:0;border-bottom:0}
@@ -4957,7 +4960,8 @@
 <!-- ─── LIGHTBOX · click subject + archive images to enlarge ─── -->
 <style>
   .specsheet .portrait .port-slot,
-  .specsheet .arch-cell image-slot{cursor:zoom-in}
+  .specsheet .arch-cell image-slot,
+  .specsheet .arch-cell > img{cursor:zoom-in}
   #lb-overlay{
     position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;
     background:rgba(6,7,9,.94);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);
