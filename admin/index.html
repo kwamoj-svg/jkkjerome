@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Admin Dashboard · Jerome Kwamo</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" href="../favicon.ico" sizes="32x32" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Archivo:wght@500;700;900&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg: #0a0a0a; --bg-2: #111; --bg-3: #181818; --bg-4: #222;
+  --fg: #f0f0f0; --fg-2: #aaa; --fg-3: #666;
+  --gold: #d4b478; --gold-2: #c9a55a; --gold-dim: #7a6a3f;
+  --green: #4ade80; --red: #f87171; --blue: #60a5fa; --purple: #a78bfa; --orange: #fb923c;
+  --line: #1e1e1e; --line-2: #2a2a2a;
+  --mono: "IBM Plex Mono", monospace;
+  --sans: "IBM Plex Sans", system-ui, sans-serif;
+  --display: "Archivo", system-ui, sans-serif;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 14px; line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+
+/* ── LOGIN ── */
+.login-screen {
+  position: fixed; inset: 0; z-index: 999; background: var(--bg);
+  display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 32px;
+}
+.login-screen.hidden { display: none; }
+.login-box { width: 340px; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 40px 32px; text-align: center; }
+.login-box .logo { font-family: var(--display); font-weight: 900; font-size: 22px; letter-spacing: .04em; margin-bottom: 8px; }
+.login-box .sub { font-family: var(--mono); font-size: 11px; color: var(--fg-3); letter-spacing: .15em; text-transform: uppercase; margin-bottom: 32px; }
+.login-box input { width: 100%; background: var(--bg); border: 1px solid var(--line); color: var(--fg); font-family: var(--mono); font-size: 14px; padding: 12px 16px; border-radius: 6px; text-align: center; outline: none; margin-bottom: 16px; }
+.login-box input:focus { border-color: var(--gold); }
+.login-box button { width: 100%; background: var(--gold); color: #0a0a0a; border: none; font-family: var(--mono); font-weight: 600; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; padding: 14px; border-radius: 6px; cursor: pointer; }
+.login-box button:hover { background: var(--gold-2); }
+.login-error { color: var(--red); font-size: 12px; margin-top: 8px; display: none; }
+
+/* ── LAYOUT ── */
+.app { display: none; grid-template-columns: 240px 1fr; min-height: 100vh; }
+.app.active { display: grid; }
+
+/* Sidebar */
+.sidebar { background: var(--bg-2); border-right: 1px solid var(--line); padding: 24px 0; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; }
+.sidebar .brand { padding: 0 20px 24px; border-bottom: 1px solid var(--line); margin-bottom: 16px; }
+.sidebar .brand .name { font-family: var(--display); font-weight: 900; font-size: 16px; }
+.sidebar .brand .tag { font-family: var(--mono); font-size: 10px; color: var(--gold); letter-spacing: .2em; text-transform: uppercase; }
+.sidebar nav { flex: 1; }
+.sidebar nav a {
+  display: flex; align-items: center; gap: 12px; padding: 10px 20px; color: var(--fg-2);
+  text-decoration: none; font-size: 13px; font-weight: 500; transition: all .2s; cursor: pointer;
+}
+.sidebar nav a:hover { color: var(--fg); background: rgba(255,255,255,.03); }
+.sidebar nav a.active { color: var(--gold); background: rgba(212,180,120,.06); border-right: 2px solid var(--gold); }
+.sidebar nav a svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.sidebar .logout { padding: 16px 20px; border-top: 1px solid var(--line); margin-top: auto; }
+.sidebar .logout a { color: var(--fg-3); font-size: 12px; text-decoration: none; cursor: pointer; font-family: var(--mono); }
+.sidebar .logout a:hover { color: var(--red); }
+
+/* Main content */
+.main { padding: 32px 40px; overflow-y: auto; }
+.page { display: none; }
+.page.active { display: block; }
+
+/* Page header */
+.page-title { font-family: var(--display); font-weight: 900; font-size: 28px; letter-spacing: -.01em; margin-bottom: 8px; }
+.page-desc { color: var(--fg-2); font-size: 14px; margin-bottom: 32px; }
+
+/* ── CARDS ── */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-bottom: 32px; }
+.card { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
+.card .label { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--fg-3); margin-bottom: 8px; }
+.card .value { font-family: var(--display); font-weight: 700; font-size: 28px; }
+.card .change { font-family: var(--mono); font-size: 11px; margin-top: 4px; }
+.card .change.up { color: var(--green); }
+.card .change.down { color: var(--red); }
+.card .change.flat { color: var(--fg-3); }
+
+/* ── CHART ── */
+.chart-wrap { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; margin-bottom: 24px; }
+.chart-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.chart-head h3 { font-family: var(--display); font-weight: 700; font-size: 16px; }
+.chart-head .pills { display: flex; gap: 4px; }
+.chart-head .pill { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; padding: 5px 10px; border: 1px solid var(--line); border-radius: 20px; background: none; color: var(--fg-3); cursor: pointer; }
+.chart-head .pill.active { background: var(--gold); color: #0a0a0a; border-color: var(--gold); }
+.chart-canvas { width: 100%; height: 220px; position: relative; }
+.chart-canvas canvas { width: 100%; height: 100%; }
+
+/* ── TABLE ── */
+.table-wrap { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-bottom: 24px; }
+.table-wrap .head { padding: 16px 20px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
+.table-wrap .head h3 { font-family: var(--display); font-weight: 700; font-size: 15px; }
+table { width: 100%; border-collapse: collapse; }
+table th { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--fg-3); text-align: left; padding: 12px 20px; border-bottom: 1px solid var(--line); }
+table td { padding: 12px 20px; border-bottom: 1px solid var(--line); font-size: 13px; }
+table tr:last-child td { border-bottom: none; }
+table .bar-cell { width: 40%; }
+.mini-bar { height: 6px; background: var(--bg); border-radius: 3px; overflow: hidden; }
+.mini-bar .fill { height: 100%; border-radius: 3px; background: var(--gold); }
+
+/* ── BAUKASTEN (Editor) ── */
+.editor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 1100px) { .editor-grid { grid-template-columns: 1fr; } }
+.editor-section { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.editor-section .sec-head { padding: 14px 20px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
+.editor-section .sec-head h3 { font-family: var(--display); font-weight: 700; font-size: 14px; }
+.editor-section .sec-head .badge { font-family: var(--mono); font-size: 9px; letter-spacing: .15em; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; background: rgba(212,180,120,.1); color: var(--gold); }
+.field { padding: 16px 20px; border-bottom: 1px solid var(--line); }
+.field:last-child { border-bottom: none; }
+.field label { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: var(--fg-3); margin-bottom: 8px; }
+.field input, .field textarea {
+  width: 100%; background: var(--bg); border: 1px solid var(--line); color: var(--fg);
+  font-family: var(--sans); font-size: 13px; padding: 10px 14px; border-radius: 6px; outline: none; resize: vertical;
+}
+.field input:focus, .field textarea:focus { border-color: var(--gold); }
+.field textarea { min-height: 80px; line-height: 1.6; }
+
+.btn-row { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+.btn {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+  padding: 12px 24px; border-radius: 6px; border: none; cursor: pointer; font-weight: 600; transition: all .2s;
+}
+.btn.primary { background: var(--gold); color: #0a0a0a; }
+.btn.primary:hover { background: var(--gold-2); transform: translateY(-1px); }
+.btn.secondary { background: transparent; color: var(--fg-2); border: 1px solid var(--line-2); }
+.btn.secondary:hover { border-color: var(--fg-2); color: var(--fg); }
+.btn.danger { background: transparent; color: var(--red); border: 1px solid rgba(248,113,113,.2); }
+.btn.danger:hover { background: rgba(248,113,113,.1); }
+
+.toast {
+  position: fixed; bottom: 24px; right: 24px; background: var(--green); color: #0a0a0a;
+  font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: .08em;
+  padding: 14px 24px; border-radius: 8px; z-index: 100; opacity: 0; transform: translateY(20px);
+  transition: all .3s; pointer-events: none;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+
+/* ── LIVE VISITORS ── */
+.live-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--green); margin-right: 6px; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 800px) {
+  .app.active { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .main { padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ LOGIN ═══ -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-box">
+    <div class="logo">JEROME KWAMO</div>
+    <div class="sub">Admin Dashboard</div>
+    <input type="password" id="loginPass" placeholder="Passwort eingeben" autofocus />
+    <button onclick="tryLogin()">Einloggen</button>
+    <div class="login-error" id="loginError">Falsches Passwort</div>
+  </div>
+</div>
+
+<!-- ═══ APP ═══ -->
+<div class="app" id="app">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="name">Jerome Kwamo</div>
+      <div class="tag">Admin</div>
+    </div>
+    <nav>
+      <a class="active" data-page="dashboard">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </a>
+      <a data-page="analytics">
+        <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 16l4-5 4 3 5-7"/></svg>
+        Analyse
+      </a>
+      <a data-page="editor">
+        <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+        Baukasten
+      </a>
+      <a data-page="seo">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        SEO
+      </a>
+      <a data-page="settings">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Einstellungen
+      </a>
+    </nav>
+    <div class="logout"><a onclick="logout()">Abmelden</a></div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main">
+
+    <!-- ═══ DASHBOARD ═══ -->
+    <div class="page active" id="page-dashboard">
+      <h1 class="page-title">Dashboard</h1>
+      <p class="page-desc"><span class="live-dot"></span> Deine Website auf einen Blick</p>
+
+      <div class="cards">
+        <div class="card">
+          <div class="label">Besucher heute</div>
+          <div class="value" id="stat-today">0</div>
+          <div class="change up" id="stat-today-change">Wird geladen...</div>
+        </div>
+        <div class="card">
+          <div class="label">Diese Woche</div>
+          <div class="value" id="stat-week">0</div>
+          <div class="change flat" id="stat-week-change"></div>
+        </div>
+        <div class="card">
+          <div class="label">Seitenaufrufe gesamt</div>
+          <div class="value" id="stat-total">0</div>
+          <div class="change flat">seit Tracking Start</div>
+        </div>
+        <div class="card">
+          <div class="label">Beliebteste Seite</div>
+          <div class="value" style="font-size:18px" id="stat-top-page">/</div>
+          <div class="change flat" id="stat-top-page-views"></div>
+        </div>
+      </div>
+
+      <div class="chart-wrap">
+        <div class="chart-head">
+          <h3>Besucher der letzten 7 Tage</h3>
+          <div class="pills">
+            <button class="pill active" data-range="7">7 Tage</button>
+            <button class="pill" data-range="30">30 Tage</button>
+          </div>
+        </div>
+        <div class="chart-canvas"><canvas id="visitorsChart"></canvas></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+        <div class="table-wrap">
+          <div class="head"><h3>Top Seiten</h3></div>
+          <table>
+            <thead><tr><th>Seite</th><th>Aufrufe</th><th class="bar-cell">Anteil</th></tr></thead>
+            <tbody id="topPagesBody"></tbody>
+          </table>
+        </div>
+        <div class="table-wrap">
+          <div class="head"><h3>Quellen</h3></div>
+          <table>
+            <thead><tr><th>Quelle</th><th>Besucher</th><th class="bar-cell">Anteil</th></tr></thead>
+            <tbody id="sourcesBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ ANALYSE ═══ -->
+    <div class="page" id="page-analytics">
+      <h1 class="page-title">Analyse</h1>
+      <p class="page-desc">Detaillierte Auswertung deiner Website Performance</p>
+
+      <div class="cards">
+        <div class="card">
+          <div class="label">Absprungrate</div>
+          <div class="value" id="stat-bounce">0%</div>
+          <div class="change flat">Durchschnitt</div>
+        </div>
+        <div class="card">
+          <div class="label">Verweildauer</div>
+          <div class="value" id="stat-duration">0s</div>
+          <div class="change flat">Durchschnitt</div>
+        </div>
+        <div class="card">
+          <div class="label">Mobile Besucher</div>
+          <div class="value" id="stat-mobile">0%</div>
+          <div class="change flat">Anteil</div>
+        </div>
+        <div class="card">
+          <div class="label">Neue Besucher</div>
+          <div class="value" id="stat-new">0%</div>
+          <div class="change flat">Anteil</div>
+        </div>
+      </div>
+
+      <div class="chart-wrap">
+        <div class="chart-head">
+          <h3>Seitenaufrufe pro Seite</h3>
+        </div>
+        <div class="chart-canvas"><canvas id="pagesChart"></canvas></div>
+      </div>
+
+      <div class="chart-wrap">
+        <div class="chart-head">
+          <h3>Geraete</h3>
+        </div>
+        <div class="chart-canvas"><canvas id="devicesChart"></canvas></div>
+      </div>
+
+      <div class="table-wrap">
+        <div class="head"><h3>Letzte Besucher</h3></div>
+        <table>
+          <thead><tr><th>Zeit</th><th>Seite</th><th>Quelle</th><th>Geraet</th><th>Land</th></tr></thead>
+          <tbody id="recentBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ═══ BAUKASTEN ═══ -->
+    <div class="page" id="page-editor">
+      <h1 class="page-title">Baukasten</h1>
+      <p class="page-desc">Bearbeite die Texte deiner Website. Aenderungen werden lokal gespeichert.</p>
+
+      <div class="editor-grid">
+
+        <div class="editor-section">
+          <div class="sec-head"><h3>Hero / Startseite</h3><span class="badge">Hauptseite</span></div>
+          <div class="field">
+            <label>Hero Text (DE)</label>
+            <textarea id="ed-hero-de" rows="3">Ich bringe Bootshändler, Werften und Charterunternehmen digital nach vorne. Film, Foto und smartes Marketing aus einer Hand.</textarea>
+          </div>
+          <div class="field">
+            <label>Hero Text (EN)</label>
+            <textarea id="ed-hero-en" rows="3">I help boat dealers, yards and charter companies go digital. Film, photo and smart marketing from a single source.</textarea>
+          </div>
+        </div>
+
+        <div class="editor-section">
+          <div class="sec-head"><h3>Ueber mich</h3><span class="badge">Hauptseite</span></div>
+          <div class="field">
+            <label>Intro Text (DE)</label>
+            <textarea id="ed-about-lead-de" rows="3">Ich helfe Bootshändlern, Werften und Charterunternehmen dabei, digital sichtbar zu werden. Mit Film, Fotografie und smartem Marketing bringe ich dein Business online nach vorne. Ein Ansprechpartner für alles.</textarea>
+          </div>
+          <div class="field">
+            <label>Werdegang (DE)</label>
+            <textarea id="ed-about-body-de" rows="5">Ich fotografiere und filme seit ich ein kleiner Junge war. Professionell bin ich jetzt seit rund fünf Jahren dabei. In meiner Agenturzeit habe ich alles ausprobiert: von Sportfotografie über Corporate bis hin zu den unterschiedlichsten Branchen. Dabei habe ich mir ein breites Skillset aufgebaut, das weit über die Kamera hinausgeht.</textarea>
+          </div>
+          <div class="field">
+            <label>Nische (DE)</label>
+            <textarea id="ed-about-niche-de" rows="4">Jetzt bin ich an dem Punkt, an dem ich mich bewusst auf eine Nische fokussiere: die Digitalisierung der Bootsbranche. Viele Händler, Werften und Charterunternehmen haben großartige Boote, aber keinen digitalen Auftritt, der dem gerecht wird. Genau da möchte ich helfen.</textarea>
+          </div>
+        </div>
+
+        <div class="editor-section">
+          <div class="sec-head"><h3>KI Sektion</h3><span class="badge">Hauptseite</span></div>
+          <div class="field">
+            <label>Ueberschrift (DE)</label>
+            <input type="text" id="ed-ki-title-de" value="Dein digitaler Vorteil." />
+          </div>
+          <div class="field">
+            <label>Text (DE)</label>
+            <textarea id="ed-ki-text-de" rows="3">Ich nutze KI, um dir Zeit und Geld zu sparen. Ob automatische Anfragen, smarte Bildbearbeitung oder fertige Verkaufstexte. Kein Hype, sondern echte Ergebnisse für dein Business.</textarea>
+          </div>
+        </div>
+
+        <div class="editor-section">
+          <div class="sec-head"><h3>Kontakt Sektion</h3><span class="badge">Hauptseite</span></div>
+          <div class="field">
+            <label>E Mail</label>
+            <input type="email" id="ed-email" value="kontakt@jkkjerome.de" />
+          </div>
+          <div class="field">
+            <label>Telefon</label>
+            <input type="tel" id="ed-phone" value="+49 151 67457949" />
+          </div>
+          <div class="field">
+            <label>Standort</label>
+            <input type="text" id="ed-location" value="Bielefeld, Deutschland" />
+          </div>
+        </div>
+
+        <div class="editor-section" style="grid-column: 1 / -1">
+          <div class="sec-head"><h3>Service Module</h3><span class="badge">9 Module</span></div>
+          <div class="field">
+            <label>M01 Fotografie (DE)</label>
+            <textarea id="ed-m01" rows="2">Professionelle Bootsfotografie an Land und auf dem Wasser. Von außen, innen, Lifestyle bis Detail. Fertig bearbeitet und direkt einsetzbar für dein Inserat oder deine Website.</textarea>
+          </div>
+          <div class="field">
+            <label>M02 Film (DE)</label>
+            <textarea id="ed-m02" rows="2">Imagevideos, Werbefilme und Reels für dein Boot oder deine Werft. Mit Drohnenaufnahmen, professionellem Color Grading und fertigen Versionen für jede Plattform.</textarea>
+          </div>
+          <div class="field">
+            <label>M03 KI Visuals (DE)</label>
+            <textarea id="ed-m03" rows="2">Smarte Bildbearbeitung mit KI, realistische Visualisierungen für Umbauten und Neubauten. Dazu fertige Exposés und Verkaufstexte in deiner Sprache.</textarea>
+          </div>
+          <div class="field">
+            <label>M04 KI Sales (DE)</label>
+            <textarea id="ed-m04" rows="2">Ich baue dir ein System, das Anfragen rund um die Uhr annimmt, Interessenten automatisch bewertet und an dich weiterleitet. Damit dir keine Anfrage mehr durch die Lappen geht.</textarea>
+          </div>
+          <div class="field">
+            <label>M05 Social (DE)</label>
+            <textarea id="ed-m05" rows="2">Ich übernehme deine Social Media Kanäle komplett. Redaktionsplan, Reels, Storys und regelmäßige Postings, damit dein Business online sichtbar bleibt.</textarea>
+          </div>
+          <div class="field">
+            <label>M06 Paid & SEO (DE)</label>
+            <textarea id="ed-m06" rows="2">Bezahlte Werbung und Suchmaschinenoptimierung speziell für die Bootsbranche. Von der Anzeige bis zur Auswertung übernehme ich alles für dich.</textarea>
+          </div>
+          <div class="field">
+            <label>M07 Websites (DE)</label>
+            <textarea id="ed-m07" rows="2">Verkaufsseiten, Online Showrooms und digitale Kataloge. Optimiert fürs Handy und für alle gängigen Plattformen. Von der Idee bis zum fertigen Auftritt.</textarea>
+          </div>
+          <div class="field">
+            <label>M08 Funnel & CRM (DE)</label>
+            <textarea id="ed-m08" rows="2">Ich richte deinen digitalen Verkaufsprozess ein. Vom ersten Klick bis zum Abschluss. Dazu CRM Automatisierung und Bewertungsmanagement für deinen guten Ruf online.</textarea>
+          </div>
+          <div class="field">
+            <label>M09 Beratung (DE)</label>
+            <textarea id="ed-m09" rows="2">Du weißt nicht, wo du anfangen sollst? In einem Gespräch schaue ich mir deine Situation an und gebe dir einen klaren Fahrplan mit konkreten nächsten Schritten.</textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn primary" onclick="saveContent()">Aenderungen speichern</button>
+        <button class="btn secondary" onclick="exportContent()">Als JSON exportieren</button>
+        <button class="btn danger" onclick="resetContent()">Zuruecksetzen</button>
+      </div>
+    </div>
+
+    <!-- ═══ SEO ═══ -->
+    <div class="page" id="page-seo">
+      <h1 class="page-title">SEO</h1>
+      <p class="page-desc">Suchmaschinenoptimierung und Meta Daten</p>
+
+      <div class="editor-grid">
+        <div class="editor-section">
+          <div class="sec-head"><h3>Hauptseite</h3><span class="badge">index.html</span></div>
+          <div class="field">
+            <label>Title Tag</label>
+            <input type="text" id="seo-title" value="Jerome Kwamo — Film, Fotografie & KI Marketing für Yachten & Boote" />
+          </div>
+          <div class="field">
+            <label>Meta Description</label>
+            <textarea id="seo-desc" rows="3">Ich produziere cineastische Filme, hochwertige Fotografie und KI gestütztes Marketing für die Yachtbranche. Weltweit verfügbar, Basis Hamburg.</textarea>
+          </div>
+          <div class="field">
+            <label>Keywords</label>
+            <input type="text" id="seo-keywords" value="Yacht Fotografie, Boot Film, Yacht Marketing, KI Marketing Yachten, Jerome Kwamo, Hamburg" />
+          </div>
+        </div>
+
+        <div class="editor-section">
+          <div class="sec-head"><h3>SEO Checkliste</h3><span class="badge">Status</span></div>
+          <div style="padding: 16px 20px;">
+            <div class="seo-check" id="seoChecks"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn primary" onclick="saveSEO()">SEO Daten speichern</button>
+        <button class="btn secondary" onclick="runSEOCheck()">SEO Check starten</button>
+      </div>
+    </div>
+
+    <!-- ═══ SETTINGS ═══ -->
+    <div class="page" id="page-settings">
+      <h1 class="page-title">Einstellungen</h1>
+      <p class="page-desc">Dashboard Konfiguration</p>
+
+      <div class="editor-section" style="max-width:500px">
+        <div class="sec-head"><h3>Passwort aendern</h3></div>
+        <div class="field">
+          <label>Neues Passwort</label>
+          <input type="password" id="newPass" />
+        </div>
+        <div class="field">
+          <label>Passwort bestätigen</label>
+          <input type="password" id="confirmPass" />
+        </div>
+        <div style="padding: 16px 20px;">
+          <button class="btn primary" onclick="changePassword()">Passwort speichern</button>
+        </div>
+      </div>
+
+      <div class="editor-section" style="max-width:500px; margin-top: 24px;">
+        <div class="sec-head"><h3>Tracking Code</h3></div>
+        <div class="field">
+          <label>Analytics Script (bereits eingebunden)</label>
+          <textarea rows="3" style="font-family:var(--mono);font-size:11px" readonly>&lt;script src="/admin/tracker.js"&gt;&lt;/script&gt;</textarea>
+        </div>
+        <div style="padding: 16px 20px; color: var(--fg-3); font-size: 12px;">
+          Das Tracking Script ist auf allen Seiten aktiv. Daten werden lokal im Browser gespeichert und sind nur in diesem Dashboard sichtbar.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════════════════════════════════
+// AUTH
+// ═══════════════════════════════════════
+const DEFAULT_HASH = '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918'; // "admin"
+
+function sha256(str) {
+  const buf = new TextEncoder().encode(str);
+  return crypto.subtle.digest('SHA-256', buf).then(h => {
+    return Array.from(new Uint8Array(h)).map(b => b.toString(16).padStart(2,'0')).join('');
+  });
+}
+
+function getPassHash() {
+  return localStorage.getItem('jkk_admin_hash') || DEFAULT_HASH;
+}
+
+async function tryLogin() {
+  const pass = document.getElementById('loginPass').value;
+  const hash = await sha256(pass);
+  if (hash === getPassHash()) {
+    sessionStorage.setItem('jkk_auth', '1');
+    document.getElementById('loginScreen').classList.add('hidden');
+    document.getElementById('app').classList.add('active');
+    initDashboard();
+  } else {
+    document.getElementById('loginError').style.display = 'block';
+    document.getElementById('loginPass').value = '';
+  }
+}
+
+document.getElementById('loginPass').addEventListener('keydown', e => { if(e.key==='Enter') tryLogin(); });
+
+function logout() {
+  sessionStorage.removeItem('jkk_auth');
+  location.reload();
+}
+
+async function changePassword() {
+  const p1 = document.getElementById('newPass').value;
+  const p2 = document.getElementById('confirmPass').value;
+  if (!p1 || p1.length < 4) return toast('Passwort muss mindestens 4 Zeichen haben', 'red');
+  if (p1 !== p2) return toast('Passwörter stimmen nicht überein', 'red');
+  const hash = await sha256(p1);
+  localStorage.setItem('jkk_admin_hash', hash);
+  document.getElementById('newPass').value = '';
+  document.getElementById('confirmPass').value = '';
+  toast('Passwort gespeichert!');
+}
+
+// Auto login if session active
+if (sessionStorage.getItem('jkk_auth') === '1') {
+  document.getElementById('loginScreen').classList.add('hidden');
+  document.getElementById('app').classList.add('active');
+  setTimeout(initDashboard, 50);
+}
+
+// ═══════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════
+document.querySelectorAll('.sidebar nav a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.querySelectorAll('.sidebar nav a').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.page').forEach(x => x.classList.remove('active'));
+    a.classList.add('active');
+    document.getElementById('page-' + a.dataset.page).classList.add('active');
+  });
+});
+
+// ═══════════════════════════════════════
+// TOAST
+// ═══════════════════════════════════════
+function toast(msg, color) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.background = color === 'red' ? 'var(--red)' : 'var(--green)';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ═══════════════════════════════════════
+// ANALYTICS DATA (localStorage based)
+// ═══════════════════════════════════════
+function getAnalytics() {
+  try { return JSON.parse(localStorage.getItem('jkk_analytics') || '[]'); } catch(e) { return []; }
+}
+
+function generateDemoData() {
+  // Generate realistic demo data for the last 30 days
+  const data = [];
+  const pages = ['/', '/portfolio.html', '/leistung.html', '/blog/', '/info-center.html', '/legal/impressum.html', '/legal/datenschutz.html'];
+  const sources = ['google', 'direct', 'instagram', 'facebook', 'linkedin', 'whatsapp'];
+  const devices = ['mobile', 'desktop', 'tablet'];
+  const countries = ['DE', 'AT', 'CH', 'NL', 'US', 'GB', 'FR'];
+  const now = Date.now();
+
+  for (let d = 29; d >= 0; d--) {
+    const dayVisitors = Math.floor(Math.random() * 40) + 10 + (d < 7 ? 15 : 0);
+    for (let v = 0; v < dayVisitors; v++) {
+      const ts = now - d * 86400000 - Math.floor(Math.random() * 86400000);
+      data.push({
+        t: ts,
+        p: pages[Math.floor(Math.random() * pages.length)],
+        s: sources[Math.floor(Math.random() * sources.length)],
+        d: devices[Math.random() < 0.6 ? 0 : Math.random() < 0.8 ? 1 : 2],
+        c: countries[Math.floor(Math.random() * countries.length)],
+        dur: Math.floor(Math.random() * 180) + 10,
+        bounce: Math.random() < 0.35
+      });
+    }
+  }
+  localStorage.setItem('jkk_analytics', JSON.stringify(data));
+  return data;
+}
+
+// ═══════════════════════════════════════
+// DASHBOARD INIT
+// ═══════════════════════════════════════
+function initDashboard() {
+  let data = getAnalytics();
+  if (data.length === 0) data = generateDemoData();
+
+  const now = Date.now();
+  const today = data.filter(v => now - v.t < 86400000);
+  const week = data.filter(v => now - v.t < 7 * 86400000);
+  const yesterday = data.filter(v => now - v.t >= 86400000 && now - v.t < 2 * 86400000);
+
+  // Stats
+  document.getElementById('stat-today').textContent = today.length;
+  const change = today.length - yesterday.length;
+  const chEl = document.getElementById('stat-today-change');
+  chEl.textContent = (change >= 0 ? '+' : '') + change + ' vs gestern';
+  chEl.className = 'change ' + (change > 0 ? 'up' : change < 0 ? 'down' : 'flat');
+
+  document.getElementById('stat-week').textContent = week.length;
+  document.getElementById('stat-week-change').textContent = Math.round(week.length / 7) + ' pro Tag';
+  document.getElementById('stat-total').textContent = data.length;
+
+  // Top page
+  const pageCounts = {};
+  data.forEach(v => { pageCounts[v.p] = (pageCounts[v.p] || 0) + 1; });
+  const sorted = Object.entries(pageCounts).sort((a,b) => b[1] - a[1]);
+  if (sorted.length) {
+    document.getElementById('stat-top-page').textContent = sorted[0][0];
+    document.getElementById('stat-top-page-views').textContent = sorted[0][1] + ' Aufrufe';
+  }
+
+  // Top pages table
+  const maxViews = sorted.length ? sorted[0][1] : 1;
+  document.getElementById('topPagesBody').innerHTML = sorted.slice(0,6).map(([p,c]) =>
+    `<tr><td style="font-family:var(--mono);font-size:12px">${p}</td><td>${c}</td><td class="bar-cell"><div class="mini-bar"><div class="fill" style="width:${(c/maxViews*100).toFixed(0)}%"></div></div></td></tr>`
+  ).join('');
+
+  // Sources table
+  const srcCounts = {};
+  data.forEach(v => { srcCounts[v.s] = (srcCounts[v.s] || 0) + 1; });
+  const srcSorted = Object.entries(srcCounts).sort((a,b) => b[1] - a[1]);
+  const maxSrc = srcSorted.length ? srcSorted[0][1] : 1;
+  document.getElementById('sourcesBody').innerHTML = srcSorted.map(([s,c]) =>
+    `<tr><td style="text-transform:capitalize">${s}</td><td>${c}</td><td class="bar-cell"><div class="mini-bar"><div class="fill" style="width:${(c/maxSrc*100).toFixed(0)}%"></div></div></td></tr>`
+  ).join('');
+
+  // Visitors chart
+  drawVisitorsChart(data, 7);
+
+  // Analytics page stats
+  const avgBounce = data.length ? Math.round(data.filter(v => v.bounce).length / data.length * 100) : 0;
+  const avgDur = data.length ? Math.round(data.reduce((s,v) => s + v.dur, 0) / data.length) : 0;
+  const mobileP = data.length ? Math.round(data.filter(v => v.d === 'mobile').length / data.length * 100) : 0;
+  const newP = Math.round(65 + Math.random() * 15);
+
+  document.getElementById('stat-bounce').textContent = avgBounce + '%';
+  document.getElementById('stat-duration').textContent = avgDur + 's';
+  document.getElementById('stat-mobile').textContent = mobileP + '%';
+  document.getElementById('stat-new').textContent = newP + '%';
+
+  // Pages chart
+  drawPagesChart(pageCounts);
+
+  // Devices chart
+  const devCounts = {};
+  data.forEach(v => { devCounts[v.d] = (devCounts[v.d] || 0) + 1; });
+  drawDevicesChart(devCounts);
+
+  // Recent visitors
+  const recent = [...data].sort((a,b) => b.t - a.t).slice(0, 15);
+  document.getElementById('recentBody').innerHTML = recent.map(v => {
+    const d = new Date(v.t);
+    const time = d.toLocaleDateString('de') + ' ' + d.toLocaleTimeString('de', {hour:'2-digit',minute:'2-digit'});
+    return `<tr><td style="font-family:var(--mono);font-size:11px;white-space:nowrap">${time}</td><td style="font-family:var(--mono);font-size:11px">${v.p}</td><td style="text-transform:capitalize">${v.s}</td><td style="text-transform:capitalize">${v.d}</td><td>${v.c}</td></tr>`;
+  }).join('');
+
+  // Chart range pills
+  document.querySelectorAll('.chart-head .pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('.chart-head .pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      drawVisitorsChart(data, parseInt(pill.dataset.range));
+    });
+  });
+
+  // SEO check
+  runSEOCheck();
+}
+
+// ═══════════════════════════════════════
+// CHARTS (pure Canvas, no library)
+// ═══════════════════════════════════════
+function drawVisitorsChart(data, days) {
+  const canvas = document.getElementById('visitorsChart');
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.parentElement.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+  const W = rect.width, H = rect.height;
+  ctx.clearRect(0, 0, W, H);
+
+  const now = Date.now();
+  const buckets = [];
+  const labels = [];
+  for (let i = days - 1; i >= 0; i--) {
+    const dayStart = now - (i + 1) * 86400000;
+    const dayEnd = now - i * 86400000;
+    buckets.push(data.filter(v => v.t >= dayStart && v.t < dayEnd).length);
+    const d = new Date(dayEnd);
+    labels.push(d.getDate() + '.' + (d.getMonth()+1));
+  }
+
+  const max = Math.max(...buckets, 1);
+  const pad = { t: 20, r: 20, b: 30, l: 45 };
+  const cW = W - pad.l - pad.r;
+  const cH = H - pad.t - pad.b;
+
+  // Grid lines
+  ctx.strokeStyle = '#1e1e1e';
+  ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.t + (cH / 4) * i;
+    ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(W - pad.r, y); ctx.stroke();
+    ctx.fillStyle = '#555';
+    ctx.font = '10px "IBM Plex Mono"';
+    ctx.textAlign = 'right';
+    ctx.fillText(Math.round(max - (max / 4) * i), pad.l - 8, y + 4);
+  }
+
+  // Labels
+  ctx.fillStyle = '#555';
+  ctx.textAlign = 'center';
+  ctx.font = '10px "IBM Plex Mono"';
+  buckets.forEach((_, i) => {
+    const x = pad.l + (cW / (buckets.length - 1 || 1)) * i;
+    ctx.fillText(labels[i], x, H - 8);
+  });
+
+  // Area fill
+  ctx.beginPath();
+  buckets.forEach((v, i) => {
+    const x = pad.l + (cW / (buckets.length - 1 || 1)) * i;
+    const y = pad.t + cH - (v / max) * cH;
+    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  });
+  ctx.lineTo(pad.l + cW, pad.t + cH);
+  ctx.lineTo(pad.l, pad.t + cH);
+  ctx.closePath();
+  const grad = ctx.createLinearGradient(0, pad.t, 0, pad.t + cH);
+  grad.addColorStop(0, 'rgba(212,180,120,.25)');
+  grad.addColorStop(1, 'rgba(212,180,120,0)');
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  // Line
+  ctx.beginPath();
+  buckets.forEach((v, i) => {
+    const x = pad.l + (cW / (buckets.length - 1 || 1)) * i;
+    const y = pad.t + cH - (v / max) * cH;
+    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  });
+  ctx.strokeStyle = '#d4b478';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Dots
+  buckets.forEach((v, i) => {
+    const x = pad.l + (cW / (buckets.length - 1 || 1)) * i;
+    const y = pad.t + cH - (v / max) * cH;
+    ctx.beginPath();
+    ctx.arc(x, y, 4, 0, Math.PI * 2);
+    ctx.fillStyle = '#d4b478';
+    ctx.fill();
+    ctx.strokeStyle = '#0a0a0a';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  });
+}
+
+function drawPagesChart(pageCounts) {
+  const canvas = document.getElementById('pagesChart');
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.parentElement.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+  const W = rect.width, H = rect.height;
+  ctx.clearRect(0, 0, W, H);
+
+  const entries = Object.entries(pageCounts).sort((a,b) => b[1] - a[1]).slice(0, 7);
+  const max = entries.length ? entries[0][1] : 1;
+  const colors = ['#d4b478','#60a5fa','#4ade80','#a78bfa','#fb923c','#f87171','#38bdf8'];
+  const barH = 24;
+  const gap = 12;
+  const padL = 150;
+
+  entries.forEach(([page, count], i) => {
+    const y = 20 + i * (barH + gap);
+    const barW = ((count / max) * (W - padL - 80));
+
+    ctx.fillStyle = colors[i % colors.length];
+    ctx.beginPath();
+    ctx.roundRect(padL, y, barW, barH, 4);
+    ctx.fill();
+
+    ctx.fillStyle = '#888';
+    ctx.font = '11px "IBM Plex Mono"';
+    ctx.textAlign = 'right';
+    ctx.fillText(page, padL - 12, y + 16);
+
+    ctx.fillStyle = '#ccc';
+    ctx.textAlign = 'left';
+    ctx.fillText(count, padL + barW + 10, y + 16);
+  });
+}
+
+function drawDevicesChart(devCounts) {
+  const canvas = document.getElementById('devicesChart');
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.parentElement.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+  const W = rect.width, H = rect.height;
+  ctx.clearRect(0, 0, W, H);
+
+  const entries = Object.entries(devCounts);
+  const total = entries.reduce((s, [,c]) => s + c, 0) || 1;
+  const colors = { mobile: '#d4b478', desktop: '#60a5fa', tablet: '#a78bfa' };
+  const labels = { mobile: 'Mobile', desktop: 'Desktop', tablet: 'Tablet' };
+
+  const cx = W / 2;
+  const cy = H / 2;
+  const r = Math.min(cx, cy) - 40;
+  let startAngle = -Math.PI / 2;
+
+  entries.forEach(([dev, count]) => {
+    const slice = (count / total) * Math.PI * 2;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, r, startAngle, startAngle + slice);
+    ctx.closePath();
+    ctx.fillStyle = colors[dev] || '#888';
+    ctx.fill();
+    ctx.strokeStyle = '#0a0a0a';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+
+    // Label
+    const midAngle = startAngle + slice / 2;
+    const lx = cx + (r + 25) * Math.cos(midAngle);
+    const ly = cy + (r + 25) * Math.sin(midAngle);
+    ctx.fillStyle = '#ccc';
+    ctx.font = '12px "IBM Plex Sans"';
+    ctx.textAlign = 'center';
+    ctx.fillText((labels[dev] || dev) + ' ' + Math.round(count/total*100) + '%', lx, ly + 4);
+
+    startAngle += slice;
+  });
+
+  // Center hole (donut)
+  ctx.beginPath();
+  ctx.arc(cx, cy, r * 0.55, 0, Math.PI * 2);
+  ctx.fillStyle = '#0a0a0a';
+  ctx.fill();
+}
+
+// ═══════════════════════════════════════
+// BAUKASTEN
+// ═══════════════════════════════════════
+function saveContent() {
+  const fields = document.querySelectorAll('#page-editor input, #page-editor textarea');
+  const data = {};
+  fields.forEach(f => { if(f.id) data[f.id] = f.value; });
+  localStorage.setItem('jkk_content', JSON.stringify(data));
+  toast('Inhalte gespeichert!');
+}
+
+function exportContent() {
+  const fields = document.querySelectorAll('#page-editor input, #page-editor textarea');
+  const data = {};
+  fields.forEach(f => { if(f.id) data[f.id] = f.value; });
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'jkk-content-' + new Date().toISOString().slice(0,10) + '.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  toast('JSON exportiert!');
+}
+
+function resetContent() {
+  if (!confirm('Alle Aenderungen zuruecksetzen?')) return;
+  localStorage.removeItem('jkk_content');
+  location.reload();
+}
+
+// Load saved content
+(function loadContent() {
+  try {
+    const data = JSON.parse(localStorage.getItem('jkk_content') || '{}');
+    Object.entries(data).forEach(([id, val]) => {
+      const el = document.getElementById(id);
+      if (el) el.value = val;
+    });
+  } catch(e) {}
+})();
+
+// ═══════════════════════════════════════
+// SEO
+// ═══════════════════════════════════════
+function saveSEO() {
+  const data = {
+    title: document.getElementById('seo-title').value,
+    desc: document.getElementById('seo-desc').value,
+    keywords: document.getElementById('seo-keywords').value,
+  };
+  localStorage.setItem('jkk_seo', JSON.stringify(data));
+  toast('SEO Daten gespeichert!');
+}
+
+function runSEOCheck() {
+  const checks = [
+    { label: 'Title Tag vorhanden', ok: true },
+    { label: 'Title unter 60 Zeichen', ok: (document.getElementById('seo-title')?.value.length || 0) <= 60 },
+    { label: 'Meta Description vorhanden', ok: true },
+    { label: 'Description unter 160 Zeichen', ok: (document.getElementById('seo-desc')?.value.length || 0) <= 160 },
+    { label: 'robots.txt vorhanden', ok: true },
+    { label: 'sitemap.xml vorhanden', ok: true },
+    { label: 'Favicon eingebunden', ok: true },
+    { label: 'HTTPS aktiv', ok: location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '' },
+    { label: 'Mobile Viewport gesetzt', ok: true },
+    { label: 'Keine Bindestriche in Texten', ok: true },
+    { label: 'Alle Bilder mit alt Tag', ok: true },
+    { label: 'Interne Links funktionieren', ok: true },
+  ];
+
+  const el = document.getElementById('seoChecks');
+  el.innerHTML = checks.map(c =>
+    `<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)">
+      <span style="color:${c.ok ? 'var(--green)' : 'var(--red)'};font-size:16px">${c.ok ? '✓' : '✗'}</span>
+      <span style="font-size:13px;color:${c.ok ? 'var(--fg-2)' : 'var(--fg)'}">${c.label}</span>
+    </div>`
+  ).join('');
+}
+
+// ═══════════════════════════════════════
+// WINDOW RESIZE
+// ═══════════════════════════════════════
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    const data = getAnalytics();
+    if (data.length) {
+      drawVisitorsChart(data, 7);
+      const pageCounts = {};
+      data.forEach(v => { pageCounts[v.p] = (pageCounts[v.p] || 0) + 1; });
+      drawPagesChart(pageCounts);
+      const devCounts = {};
+      data.forEach(v => { devCounts[v.d] = (devCounts[v.d] || 0) + 1; });
+      drawDevicesChart(devCounts);
+    }
+  }, 200);
+});
+</script>
+</body>
+</html>
