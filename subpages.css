@@ -13,15 +13,16 @@
   --line:#1c1c1c;
   --line-2:#2a2a2a;
   --line-bright:#3a3a3a;
-  --gold: oklch(0.82 0.095 82);
-  --gold-2: oklch(0.74 0.105 75);
-  --gold-3: oklch(0.58 0.085 70);
-  --gold-dim: oklch(0.45 0.06 70);
+  --gold: oklch(0.86 0.006 250);
+  --gold-2: oklch(0.74 0.006 250);
+  --gold-3: oklch(0.60 0.005 250);
+  --gold-dim: oklch(0.46 0.004 250);
+  --silver-sheen: linear-gradient(115deg,#6f7681 0%,#d7dde4 22%,#ffffff 38%,#a8afb9 52%,#eef1f5 66%,#878e98 82%,#cdd3da 100%);
   --mono:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
   --sans:"IBM Plex Sans", system-ui, -apple-system, sans-serif;
   --display:"Archivo", system-ui, sans-serif;
   --narrow:"Archivo Narrow", system-ui, sans-serif;
-  --serif:"Cormorant Garamond", "Times New Roman", serif;
+  --serif: var(--sans); /* serif retired */
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}

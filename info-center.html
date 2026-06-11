@@ -3,12 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Info Center — Yacht-Marketing Wissen · Jerome Kwamo</title>
-<meta name="description" content="Interaktives Info Center: Alles über cineastische Visuals, KI-Sales, Funnels und messbares Marketing für die Yachtbranche." />
-<meta name="robots" content="index,follow" />
-<link rel="icon" href="favicon.ico" sizes="32x32" />
-<link rel="icon" href="favicon.png" type="image/png" sizes="512x512" />
-<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<title>Info Center · Jerome Kwamo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -98,6 +93,9 @@
     .head-block h1{font-size:24px}
   }
 </style>
+<link rel="icon" href="favicon.ico" sizes="32x32" />
+<link rel="icon" href="favicon.png" type="image/png" sizes="512x512" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
 </head>
 <body>
 <div class="grid-bg"></div>
@@ -131,24 +129,24 @@ try { LANG = (localStorage.getItem('jkk_lang') === 'en') ? 'en' : (localStorage.
 
 const DATA = [
   { id:1, icon:IcoCamera, cat:"VISUALS",
-    de:{t:"Cinematic Visuals", x:"8K-Film und Foto, Luft-zu-See-Aufnahmen und KI-Retusche — Bilder, die den Käufer bewegen, nicht nur gefallen."},
-    en:{t:"Cinematic Visuals", x:"8K film & photo, air-to-sea cinematography and AI retouching — imagery that moves the buyer, not just pleases."},
+    de:{t:"Cinematic Visuals", x:"Professionelle Film und Fotoaufnahmen, Drohnenbilder und smarte Bildbearbeitung — Bilder, die den Käufer überzeugen."},
+    en:{t:"Cinematic Visuals", x:"Professional film & photo, drone footage and smart image editing — imagery that convinces the buyer."},
     rel:[2,3] },
   { id:2, icon:IcoCpu, cat:"AI",
-    de:{t:"KI-Sales-System", x:"24/7-Chatbot, Lead-Scoring und automatisierte Follow-ups — ein Vertriebsassistent, der nie schläft."},
-    en:{t:"AI Sales Engine", x:"24/7 chatbot, lead scoring and automated follow-ups — a sales assistant that never sleeps."},
+    de:{t:"KI-Sales-System", x:"Rund um die Uhr Anfragen beantworten, bewerten und nachfassen — dein digitaler Assistent, der nie schläft."},
+    en:{t:"AI Sales Engine", x:"24/7 chatbot, enquiry assessment and automated follow-ups — your digital assistant that never sleeps."},
     rel:[1,4] },
   { id:3, icon:IcoSearch, cat:"AUDIT",
-    de:{t:"Listing-Audit", x:"KI-Analyse deiner aktuellen Listings: Bilder, Copy, Conversion-Punkte und Funnel-Lücken. Report in 72 h."},
-    en:{t:"Listing Audit", x:"AI analysis of your current listings: imagery, copy, conversion points and funnel gaps. Report in 72 h."},
+    de:{t:"Onlineauftritt Analyse", x:"KI Analyse deiner aktuellen Onlinepräsenz: Bilder, Texte, Abläufe und Optimierungspotenzial. Ergebnis in 72 Stunden."},
+    en:{t:"Online Presence Audit", x:"AI analysis of your current online presence: imagery, copy, workflows and optimisation potential. Report in 72 hours."},
     rel:[1,4] },
   { id:4, icon:IcoFlow, cat:"SYSTEM",
-    de:{t:"Funnel & CRM", x:"Vom Listing zur Buchung — automatisch. Funnel-Aufbau, CRM-Anbindung und sauberes Tracking."},
-    en:{t:"Funnel & CRM", x:"From listing to booking — automated. Funnel build-out, CRM integration and clean tracking."},
+    de:{t:"Verkaufssystem", x:"Von der Anfrage zur Buchung — automatisch. Verkaufsprozess, Systemanbindung und sauberes Tracking."},
+    en:{t:"Sales System", x:"From enquiry to booking — automated. Sales process, system integration and clean tracking."},
     rel:[2,6] },
   { id:5, icon:IcoGlobe, cat:"REACH",
-    de:{t:"Worldwide", x:"Basis in Hamburg, im Einsatz weltweit — von Monaco bis Dubai. Ein Ansprechpartner statt fünf Dienstleister."},
-    en:{t:"Worldwide", x:"Based in Hamburg, deployed worldwide — from Monaco to Dubai. One contact, not five vendors."},
+    de:{t:"Worldwide", x:"Basis in Bielefeld, im Einsatz weltweit. Ein Ansprechpartner für alles."},
+    en:{t:"Worldwide", x:"Based in Bielefeld, working worldwide. One contact for everything."},
     rel:[1] },
   { id:6, icon:IcoChart, cat:"RESULT",
     de:{t:"Messbare Wirkung", x:"Sichtbarkeit im Schnitt +312 %, Umsatz ×2,4 — transparent im Dashboard, Woche für Woche."},
@@ -254,6 +252,7 @@ if(LANG==='en'){
 
 ReactDOM.createRoot(document.getElementById('root')).render(<Orbital data={DATA} />);
 </script>
+
 <script src="admin/tracker.js"></script>
 </body>
 </html>
