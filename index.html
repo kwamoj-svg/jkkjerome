@@ -3603,13 +3603,19 @@
     </div>
 
     <!-- ─── ANFRAGE FORMULAR ─── -->
-    <form class="cform" id="cform" novalidate>
+    <form class="cform" id="cform" action="https://formsubmit.co/ajax/contact@jkkjerome.de" method="POST" novalidate>
       <div class="cform-head">
         <span class="k" data-de>// FORMULAR</span>
         <span class="k" data-en>// FORM</span>
         <span class="v" data-de>BRIEFING ÜBERMITTELN</span>
         <span class="v" data-en>SUBMIT BRIEFING</span>
       </div>
+
+      <!-- FormSubmit config -->
+      <input type="hidden" name="_subject" value="Neues Briefing über jkkjerome.de" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
 
       <div class="cform-grid">
         <label class="cf-row span-6">
@@ -5032,6 +5038,57 @@
       const url = (img && img.getAttribute('src')) || el.getAttribute('src');
       if(url) open(url, s.cap);
     });
+  });
+})();
+</script>
+
+<script>
+/* ─── CONTACT FORM · AJAX SUBMIT ─── */
+(() => {
+  const form = document.getElementById('cform');
+  const status = document.getElementById('cf-status');
+  if (!form || !status) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // basic validation
+    const name  = form.querySelector('[name="name"]');
+    const email = form.querySelector('[name="email"]');
+    const msg   = form.querySelector('[name="message"]');
+    if (!name.value.trim() || !email.value.trim() || !msg.value.trim()) {
+      status.textContent = 'Bitte fülle mindestens Name, E‑Mail und Briefing aus.';
+      status.className = 'cf-status show error';
+      return;
+    }
+
+    const btn = form.querySelector('.cf-submit');
+    btn.disabled = true;
+    btn.style.opacity = '.5';
+    status.textContent = 'Wird gesendet …';
+    status.className = 'cf-status show';
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form)))
+      });
+      const data = await res.json();
+      if (data.success) {
+        status.textContent = 'Briefing gesendet! Ich melde mich innerhalb von 24 Stunden.';
+        status.className = 'cf-status show';
+        form.reset();
+      } else {
+        throw new Error(data.message || 'Fehler');
+      }
+    } catch (err) {
+      status.textContent = 'Etwas ist schiefgelaufen. Schreib mir direkt an contact@jkkjerome.de';
+      status.className = 'cf-status show error';
+    } finally {
+      btn.disabled = false;
+      btn.style.opacity = '';
+    }
   });
 })();
 </script>
