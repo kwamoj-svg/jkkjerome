@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 
-Sitemap: https://www.jkkjerome.de/sitemap.xml
+Sitemap: https://jkkjerome.de/sitemap.xml
