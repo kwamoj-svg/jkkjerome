@@ -1085,9 +1085,13 @@ const MODULES = {
 };
 
 (function(){
-  // mirror the main site's language choice
+  // mirror the main site's language choice — or auto-detect
   let lang = 'en';
-  try { lang = (localStorage.getItem('jkk_lang') === 'de') ? 'de' : (localStorage.getItem('jkk_lang') ? 'en' : 'en'); } catch(e){}
+  try {
+    const saved = localStorage.getItem('jkk_lang');
+    if(saved){ lang = saved === 'de' ? 'de' : 'en'; }
+    else { lang = (navigator.language || '').split('-')[0].toLowerCase() === 'de' ? 'de' : 'en'; }
+  } catch(e){}
   document.documentElement.lang = lang;
 
   const params = new URLSearchParams(location.search);

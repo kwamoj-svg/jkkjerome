@@ -3896,10 +3896,18 @@
     if(langQuick) langQuick.addEventListener('click', toggleDeEn);
     syncMobileLang();
 
-    // restore persisted choice
+    // restore persisted choice — or auto-detect from browser language
     try {
-      const saved = localStorage.getItem('jkk_lang') || 'en';
-      if(saved !== 'en' && SUPPORTED[saved]) applyLang(saved);
+      const saved = localStorage.getItem('jkk_lang');
+      if(saved){
+        if(saved !== 'en' && SUPPORTED[saved]) applyLang(saved);
+      } else {
+        // no saved preference → detect from browser
+        const browserLang = (navigator.language || navigator.userLanguage || 'en').split('-')[0].toLowerCase();
+        const autoLang = browserLang === 'de' ? 'de' : 'en';
+        if(autoLang === 'de') applyLang('de');
+        // don't persist auto-detected — let user override manually
+      }
     } catch(e){}
   })();
 
@@ -5090,6 +5098,123 @@
       btn.style.opacity = '';
     }
   });
+})();
+</script>
+
+<!-- ─── COOKIE CONSENT BANNER ─── -->
+<style>
+#consent-banner{position:fixed;bottom:0;left:0;right:0;z-index:9998;
+  background:rgba(8,8,10,.96);backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,.1);
+  padding:22px 28px;display:none;align-items:center;gap:20px;flex-wrap:wrap;
+  font-family:var(--sans,"IBM Plex Sans",system-ui,sans-serif);font-size:14px;line-height:1.56;color:#b8b8b8;}
+#consent-banner.show{display:flex}
+#consent-banner a{color:var(--gold,#d0d6de);text-decoration:underline;text-underline-offset:3px}
+#consent-banner .cb-text{flex:1;min-width:280px}
+#consent-banner .cb-btns{display:flex;gap:10px;flex-wrap:wrap}
+.cb-btn{font-family:var(--mono,"IBM Plex Mono",monospace);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+  padding:12px 22px;border:1px solid rgba(255,255,255,.2);background:transparent;color:#fff;cursor:pointer;
+  transition:all .25s;white-space:nowrap}
+.cb-btn:hover{border-color:#fff;background:rgba(255,255,255,.06)}
+.cb-btn.accept{background:var(--gold,#d0d6de);color:#0a0a0a;border-color:transparent;font-weight:500}
+.cb-btn.accept:hover{opacity:.88}
+</style>
+<div id="consent-banner" role="dialog" aria-label="Cookie-Einstellungen">
+  <div class="cb-text">
+    <span data-de>Ich nutze Cookies und Analysetools, um diese Website zu verbessern. Mehr dazu in der <a href="legal/datenschutz.html">Datenschutzerklärung</a>.</span>
+    <span data-en>I use cookies and analytics tools to improve this website. More in the <a href="legal/datenschutz.html">privacy policy</a>.</span>
+  </div>
+  <div class="cb-btns">
+    <button class="cb-btn" id="consent-decline" type="button">
+      <span data-de>Nur notwendige</span><span data-en>Essential only</span>
+    </button>
+    <button class="cb-btn accept" id="consent-accept" type="button">
+      <span data-de>Alle akzeptieren</span><span data-en>Accept all</span>
+    </button>
+  </div>
+</div>
+
+<script>
+/* ─── CONSENT + TRACKING LOADER ─── */
+(function(){
+  'use strict';
+
+  // ── Config: Trage hier deine IDs ein ──
+  var GA4_ID      = '';   // z.B. 'G-XXXXXXXXXX'
+  var CLARITY_ID  = '';   // z.B. 'abcdefghij'
+  var META_PIXEL  = '';   // z.B. '1234567890'
+
+  var CONSENT_KEY = 'jkk_consent';
+  var banner = document.getElementById('consent-banner');
+  var saved = null;
+  try { saved = localStorage.getItem(CONSENT_KEY); } catch(e){}
+
+  // Show banner if no choice saved
+  if(!saved && banner){
+    banner.classList.add('show');
+    document.getElementById('consent-accept').addEventListener('click', function(){
+      setConsent('all');
+    });
+    document.getElementById('consent-decline').addEventListener('click', function(){
+      setConsent('essential');
+    });
+  }
+
+  function setConsent(level){
+    try { localStorage.setItem(CONSENT_KEY, level); } catch(e){}
+    if(banner) banner.classList.remove('show');
+    if(level === 'all') loadTracking();
+  }
+
+  // If already consented, load tracking immediately
+  if(saved === 'all') loadTracking();
+
+  function loadTracking(){
+    // ── Google Analytics 4 ──
+    if(GA4_ID){
+      var gs = document.createElement('script');
+      gs.async = true;
+      gs.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID;
+      document.head.appendChild(gs);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', GA4_ID, { anonymize_ip: true });
+      window.gtag = gtag;
+    }
+
+    // ── Microsoft Clarity ──
+    if(CLARITY_ID){
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window,document,"clarity","script",CLARITY_ID);
+    }
+
+    // ── Meta Pixel (Facebook/Instagram) ──
+    if(META_PIXEL){
+      !function(f,b,e,v,n,t,s){
+        if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)
+      }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', META_PIXEL);
+      fbq('track', 'PageView');
+    }
+
+    // ── Track form submission as conversion ──
+    var cform = document.getElementById('cform');
+    if(cform){
+      cform.addEventListener('submit', function(){
+        if(window.gtag && GA4_ID) gtag('event', 'generate_lead', { event_category:'contact', event_label:'briefing_form' });
+        if(window.fbq) fbq('track', 'Lead');
+        if(window.clarity) clarity('set', 'form_submitted', 'true');
+      });
+    }
+  }
 })();
 </script>
 
