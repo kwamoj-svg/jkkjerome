@@ -1085,12 +1085,17 @@ const MODULES = {
 };
 
 (function(){
-  // mirror the main site's language choice — or auto-detect
+  // mirror the main site's language choice — or auto-detect from country
   let lang = 'en';
   try {
     const saved = localStorage.getItem('jkk_lang');
     if(saved){ lang = saved === 'de' ? 'de' : 'en'; }
-    else { lang = (navigator.language || '').split('-')[0].toLowerCase() === 'de' ? 'de' : 'en'; }
+    else {
+      // check session cache from main site geo-detection
+      const cc = sessionStorage.getItem('jkk_country') || '';
+      if(cc === 'DE' || cc === 'AT' || cc === 'CH'){ lang = 'de'; }
+      else { lang = (navigator.language || '').split('-')[0].toLowerCase() === 'de' ? 'de' : 'en'; }
+    }
   } catch(e){}
   document.documentElement.lang = lang;
 

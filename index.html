@@ -3896,17 +3896,35 @@
     if(langQuick) langQuick.addEventListener('click', toggleDeEn);
     syncMobileLang();
 
-    // restore persisted choice — or auto-detect from browser language
+    // restore persisted choice — or auto-detect from country (IP-based)
     try {
       const saved = localStorage.getItem('jkk_lang');
       if(saved){
         if(saved !== 'en' && SUPPORTED[saved]) applyLang(saved);
       } else {
-        // no saved preference → detect from browser
-        const browserLang = (navigator.language || navigator.userLanguage || 'en').split('-')[0].toLowerCase();
-        const autoLang = browserLang === 'de' ? 'de' : 'en';
-        if(autoLang === 'de') applyLang('de');
-        // don't persist auto-detected — let user override manually
+        // check if we already detected the country earlier this session
+        const cached = sessionStorage.getItem('jkk_country');
+        if(cached){
+          if(cached === 'DE' || cached === 'AT' || cached === 'CH') applyLang('de');
+        } else {
+          // 1) fast fallback: use browser language immediately (no flash)
+          const browserLang = (navigator.language || navigator.userLanguage || 'en').split('-')[0].toLowerCase();
+          if(browserLang === 'de') applyLang('de');
+
+          // 2) then verify with actual country detection via IP
+          fetch('https://ipapi.co/json/', {mode:'cors'})
+            .then(r => r.json())
+            .then(data => {
+              const cc = (data.country_code || '').toUpperCase();
+              try { sessionStorage.setItem('jkk_country', cc); } catch(e){}
+              const dachCountry = (cc === 'DE' || cc === 'AT' || cc === 'CH');
+              const currentlyDe = document.documentElement.lang === 'de';
+              // only switch if geo-detection disagrees with current state
+              if(dachCountry && !currentlyDe) applyLang('de');
+              if(!dachCountry && currentlyDe && !localStorage.getItem('jkk_lang')) applyLang('en');
+            })
+            .catch(() => {}); // fail silently — browser fallback already applied
+        }
       }
     } catch(e){}
   })();
