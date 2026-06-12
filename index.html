@@ -28,7 +28,8 @@
 <link rel="alternate" hreflang="tr" href="https://jkkjerome.de/tr/" />
 <link rel="alternate" hreflang="hr" href="https://jkkjerome.de/hr/" />
 <link rel="alternate" hreflang="ar" href="https://jkkjerome.de/ar/" />
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@200;300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Archivo:wght@400;500;700;900&family=Archivo+Narrow:wght@400;500;700&family=Cormorant+Garamond:ital,wght@1,300;1,400;1,500&family=Imprima&display=swap" rel="stylesheet" />
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@300;400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Archivo:wght@400;500;700;900&family=Cormorant+Garamond:ital,wght@1,500&family=Imprima&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@300;400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Archivo:wght@400;500;700;900&family=Cormorant+Garamond:ital,wght@1,500&family=Imprima&display=swap" rel="stylesheet" /></noscript>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
 <style>
   :root{
@@ -1606,6 +1607,7 @@
       if(navigator.connection && navigator.connection.saveData) return;
       function start(){
         if(v.src) return;
+        if(window.innerWidth < 768) return;
         v.src = v.dataset.src;
         v.autoplay = true;
         var p = v.play(); if(p && p.catch) p.catch(function(){});
@@ -3737,7 +3739,7 @@
       <a href="https://instagram.com/jkk.jerome" target="_blank" rel="noopener">Instagram · @JKK.JEROME</a>
     </div>
   </div>
-  <div class="b"><img class="mark" src="logo-chrome.png" alt="Jerome Kwamo" /><strong>Visual Ops</strong></div>
+  <div class="b"><img class="mark" src="logo-chrome.png" alt="Jerome Kwamo" loading="lazy" /><strong>Visual Ops</strong></div>
   <div class="mid"><span data-de>© 2026 · ALLE RECHTE VORBEHALTEN</span><span data-en>© 2026 · ALL RIGHTS RESERVED</span></div>
   <div class="right"><a class="ig" href="https://instagram.com/jkk.jerome" target="_blank" rel="noopener" aria-label="Instagram · @JKK.JEROME"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg>@JKK.JEROME</a><a href="#top">↑ TOP</a></div>
 </footer>
@@ -3832,7 +3834,7 @@
           'Translate each string from English to ' + SUPPORTED[target] + '. ' +
           'Rules: 1) Preserve HTML tags exactly (e.g. <strong>, <span class="it">, <br>). ' +
           '2) Do NOT translate brand names (JKK, Jerome, Hamburg, Monaco, HH, MC, ZRH), ' +
-          'technical codes (SUBJ-001, CH-08, TR-001, TR-002, M-01..M-09, ALPHA-ONE, KILO-TWO, etc.), ' +
+          'technical codes (SUBJ-001, CH-08, TR-001, TR-002, L-01..L-09, ALPHA-ONE, KILO-TWO, etc.), ' +
           'or industry terms left in English in the source (RAW, 8K, NDA, LOA, CRM, KPI). ' +
           '3) Keep the same upper/lower case style where reasonable (uppercase nav labels stay uppercase). ' +
           '4) Return ONLY a JSON array of translated strings in the same order, no commentary, no markdown fence.\n\n' +
