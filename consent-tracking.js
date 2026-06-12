@@ -1,12 +1,12 @@
 /* ─── CONSENT + TRACKING LOADER (shared, alle Unterseiten) ───
-   Lädt Google Analytics 4 (G-FCLGVR0C1X) erst nach Cookie-Zustimmung.
+   Lädt Google Analytics 4 (G-WVG3Q55RV9) erst nach Cookie-Zustimmung.
    Nutzt denselben Consent-Key wie die Startseite ('jkk_consent'),
    d.h. eine einmal getroffene Entscheidung gilt auf der ganzen Website. */
 (function(){
   'use strict';
 
   // ── Config ──
-  var GA4_ID      = 'G-FCLGVR0C1X';
+  var GA4_ID      = 'G-WVG3Q55RV9';
   var CONSENT_KEY = 'jkk_consent_v2';
 
   // Pfad zur Datenschutzerklärung relativ zum Seitenstandort ermitteln
