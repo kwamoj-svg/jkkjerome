@@ -12,9 +12,24 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preload" as="image" href="showreel-poster.jpg" fetchpriority="high" />
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@200;300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Archivo:wght@400;500;700;900&family=Archivo+Narrow:wght@400;500;700&family=Cormorant+Garamond:ital,wght@1,300;1,400;1,500&family=Viaoda+Libre&family=Imprima&display=swap" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<link rel="canonical" href="https://jkkjerome.de/" />
+<link rel="alternate" hreflang="de" href="https://jkkjerome.de/" />
+<link rel="alternate" hreflang="en" href="https://jkkjerome.de/" />
+<link rel="alternate" hreflang="x-default" href="https://jkkjerome.de/" />
+<link rel="alternate" hreflang="es" href="https://jkkjerome.de/es/" />
+<link rel="alternate" hreflang="fr" href="https://jkkjerome.de/fr/" />
+<link rel="alternate" hreflang="it" href="https://jkkjerome.de/it/" />
+<link rel="alternate" hreflang="pt" href="https://jkkjerome.de/pt/" />
+<link rel="alternate" hreflang="nl" href="https://jkkjerome.de/nl/" />
+<link rel="alternate" hreflang="sv" href="https://jkkjerome.de/sv/" />
+<link rel="alternate" hreflang="da" href="https://jkkjerome.de/da/" />
+<link rel="alternate" hreflang="no" href="https://jkkjerome.de/no/" />
+<link rel="alternate" hreflang="el" href="https://jkkjerome.de/el/" />
+<link rel="alternate" hreflang="tr" href="https://jkkjerome.de/tr/" />
+<link rel="alternate" hreflang="hr" href="https://jkkjerome.de/hr/" />
+<link rel="alternate" hreflang="ar" href="https://jkkjerome.de/ar/" />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@200;300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Archivo:wght@400;500;700;900&family=Archivo+Narrow:wght@400;500;700&family=Cormorant+Garamond:ital,wght@1,300;1,400;1,500&family=Imprima&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
 <style>
   :root{
     --bg:#000;
@@ -1583,7 +1598,22 @@
 <!-- ─── HERO · SCROLL-PARALLAX VIDEO ─── -->
 <section class="scrub" id="top" data-screen-label="Hero" aria-label="Hero" style="height:100vh">
   <div class="sticky">
-    <div class="scrub-media"><video src="showreel.mp4" poster="showreel-poster.jpg" muted playsinline loop autoplay preload="metadata" fetchpriority="high"></video></div>
+    <div class="scrub-media"><video id="hero-reel" data-src="showreel.mp4" poster="showreel-poster.jpg" muted playsinline loop preload="none"></video></div>
+    <script>
+    (function(){
+      var v = document.getElementById('hero-reel');
+      if(!v) return;
+      if(navigator.connection && navigator.connection.saveData) return;
+      function start(){
+        if(v.src) return;
+        v.src = v.dataset.src;
+        v.autoplay = true;
+        var p = v.play(); if(p && p.catch) p.catch(function(){});
+      }
+      if(document.readyState === 'complete'){ setTimeout(start, 100); }
+      else { window.addEventListener('load', function(){ setTimeout(start, 100); }); }
+    })();
+    </script>
     <div class="scrim"></div>
     <div class="vig"></div>
     <div class="beats">
@@ -2195,6 +2225,9 @@
   render();
 })();
 </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
 <!-- ─── SHOWROOM · ENTRANCE REVEAL ─── -->
 <script>

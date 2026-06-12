@@ -914,7 +914,6 @@
 </style>
 
 <script src="scroll-morph.js"></script>
-<script src="https://unpkg.com/three@0.158.0/build/three.min.js"></script>
 <script src="film-gallery.js"></script>
 <script src="gradient-wave.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -1797,7 +1796,7 @@ const MODULES = {
         beDe:'Original · Tageslicht', beEn:'Original · daylight',
         afDe:'KI · Nachtszene', afEn:'AI · night scene',
         capDe:'Tag-zu-Nacht · KI-Umwandlung', capEn:'Day-to-night · AI transformation',
-        imgBefore:'fleet/cmp-day.png', imgAfter:'fleet/cmp-night.png' }
+        imgBefore:'fleet/cmp-day.jpg', imgAfter:'fleet/cmp-night.jpg' }
     ];
     var CHEV =
       '<svg class="cv-l" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>'+
@@ -2370,7 +2369,15 @@ const MODULES = {
 
   function mountOrbitGallery(){
     var host = document.getElementById('orbit-canvas');
-    if(!host || typeof THREE === 'undefined') return;
+    if(!host) return;
+    if(typeof THREE === 'undefined'){
+      // three.js nur bei Bedarf nachladen (spart ~600 KB auf allen anderen Modulseiten)
+      var s = document.createElement('script');
+      s.src = 'https://unpkg.com/three@0.158.0/build/three.min.js';
+      s.onload = function(){ mountOrbitGallery(); };
+      document.head.appendChild(s);
+      return;
+    }
     var IMAGES = ['fleet/up-bow-sunset.webp','fleet/up-deck-lounge.webp','fleet/up-riva-dive.webp',
       'fleet/up-aerial-wake.jpeg','fleet/up-princess-cliff.webp','fleet/up-fairline-cove.jpeg','fleet/up-sloop-canal.jpeg'];
     var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
