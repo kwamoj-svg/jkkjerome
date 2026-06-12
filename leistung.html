@@ -1997,18 +1997,21 @@ const MODULES = {
 
     // parallax floating cluster (banner)
     var PF = [
-      {t:'8%', l:'11%',  w:96,  h:96,  d:0.5, k:'REEL'},
-      {t:'10%',l:'31%',  w:112, h:112, d:1,   k:'POST', gold:true},
-      {t:'2%', l:'52%',  w:152, h:200, d:2,   k:'STORY'},
-      {t:'0%', l:'82%',  w:124, h:124, d:1,   k:'SHORT'},
-      {t:'40%',l:'2%',   w:140, h:140, d:1,   k:'CLIP'},
-      {t:'68%',l:'78%',  w:140, h:184, d:2,   k:'EDIT', gold:true},
-      {t:'72%',l:'14%',  w:204, h:148, d:4,   k:'DROP'},
-      {t:'80%',l:'49%',  w:124, h:124, d:1,   k:'POLL'}
+      {t:'8%', l:'11%',  w:96,  h:96,  d:0.5, k:'REEL',  img:'fleet/up-aerial-wake.jpeg'},
+      {t:'10%',l:'31%',  w:112, h:112, d:1,   k:'POST',  img:'fleet/up-bow-sunset.webp', gold:true},
+      {t:'2%', l:'52%',  w:152, h:200, d:2,   k:'STORY', img:'fleet/up-deck-lounge.webp'},
+      {t:'0%', l:'82%',  w:124, h:124, d:1,   k:'SHORT', img:'fleet/up-riva-dive.webp'},
+      {t:'40%',l:'2%',   w:140, h:140, d:1,   k:'CLIP',  img:'fleet/up-sloop-canal.jpeg'},
+      {t:'68%',l:'78%',  w:140, h:184, d:2,   k:'EDIT',  img:'fleet/up-princess-cliff.webp', gold:true},
+      {t:'72%',l:'14%',  w:204, h:148, d:4,   k:'DROP',  img:'fleet/up-fairline-cove.jpeg'},
+      {t:'80%',l:'49%',  w:124, h:124, d:1,   k:'POLL',  img:'fleet/yacht-2.jpg'}
     ];
     var pfTiles = PF.map(function(p,i){
+      var bgStyle = p.img
+        ? 'background-image:linear-gradient(rgba(0,0,0,.52),rgba(0,0,0,.64)),url('+p.img+');background-size:cover;background-position:center;'
+        : '';
       return '<div class="pf-el" data-depth="'+p.d+'" style="top:'+p.t+';left:'+p.l+'">'+
-        '<div class="pf-tile'+(p.gold?' gold':'')+'" style="width:'+p.w+'px;height:'+p.h+'px;transition-delay:'+(i*0.12)+'s">'+
+        '<div class="pf-tile'+(p.gold?' gold':'')+'" style="width:'+p.w+'px;height:'+p.h+'px;transition-delay:'+(i*0.12)+'s;'+bgStyle+'">'+
           '<span class="k">'+p.k+'</span></div></div>';
     }).join('');
     var pfHtml =
