@@ -1588,6 +1588,26 @@
 </script>
 </head>
 <body>
+<script>
+/* Saubere URLs: /index.html -> /, stray #top entfernen, Logo/TOP sanft scrollen */
+(function(){
+  try{
+    if(location.pathname.endsWith('/index.html')){
+      history.replaceState(null,'',location.pathname.replace(/index\.html$/,'')+location.search+(location.hash==='#top'?'':location.hash));
+    }
+    if(location.hash==='#top'){
+      history.replaceState(null,'',location.pathname+location.search);
+    }
+  }catch(e){}
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a.js-top');
+    if(!a) return;
+    e.preventDefault();
+    window.scrollTo(0,0);
+    document.documentElement.scrollTop=0;
+  });
+})();
+</script>
 <div class="ambient" aria-hidden="true">
   <div class="blob b1"></div>
   <div class="blob b2"></div>
@@ -1633,7 +1653,7 @@
 
 <!-- ─── NAV ─── -->
 <nav>
-  <a href="#top" class="brand"><img class="mark" src="logo-chrome.png" alt="JKK Jerome" /></a>
+  <a href="/" class="brand js-top"><img class="mark" src="logo-chrome.png" alt="JKK Jerome" /></a>
   <div class="nav-links" id="nav-links">
     <a href="#services"><span class="nl-k">01 &middot; <span data-de>Leistungen</span><span data-en>Services</span></span><span class="nl-sub" data-de>Module &middot; Stack</span><span class="nl-sub" data-en>Modules &middot; Stack</span></a>
     <a href="#about"><span class="nl-k">02 &middot; <span data-de>Über</span><span data-en>About</span></span><span class="nl-sub" data-de>Über mich</span><span class="nl-sub" data-en>Über miche</span></a>
@@ -3834,7 +3854,7 @@
   </div>
   <div class="b"><img class="mark" src="logo-chrome.png" alt="JKK Jerome" loading="lazy" /><strong>JKK Jerome</strong></div>
   <div class="mid"><span data-de>© 2026 · ALLE RECHTE VORBEHALTEN</span><span data-en>© 2026 · ALL RIGHTS RESERVED</span></div>
-  <div class="right"><a class="ig" href="https://instagram.com/jkk.jerome" target="_blank" rel="noopener" aria-label="Instagram · @JKK.JEROME"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg>@JKK.JEROME</a><a href="#top">↑ TOP</a></div>
+  <div class="right"><a class="ig" href="https://instagram.com/jkk.jerome" target="_blank" rel="noopener" aria-label="Instagram · @JKK.JEROME"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg>@JKK.JEROME</a><a href="/" class="js-top">↑ TOP</a></div>
 </footer>
 
 <!-- ─── LIGHTBOX ─── -->
