@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Portfolio — JKK Jerome | Film &amp; Fotografie Bootsbranche</title>
+<meta name="description" content="Ausgewählte Arbeiten aus Film, Fotografie und visueller Produktion. Ich zeige hier Projekte aus der Bootsbranche und darüber hinaus." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#000;--fg:#f4f1ec;--fg-dim:#8a857f;--fg-faint:#3a3833;
+    --line:rgba(244,241,236,.12);
+    --serif:"Cormorant Garamond", "Times New Roman", serif;
+    --sans:"Inter", system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-weight:300;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='.4'/></svg>");opacity:.08;mix-blend-mode:overlay;z-index:9999}
+  a{color:inherit;text-decoration:none}
+  .container{max-width:1440px;margin:0 auto;padding:0 48px}
+  @media(max-width:760px){.container{padding:0 24px}}
+
+  /* nav (re-use) */
+  nav.top{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,.78);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .brand{font-family:var(--serif);font-size:20px;letter-spacing:.18em;font-weight:400}
+  .brand em{font-style:italic;font-weight:300;color:var(--fg-dim)}
+  .nav-links{display:flex;gap:36px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--fg-dim)}
+  .nav-links a{transition:color .3s}
+  .nav-links a.active{color:var(--fg)}
+  .nav-links a:hover{color:var(--fg)}
+  .lang-toggle{display:flex;font-size:11px;letter-spacing:.22em;border:1px solid var(--line);border-radius:99px;padding:6px;gap:2px}
+  .lang-toggle button{background:none;color:var(--fg-dim);border:0;font:inherit;letter-spacing:inherit;padding:4px 10px;border-radius:99px;cursor:pointer;transition:background .3s,color .3s}
+  .lang-toggle button.active{background:var(--fg);color:#000}
+  @media(max-width:900px){.nav-links{display:none}nav.top{padding:18px 24px}}
+
+  /* page header */
+  .ph-head{padding:200px 0 80px;border-bottom:1px solid var(--line)}
+  .ph-head .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:48px;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--fg-dim)}
+  .ph-head h1{font-family:var(--serif);font-weight:300;font-size:clamp(64px,10vw,180px);line-height:.92;letter-spacing:-.02em}
+  .ph-head h1 em{font-style:italic;color:var(--fg-dim)}
+  .ph-head .sub{display:flex;justify-content:space-between;align-items:end;margin-top:48px;gap:48px;flex-wrap:wrap}
+  .ph-head .sub p{font-family:var(--serif);font-style:italic;font-size:22px;max-width:520px;color:#cfcac3;line-height:1.5}
+  .ph-head .stats{display:flex;gap:48px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--fg-dim)}
+  .ph-head .stats strong{display:block;font-family:var(--serif);font-style:italic;font-size:42px;font-weight:300;color:var(--fg);margin-top:8px;letter-spacing:-.01em;text-transform:none}
+
+  /* filters */
+  .filters{padding:48px 0;border-bottom:1px solid var(--line);position:sticky;top:71px;background:rgba(0,0,0,.85);backdrop-filter:blur(14px);z-index:50}
+  .filters .row{display:flex;gap:32px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+  .filter-chips{display:flex;gap:24px;flex-wrap:wrap;font-size:11px;letter-spacing:.28em;text-transform:uppercase}
+  .filter-chips button{background:none;border:0;color:var(--fg-dim);cursor:pointer;font:inherit;letter-spacing:inherit;padding:8px 0;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
+  .filter-chips button.active{color:var(--fg);border-bottom-color:var(--fg)}
+  .filter-chips button:hover{color:var(--fg)}
+  .view-meta{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--fg-dim);font-family:var(--sans)}
+  .view-meta em{font-family:var(--serif);font-style:italic;color:var(--fg);font-size:14px;letter-spacing:0;text-transform:none;margin-right:6px}
+
+  /* gallery */
+  .gallery{padding:80px 0 120px}
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+  .card{position:relative;overflow:hidden;cursor:pointer}
+  .card .ph{position:relative;background:#0d0d0d;border:1px solid var(--line);overflow:hidden}
+  .card .ph::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 40%, rgba(255,255,255,.06), transparent 50%),repeating-linear-gradient(45deg, transparent 0 8px, rgba(255,255,255,.015) 8px 9px)}
+  .card .ph .label{position:absolute;left:16px;bottom:16px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--fg-dim);z-index:2}
+  .card .ph .ix{position:absolute;right:16px;top:16px;font-family:var(--serif);font-style:italic;font-size:14px;color:var(--fg-dim);z-index:2}
+  .card .ph .icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.18}
+  .card .ph .icon svg{width:46%;height:46%;stroke:var(--fg);fill:none;stroke-width:.6}
+  .card .ph .video-dot{position:absolute;top:16px;left:16px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--fg);display:flex;align-items:center;gap:8px;z-index:2}
+  .card .ph .video-dot::before{content:"";width:8px;height:8px;border-radius:50%;background:#fff;animation:rec 1.6s ease-in-out infinite}
+  @keyframes rec{0%,100%{opacity:1}50%{opacity:.3}}
+
+  .card .meta{margin-top:14px;display:flex;justify-content:space-between;gap:24px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--fg-dim)}
+  .card .meta em{font-family:var(--serif);font-style:italic;letter-spacing:0;text-transform:none;color:var(--fg);font-size:16px}
+
+  .card .reveal-cap{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;background:linear-gradient(180deg, transparent 35%, rgba(0,0,0,.85));opacity:0;transition:opacity .5s;z-index:2}
+  .card:hover .reveal-cap{opacity:1}
+  .card .reveal-cap h4{font-family:var(--serif);font-weight:300;font-size:28px;font-style:italic;margin-bottom:8px}
+  .card .reveal-cap p{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#d6d2cb;margin-bottom:6px}
+  .card .reveal-cap .tags{margin-top:14px;display:flex;gap:10px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--fg-dim)}
+  .card .reveal-cap .tags span{padding:4px 8px;border:1px solid var(--line)}
+  .card .ph,.card .reveal-cap{transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+  .card:hover .ph{transform:scale(1.03)}
+
+  /* layout spans */
+  .c-12{grid-column:span 12}
+  .c-8{grid-column:span 8}
+  .c-7{grid-column:span 7}
+  .c-6{grid-column:span 6}
+  .c-5{grid-column:span 5}
+  .c-4{grid-column:span 4}
+  .c-3{grid-column:span 3}
+
+  .ar-43 .ph{aspect-ratio:4/3}
+  .ar-169 .ph{aspect-ratio:16/9}
+  .ar-34 .ph{aspect-ratio:3/4}
+  .ar-45 .ph{aspect-ratio:4/5}
+  .ar-23 .ph{aspect-ratio:2/3}
+  .ar-11 .ph{aspect-ratio:1/1}
+  .ar-219 .ph{aspect-ratio:21/9}
+
+  @media(max-width:760px){.c-3,.c-4,.c-5,.c-6,.c-7,.c-8,.c-12{grid-column:span 12}.grid{gap:40px}}
+
+  /* category headers */
+  .cat{padding:80px 0 32px;display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--line);margin-bottom:48px}
+  .cat h2{font-family:var(--serif);font-weight:300;font-size:clamp(36px,5vw,72px);letter-spacing:-.01em}
+  .cat h2 em{font-style:italic;color:var(--fg-dim)}
+  .cat .right{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--fg-dim);display:flex;gap:32px}
+  .cat .right strong{color:var(--fg)}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity 1s ease, transform 1s cubic-bezier(.16,1,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* CTA */
+  .cta{padding:160px 0;text-align:center;border-top:1px solid var(--line)}
+  .cta h3{font-family:var(--serif);font-weight:300;font-size:clamp(40px,6vw,96px);line-height:1;letter-spacing:-.01em}
+  .cta h3 em{font-style:italic;color:var(--fg-dim);display:block}
+  .cta a.mail{display:inline-block;margin-top:48px;font-family:var(--serif);font-style:italic;font-size:clamp(22px,2.4vw,32px);border-bottom:1px solid var(--line);padding-bottom:12px;transition:border-color .3s,letter-spacing .5s}
+  .cta a.mail:hover{border-bottom-color:var(--fg);letter-spacing:.02em}
+
+  footer{padding:48px;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(12,1fr);gap:32px;align-items:center;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--fg-dim)}
+  footer .b{grid-column:1/4;font-family:var(--serif);font-style:italic;font-size:18px;letter-spacing:.1em;color:var(--fg);text-transform:none}
+  footer .mid{grid-column:5/10;text-align:center}
+  footer .right{grid-column:10/13;text-align:right}
+  @media(max-width:760px){footer{grid-template-columns:1fr;text-align:center;padding:32px 24px;gap:16px}footer .b,footer .mid,footer .right{grid-column:1/-1;text-align:center}}
+
+  /* lightbox */
+  .lightbox{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.96);display:none;align-items:center;justify-content:center;padding:48px}
+  .lightbox.open{display:flex;animation:fadeIn .4s ease}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  .lightbox .frame{width:min(1200px,92vw);aspect-ratio:16/9;border:1px solid var(--line);position:relative;background:#0a0a0a;overflow:hidden}
+  .lightbox .frame .ph{position:absolute;inset:0;background:#0d0d0d}
+  .lightbox .frame .ph::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 40%, rgba(255,255,255,.06), transparent 50%),repeating-linear-gradient(45deg, transparent 0 8px, rgba(255,255,255,.015) 8px 9px)}
+  .lightbox .frame .icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.18}
+  .lightbox .frame .icon svg{width:36%;height:36%;stroke:var(--fg);fill:none;stroke-width:.6}
+  .lightbox .close{position:absolute;top:32px;right:32px;font-family:var(--serif);font-style:italic;font-size:22px;color:var(--fg-dim);cursor:pointer;background:none;border:0}
+  .lightbox .close:hover{color:var(--fg)}
+  .lightbox .caption{position:absolute;bottom:32px;left:32px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--fg-dim)}
+  .lightbox .caption em{font-family:var(--serif);font-style:italic;text-transform:none;color:var(--fg);font-size:16px;letter-spacing:0;display:block;margin-bottom:4px}
+  .lightbox .nav-arrows{position:absolute;top:50%;left:32px;right:32px;display:flex;justify-content:space-between;pointer-events:none}
+  .lightbox .nav-arrows button{pointer-events:auto;background:none;border:0;color:var(--fg-dim);font-family:var(--serif);font-style:italic;font-size:28px;cursor:pointer;transition:color .3s}
+  .lightbox .nav-arrows button:hover{color:var(--fg)}
+
+  [data-en]{display:none}
+  html[lang="en"] [data-de]{display:none}
+  html[lang="en"] [data-en]{display:initial}
+  html[lang="en"] [data-en].block{display:block}
+</style>
+<link rel="icon" href="favicon.ico" sizes="32x32" />
+<link rel="icon" href="favicon.png" type="image/png" sizes="512x512" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+</head>
+<body>
+
+<nav class="top">
+  <a href="index.html" class="brand">Jerome Kwamo <em>—</em> <span data-de>Atelier</span><span data-en>Atelier</span></a>
+  <div class="nav-links">
+    <a href="index.html#about" data-de>Über</a><a href="index.html#about" data-en>About</a>
+    <a href="index.html#services" data-de>Leistungen</a><a href="index.html#services" data-en>Services</a>
+    <a href="portfolio.html" class="active">Portfolio</a>
+    <a href="index.html#cases" data-de>Cases</a><a href="index.html#cases" data-en>Work</a>
+    <a href="index.html#contact" data-de>Kontakt</a><a href="index.html#contact" data-en>Contact</a>
+  </div>
+  <div class="lang-toggle" id="lang">
+    <button data-lang="de" class="active">DE</button>
+    <button data-lang="en">EN</button>
+  </div>
+</nav>
+
+<header class="ph-head">
+  <div class="container">
+    <div class="top">
+      <span><span data-de>Index · 042 Projekte</span><span data-en>Index · 042 Projects</span></span>
+      <span>2025 — 2026</span>
+    </div>
+    <h1>
+      <span data-de>Portfolio<br><em>— Selected.</em></span>
+      <span data-en class="block">Portfolio<br><em>— Selected.</em></span>
+    </h1>
+    <div class="sub">
+      <p data-de>Eine kuratierte Auswahl aus zwölf Monaten an Bord, über den Wolken und vor Ort. Jedes Projekt vertraulich — Details auf Anfrage.</p>
+      <p data-en>A curated selection from twelve months aboard, above the clouds and on location. Each project confidential — details on request.</p>
+      <div class="stats">
+        <div><span data-de>Yachten</span><span data-en>Yachts</span><strong>24</strong></div>
+        <div><span data-de>Jets</span><span data-en>Jets</span><strong>11</strong></div>
+        <div><span data-de>Werften</span><span data-en>Yards</span><strong>07</strong></div>
+        <div><span data-de>Sektoren</span><span data-en>Sectors</span><strong>03</strong></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="filters">
+  <div class="container">
+    <div class="row">
+      <div class="filter-chips" id="filters">
+        <button class="active" data-f="all"><span data-de>Alle</span><span data-en>All</span></button>
+        <button data-f="yacht">Yachts</button>
+        <button data-f="jet"><span data-de>Aviation</span><span data-en>Aviation</span></button>
+        <button data-f="film">Film</button>
+        <button data-f="ai">AI</button>
+        <button data-f="brand"><span data-de>Brand</span><span data-en>Brand</span></button>
+      </div>
+      <div class="view-meta"><em>042</em><span data-de>Projekte sichtbar</span><span data-en>projects visible</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<main class="gallery">
+  <div class="container">
+
+    <!-- Yachts -->
+    <div class="cat reveal">
+      <h2><span data-de>i. <em>Yachts</em></span><span data-en class="block">i. <em>Yachts</em></span></h2>
+      <div class="right"><span><span data-de>24 Projekte</span><span data-en>24 projects</span></span><strong>2025 — 2026</strong></div>
+    </div>
+
+    <div class="grid">
+      <div class="card c-8 ar-169 reveal" data-cat="yacht film">
+        <div class="ph">
+          <span class="video-dot">REC · 4K</span>
+          <span class="label">M/Y “Aurelia” · 87m · Monaco</span><span class="ix">001</span>
+          <div class="icon"><svg viewBox="0 0 100 100"><path d="M5 70 Q 30 60 50 65 T 95 60 L 95 80 L 5 80 Z"/><path d="M35 65 L 42 28 L 58 28 L 60 65"/></svg></div>
+        </div>
+        <div class="reveal-cap"><h4>Aurelia · Charter Film</h4><p data-de>Cinematic Brand Film · 02:48</p><p data-en>Cinematic Brand Film · 02:48</p><div class="tags"><span>Film</span><span>Charter</span><span>Monaco</span></div></div>
+        <div class="meta"><em>Aurelia · 87m</em><span>Monaco / 2025</span></div>
+      </div>
+
+      <div class="card c-4 ar-34 reveal" data-cat="yacht">
+        <div class="ph">
+          <span class="label">S/Y “Veneta” · 52m · Saint-Tropez</span><span class="ix">002</span>
+          <div class="icon"><svg viewBox="0 0 100 100"><path d="M50 12 L 50 70 M 30 70 L 70 70 L 60 78 L 40 78 Z M 50 20 L 70 60 M 50 20 L 30 60"/></svg></div>
+        </div>
+        <div class="reveal-cap"><h4>Veneta · 52m</h4><p>Editorial Series</p><div class="tags"><span>Sail</span><span>Editorial</span></div></div>
+        <div class="meta"><em>Veneta · 52m</em><span>Saint-Tropez</span></div>
+      </div>
+
+      <div class="card c-4 ar-45 reveal" data-cat="yacht brand">
+        <div class="ph">
+          <span class="label">Lürssen Refit · Interior</span><span class="ix">003</span>
+          <div class="icon"><svg viewBox="0 0 100 100"><rect x="20" y="30" width="60" height="40"/><line x1="20" y1="50" x2="80" y2="50"/><line x1="50" y1="30" x2="50" y2="70"/></svg></div>
+        </div>
+        <div class="reveal-cap"><h4>Lürssen Refit</h4><p data-de>Interieur · Innenaufnahme</p><p data-en>Interior · Indoor</p><div class="tags"><span>Interior</span><span>Indoor</span></div></div>
+        <div class="meta"><em>Lürssen Refit</em><span>2025</span></div>
+      </div>
+
+      <div class="card c-4 ar-45 reveal" data-cat="yacht ai">
+        <div class="ph">
+          <span class="label">Refit 92m · KI Pre-Vis</span><span class="ix">004</span>
+          <div class="icon"><svg viewBox="0 0 100 100"><path d="M20 60 L 50 30 L 80 60"/><rect x="35" y="60" width="30" height="20"/><line x1="50" y1="30" x2="50" y2="20"/></svg></div>
+        </div>
+        <div class="reveal-cap"><h4>Refit 92m · AI</h4><p data-de>Pre-Visualisierung</p><p data-en>Pre-Visualization</p><div class="tags"><span>AI</span><span>Concept</span></div></div>
+        <div class="meta"><em>Refit 92m · AI</em><span>2026</span></div>
+      </div>
+
+      <div class="card c-4 ar-45 reveal" data-cat="yacht film">
+        <div class="ph">
+          <span class="video-dot">REC</span>
+          <span class="label">Tender Drop · Porto Cervo</span><span class="ix">005</span>
+          <div class="icon"><svg viewBox="0 0 100 100"><path d="M20 60 Q 50 55 80 60 L 76 70 L 24 70 Z"/></svg></div>
+        </div>
+        <div class="reveal-cap"><h4>Porto Cervo</h4><p>Lifestyle · Film</p><div class="tags"><span>Film</span><span>Lifestyle</span></div></div>
+        <div class="meta"><em>Porto Cervo</em><span>Lifestyle / 2025</span></div>
+      </div>
+
+      <div class="card c-7 ar-169 reveal" data-cat="yacht">
+        <div class="ph">
+          <span class="label">M/Y “Northern Sky” · 110m · Norway</span><span class="ix">006</span>
+          <div class="icon"><svg viewBox="0 0 100 100"><path d="M5 65 Q 30 56 50 60 T 95 56 L 95 80 L 5 80 Z"/><path d="M30 60 L 40 22 L 60 22 L 65 60"/></svg></div>
+        </div>
+        <div class="reveal-cap"><h4>Northern Sky · 110m</h4><p data-de>Explorer Yacht · Fjord-Serie</p><p data-en>Explorer Yacht · Fjord Series</p><div class="tags"><span>Explorer</span><span>Norway</span></div></div>
+        <div class="meta"><em>Northern Sky</em><span>Norway / 2025</span></div>
+      </div>
+
+      <div class="card c-5 ar-43 reveal" data-cat="yacht">
+        <div class="ph">
+          <span class="label">M/Y “Lumen” · 64m · Côte d'Azur</span><span class="ix">007</span>
+          <div class="icon"><svg viewBox="0 0 100 100"><path d="M8 68 Q 25 62 50 64 T 92 62 L 92 78 L 8 78 Z"/></svg></div>
+        </div>
+        <div class="reveal-cap"><h4>Lumen · 64m</h4><p>Charter Listing · Photo</p><div class="tags"><span>Charter</span><span>Photo</span></div></div>
+        <div class="meta"><em>Lumen · 64m</em><span>Côte d'Azur</span></div>
+      </div>
+
+      <div class="card c-3 ar-23 reveal" data-cat="yacht brand">
+        <div class="ph">
+          <span class="label">Detail · Teak / Bronze</span><span class="ix">008</span>
+          <div class="icon"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="30"/><circle cx="50" cy="50" r="14"/></svg></div>
+        </div>
+        <div class="reveal-cap"><h4>Material Study</h4><p>Detail · Macro</p><div class="tags"><span>Detail</span></div></div>
+        <div class="meta"><em>Material Study</em><span>2025</span></div>
+      </div>
+
+      <div class="card c-6 ar-43 reveal" data-cat="yacht">
+        <div class="ph">
+          <span class="label">M/Y “Solara” · 78m · Capri</span><span class="ix">009</span>
+          <div class="icon"><svg viewBox="0 0 100 100"><path d="M5 70 Q 30 62 50 66 T 95 62 L 95 80 L 5 80 Z"/></svg></div>
+        </div>
+        <div class="reveal-cap"><h4>Solara · 78m</h4><p>Lifestyle Series</p><div class="tags"><span>Lifestyle</span><span>Capri</span></div></div>
+        <div class="meta"><em>Solara · 78m</em><span>Capri / 2025</span></div>
+      </div>
+
+      <div class="card c-3 ar-23 reveal" data-cat="yacht ai">
+        <div class="ph">
+          <span class="label">Helideck · KI Render</span><span class="ix">010</span>
+          <div class="icon"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="22"/><path d="M40 50 L 50 40 L 60 50 L 50 60 Z"/></svg></div>
+        </div>
+        <div class="reveal-cap"><h4>Helideck Concept</h4><p data-de>KI / Render</p><p data-en>AI / Render</p><div class="tags"><span>AI</span></div></div>
+        <div class="meta"><em>Helideck</em><span>AI / 2026</span></div>
+      </div>
+    </div>
+
+    <!-- Aviation -->
+    <div class="cat reveal">
+      <h2><span data-de>ii. <em>Aviation</em></span><span data-en class="block">ii. <em>Aviation</em></span></h2>
+      <div class="right"><span><span data-de>11 Projekte</span><span data-en>11 projects</span></span><strong>2025 — 2026</strong></div>
+    </div>
+
+    <div class="grid">
+      <div class="card c-7 ar-219 reveal" data-cat="jet film">
+        <div class="ph">
+          <span class="video-dot">REC · 4K</span>
+          <span class="label">Gulfstream G700 · Air-to-Air · 41,000 ft</span><span class="ix">011</span>
+          <div class="icon"><svg viewBox="0 0 100 100"><path d="M10 55 L 90 50 L 92 52 L 88 56 L 60 58 L 50 75 L 45 75 L 50 58 L 30 60 L 22 70 L 18 68 L 22 58 L 10 56 Z"/></svg></div>
+        </div>
+        <div class="reveal-cap"><h4>G700 · 41,000 ft</h4><p>Operator Brand Film</p><div class="tags"><span>Film</span><span>Air-to-Air</span></div></div>
+        <div class="meta"><em>G700 · 41,000 ft</em><span>Aviation / 2025</span></div>
+      </div>
+
+      <div class="card c-5 ar-169 reveal" data-cat="jet">
+        <div class="ph">
+          <span class="label">Hangar Night · Zurich</span><span class="ix">012</span>
+          <div class="icon"><svg viewBox="0 0 100 100"><rect x="14" y="40" width="72" height="40"/><path d="M14 40 L 50 16 L 86 40"/></svg></div>
+        </div>
+        <div class="reveal-cap"><h4>Hangar / ZRH</h4><p>Editorial Series</p><div class="tags"><span>Hangar</span><span>Editorial</span></div></div>
+        <div class="meta"><em>Hangar · ZRH</em><span>Editorial / 2025</span></div>
+      </div>
+
+      <div class="card c-4 ar-34 reveal" data-cat="jet">
+        <div class="ph">
+          <span class="label">Global 7500 · Cabin · BBJ</span><span class="ix">013</span>
+          <div class="icon"><svg viewBox="0 0 100 100"><rect x="14" y="34" width="72" height="32" rx="16"/><rect x="22" y="40" width="10" height="8"/><rect x="38" y="40" width="10" height="8"/><rect x="54" y="40" width="10" height="8"/><rect x="70" y="40" width="10" height="8"/></svg></div>
+        </div>
+        <div class="reveal-cap"><h4>Global 7500 · Cabin</h4><p>Interior · Photo</p><div class="tags"><span>Interior</span></div></div>
+        <div class="meta"><em>Global 7500</em><span>BBJ / 2025</span></div>
+      </div>
+
+      <div class="card c-4 ar-34 reveal" data-cat="jet brand">
+        <div class="ph">
+          <span class="label">Tarmac · Dusk · LBG</span><span class="ix">014</span>
+          <div class="icon"><svg viewBox="0 0 100 100"><path d="M10 60 L 90 58 L 60 64 L 50 80 L 45 80 L 52 64 L 30 66 L 22 76 L 18 74 L 24 64 L 10 62 Z"/></svg></div>
+        </div>
+        <div class="reveal-cap"><h4>LBG · Tarmac</h4><p>Operator · Brand</p><div class="tags"><span>Brand</span></div></div>
+        <div class="meta"><em>LBG · Tarmac</em><span>Paris / 2025</span></div>
+      </div>
+
+      <div class="card c-4 ar-34 reveal" data-cat="jet ai">
+        <div class="ph">
+          <span class="label">Bombardier · KI Configurator</span><span class="ix">015</span>
+          <div class="icon"><svg viewBox="0 0 100 100"><path d="M10 60 L 90 58 L 60 64 L 50 78 L 45 78 L 52 64 L 30 66 L 22 74 L 18 72 L 24 64 L 10 62 Z"/><circle cx="50" cy="68" r="4"/></svg></div>
+        </div>
+        <div class="reveal-cap"><h4>KI Configurator</h4><p data-de>Cabin Pre-Vis</p><p data-en>Cabin Pre-Vis</p><div class="tags"><span>AI</span><span>Web</span></div></div>
+        <div class="meta"><em>KI Configurator</em><span>2026</span></div>
+      </div>
+
+      <div class="card c-8 ar-169 reveal" data-cat="jet film">
+        <div class="ph">
+          <span class="video-dot">REC</span>
+          <span class="label">Falcon 8X · Drohne · St. Moritz</span><span class="ix">016</span>
+          <div class="icon"><svg viewBox="0 0 100 100"><path d="M8 56 L 92 50 L 94 52 L 90 56 L 62 58 L 52 76 L 47 76 L 52 58 L 30 60 L 22 72 L 18 70 L 24 58 L 8 58 Z"/></svg></div>
+        </div>
+        <div class="reveal-cap"><h4>Falcon 8X · Drohne</h4><p>St. Moritz · Film</p><div class="tags"><span>Drohne</span><span>Film</span></div></div>
+        <div class="meta"><em>Falcon 8X · Drohne</em><span>St. Moritz / 2026</span></div>
+      </div>
+    </div>
+
+    <!-- Brand & AI -->
+    <div class="cat reveal">
+      <h2><span data-de>iii. <em>Brand · AI · Visuals</em></span><span data-en class="block">iii. <em>Brand · AI · Visuals</em></span></h2>
+      <div class="right"><span><span data-de>17 Projekte</span><span data-en>17 projects</span></span><strong>2025 — 2026</strong></div>
+    </div>
+
+    <div class="grid">
+      <div class="card c-6 ar-43 reveal" data-cat="brand">
+        <div class="ph">
+          <span class="label">Veneta Yachts · Brand Identity</span><span class="ix">017</span>
+          <div class="icon"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="30"/><text x="50" y="58" text-anchor="middle" fill="currentColor" stroke="none" font-family="serif" font-style="italic" font-size="22">V</text></svg></div>
+        </div>
+        <div class="reveal-cap"><h4>Veneta Identity</h4><p data-de>Brokerage Brand · 2025</p><p data-en>Brokerage Brand · 2025</p><div class="tags"><span>Brand</span><span>Identity</span></div></div>
+        <div class="meta"><em>Veneta Identity</em><span>2025</span></div>
+      </div>
+
+      <div class="card c-6 ar-43 reveal" data-cat="brand">
+        <div class="ph">
+          <span class="label">Swiss Jet Atelier · Sales Deck</span><span class="ix">018</span>
+          <div class="icon"><svg viewBox="0 0 100 100"><rect x="20" y="20" width="60" height="60"/><line x1="20" y1="34" x2="80" y2="34"/><line x1="30" y1="46" x2="60" y2="46"/><line x1="30" y1="56" x2="50" y2="56"/></svg></div>
+        </div>
+        <div class="reveal-cap"><h4>Swiss Jet Atelier</h4><p>Sales Deck</p><div class="tags"><span>Brand</span><span>Print</span></div></div>
+        <div class="meta"><em>Swiss Jet Atelier</em><span>Deck / 2025</span></div>
+      </div>
+
+      <div class="card c-4 ar-11 reveal" data-cat="ai">
+        <div class="ph">
+          <span class="label">Generative · Marina at Dawn</span><span class="ix">019</span>
+          <div class="icon"><svg viewBox="0 0 100 100"><circle cx="50" cy="40" r="14"/><path d="M20 75 L 40 75 M 50 75 L 70 75 M 30 80 L 60 80"/></svg></div>
+        </div>
+        <div class="reveal-cap"><h4>Generative Marina</h4><p>AI · Concept</p><div class="tags"><span>AI</span></div></div>
+        <div class="meta"><em>Marina at Dawn</em><span>AI / 2026</span></div>
+      </div>
+
+      <div class="card c-4 ar-11 reveal" data-cat="ai">
+        <div class="ph">
+          <span class="label">Sky Replace · 240m / Vertraulich</span><span class="ix">020</span>
+          <div class="icon"><svg viewBox="0 0 100 100"><circle cx="35" cy="35" r="8"/><circle cx="55" cy="32" r="6"/><circle cx="70" cy="38" r="7"/><path d="M10 65 Q 50 60 90 65"/></svg></div>
+        </div>
+        <div class="reveal-cap"><h4>Sky Replace</h4><p>AI Retouching · Vertraulich</p><div class="tags"><span>AI</span><span>Vertraulich</span></div></div>
+        <div class="meta"><em>Sky Replace</em><span>Vertraulich / 2026</span></div>
+      </div>
+
+      <div class="card c-4 ar-11 reveal" data-cat="brand ai">
+        <div class="ph">
+          <span class="label">KI Anfragensystem · Charter</span><span class="ix">021</span>
+          <div class="icon"><svg viewBox="0 0 100 100"><rect x="20" y="25" width="60" height="50" rx="2"/><line x1="20" y1="38" x2="80" y2="38"/><circle cx="30" cy="32" r="2"/><circle cx="38" cy="32" r="2"/><line x1="30" y1="50" x2="70" y2="50"/><line x1="30" y1="58" x2="60" y2="58"/></svg></div>
+        </div>
+        <div class="reveal-cap"><h4>Charter AI Agent</h4><p data-de>Automatisierung</p><p data-en>Automation</p><div class="tags"><span>AI</span><span>Web</span></div></div>
+        <div class="meta"><em>Charter AI Agent</em><span>2026</span></div>
+      </div>
+
+      <div class="card c-12 ar-219 reveal" data-cat="brand film">
+        <div class="ph">
+          <span class="video-dot">REC · 4K · HDR</span>
+          <span class="label">Group Reel 2026 · 03:12</span><span class="ix">022</span>
+          <div class="icon"><svg viewBox="0 0 100 100"><rect x="14" y="28" width="72" height="44" rx="2"/><polygon points="44,40 60,50 44,60" fill="currentColor"/></svg></div>
+        </div>
+        <div class="reveal-cap"><h4>Group Reel 2026</h4><p>Cinematic Compilation · 03:12</p><div class="tags"><span>Film</span><span>Reel</span></div></div>
+        <div class="meta"><em>Group Reel 2026</em><span>03:12 · 4K HDR</span></div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<section class="cta">
+  <div class="container">
+    <h3><span data-de>Ihr Projekt<br><em>als nächstes.</em></span><span data-en class="block">Your project<br><em>up next.</em></span></h3>
+    <a href="mailto:contact@jkkjerome.de" class="mail">contact@jkkjerome.de</a>
+  </div>
+</section>
+
+<footer>
+  <div class="b">Jerome Kwamo</div>
+  <div class="mid"><span data-de>© 2026 · Alle Rechte vorbehalten </span><span data-en>© 2026 · All rights reserved </span></div>
+  <div class="right"><a href="index.html"><span data-de>← Zurück</span><span data-en>← Back</span></a></div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="close" id="close-lb">Close ⟶</button>
+  <div class="nav-arrows"><button id="prev">← Prev</button><button id="next">Next →</button></div>
+  <div class="frame">
+    <div class="ph">
+      <div class="icon"><svg viewBox="0 0 100 100"><path d="M5 70 Q 30 60 50 65 T 95 60 L 95 80 L 5 80 Z"/></svg></div>
+    </div>
+    <div class="caption"><em id="lb-title">M/Y “Aurelia”</em><span id="lb-meta">Monaco · 2025</span></div>
+  </div>
+</div>
+
+<script>
+  // lang
+  const langWrap = document.getElementById('lang');
+  langWrap.addEventListener('click', e => {
+    const b = e.target.closest('button[data-lang]'); if(!b) return;
+    document.documentElement.lang = b.dataset.lang;
+    langWrap.querySelectorAll('button').forEach(x => x.classList.toggle('active', x===b));
+  });
+
+  // reveal
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => { if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }});
+  }, {rootMargin:'-5% 0px -5% 0px'});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // filters
+  const filters = document.getElementById('filters');
+  const cards = [...document.querySelectorAll('.card')];
+  const counter = document.querySelector('.view-meta em');
+  filters.addEventListener('click', e => {
+    const b = e.target.closest('button[data-f]'); if(!b) return;
+    filters.querySelectorAll('button').forEach(x => x.classList.toggle('active', x===b));
+    const f = b.dataset.f;
+    let n = 0;
+    cards.forEach(c => {
+      const show = f==='all' || (c.dataset.cat || '').includes(f);
+      c.style.display = show ? '' : 'none';
+      if(show) n++;
+    });
+    counter.textContent = String(n).padStart(3,'0');
+  });
+
+  // lightbox
+  const lb = document.getElementById('lightbox');
+  const lbTitle = document.getElementById('lb-title');
+  const lbMeta = document.getElementById('lb-meta');
+  let curIdx = 0;
+  const open = i => {
+    const visible = cards.filter(c => c.style.display !== 'none');
+    if(!visible.length) return;
+    curIdx = ((i % visible.length) + visible.length) % visible.length;
+    const c = visible[curIdx];
+    lbTitle.textContent = c.querySelector('.meta em').textContent;
+    lbMeta.textContent = c.querySelector('.meta span:last-child').textContent;
+    lb.classList.add('open');
+  };
+  cards.forEach((c, i) => c.addEventListener('click', () => {
+    const visible = cards.filter(c => c.style.display !== 'none');
+    open(visible.indexOf(c));
+  }));
+  document.getElementById('close-lb').addEventListener('click', () => lb.classList.remove('open'));
+  document.getElementById('prev').addEventListener('click', () => open(curIdx - 1));
+  document.getElementById('next').addEventListener('click', () => open(curIdx + 1));
+  lb.addEventListener('click', e => { if(e.target === lb) lb.classList.remove('open'); });
+  document.addEventListener('keydown', e => {
+    if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape') lb.classList.remove('open');
+    if(e.key==='ArrowLeft') open(curIdx - 1);
+    if(e.key==='ArrowRight') open(curIdx + 1);
+  });
+</script>
+
+<script src="admin/tracker.js"></script>
+</body>
+</html>

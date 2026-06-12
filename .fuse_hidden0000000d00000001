@@ -5,20 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Leistung · JKK Jerome</title>
 <meta name="description" content="Neun Module für die Digitalisierung der Bootsbranche: Fotografie, Film, KI Visuals, Social Media, Paid Ads, SEO, Websites, Verkaufssysteme und Marketingberatung." />
-<meta name="robots" content="index,follow" />
-<link rel="canonical" href="https://jkkjerome.de/leistung.html" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://jkkjerome.de/leistung.html" />
-<meta property="og:title" content="Leistungen · JKK Jerome | Digitalisierung der Bootsbranche" />
-<meta property="og:description" content="Neun Module: Fotografie, Film, KI Visuals, Social Media, Paid Ads, SEO, Websites, Verkaufssysteme und Beratung — alles für Bootshändler, Werften und Charter." />
-<meta property="og:image" content="https://jkkjerome.de/showreel-poster.jpg" />
-<meta property="og:image:width" content="1024" />
-<meta property="og:image:height" content="576" />
-<meta property="og:site_name" content="JKK Jerome" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Leistungen · JKK Jerome | Digitalisierung der Bootsbranche" />
-<meta name="twitter:description" content="Fotografie, Film, KI, Social, Ads, SEO, Websites, Verkaufssysteme — alles für die Bootsbranche." />
-<meta name="twitter:image" content="https://jkkjerome.de/showreel-poster.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -671,7 +657,7 @@
 <div class="grid-bg"></div>
 <div class="wrap">
   <div class="bar">
-    <a class="home" href="index.html#services"><span class="arr" style="font-family:var(--display);font-weight:900">←</span> <span class="mk">jkkjerome.de</span> / <span data-de>Leistung</span><span data-en>Service</span></a>
+    <a class="home" href="index.html#services"><span class="arr" style="font-family:var(--display);font-weight:900">←</span> <span class="mk">Jerome Kwamo</span></a>
     <a href="index.html#services"><span data-de>Alle Leistungen</span><span data-en>All services</span></a>
   </div>
 
@@ -928,56 +914,57 @@
 </style>
 
 <script src="scroll-morph.js"></script>
+<script src="https://unpkg.com/three@0.158.0/build/three.min.js"></script>
 <script src="film-gallery.js"></script>
 <script src="gradient-wave.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script>
 const MODULES = {
   "photography": {
-    num:"L-01", call:"KILO-ONE",
+    num:"M-01", call:"KILO-ONE",
     titleDe:"Fotografie", titleEn:"Photography",
     leadDe:"Das eine Bild, das den Käufer bewegt — vom Hafenliegeplatz bis ins Detail der Eignerkabine.",
     leadEn:"The one frame that moves the buyer — from dockside to the detail of the owner's cabin.",
     introDe:["Professionelle Bootsfotografie an Land und auf dem Wasser. Von außen, innen, Lifestyle bis Detail — alles so fotografiert, dass es verkauft.","Fertig bearbeitet, sofort einsetzbar. Bilder, die den Unterschied machen, nicht nur gut aussehen."],
     introEn:["Professional boat photography on land and on the water. Exterior, interior, lifestyle and detail — shot to sell.","Fully edited, ready to use. Images that make the difference, not just look good."],
-    inc:[["Exterieur & Luftaufnahmen","Exterior & aerial"],["Deck & Interieur","Deck & interior"],["Detail & Lifestyle","Detail & lifestyle"],["Professionelle Bearbeitung","Professional editing"]],
-    specs:[["Einsatz","Verkauf · Charter","Use","Sale · charter"],["Format","Hochauflösend","Format","High resolution"]],
-    detailDe:"Ich komme zu dir an den Liegeplatz oder zum Werftgelände und fotografiere dein Boot so, wie es ein Käufer sehen will: ehrlich, professionell und mit Atmosphäre. Kein Stockfoto-Feeling, sondern Bilder, die man sofort mit dem Boot verbindet. Ob Verkaufslisting, Charterkatalog oder Messeauftritt — die Bilder werden genau dafür bearbeitet, wo sie eingesetzt werden. Fertig zugeschnitten für Web, Print und Social Media.",
-    detailEn:"I come to your berth or yard and photograph your boat the way a buyer wants to see it: honest, professional and with atmosphere. No stock photo look — images you immediately connect with the boat. Whether it's a sales listing, charter catalogue or trade fair — each image is edited for the exact platform it's used on. Cropped and ready for web, print and social.",
-    processDe:[["Vorgespräch","Kurzes Briefing per Telefon oder Mail — Bootsgröße, Zweck und gewünschter Stil."],["Shooting vor Ort","Exterieur, Interieur, Details und Lifestyle — meistens ein halber bis ganzer Tag."],["Bearbeitung","Professionelle Bildbearbeitung, Farbkorrektur, Zuschnitte für alle Formate."],["Übergabe","Fertige Bilder, sofort einsetzbar."]],
-    processEn:[["Briefing","Short briefing by phone or email — boat size, purpose and desired style."],["On-site shoot","Exterior, interior, details and lifestyle — typically half a day to a full day."],["Editing","Professional image editing, colour correction, crops for all formats."],["Handover","Finished images, ready to use immediately."]],
+    inc:[["Exterieur & Luftaufnahmen","Exterior & aerial"],["Deck & Interieur","Deck & interior"],["Detail & Lifestyle","Detail & lifestyle"],["Professionelle Bearbeitung","Professional editing"],["Lieferung in 72 h","Delivery in 72 h"]],
+    specs:[["Einsatz","Verkauf · Charter","Use","Sale · charter"],["Format","Hochauflösend","Format","High resolution"],["Dauer","2–4 Tage","Lead time","2–4 days"]],
+    detailDe:"Ich komme zu dir an den Liegeplatz oder zum Werftgelände und fotografiere dein Boot so, wie es ein Käufer sehen will: ehrlich, professionell und mit Atmosphäre. Kein Stockfoto-Feeling, sondern Bilder, die man sofort mit dem Boot verbindet. Ob Verkaufslisting, Charterkatalog oder Messeauftritt — die Bilder werden genau dafür bearbeitet, wo sie eingesetzt werden. Lieferung in 72 Stunden, fertig zugeschnitten für Web, Print und Social Media.",
+    detailEn:"I come to your berth or yard and photograph your boat the way a buyer wants to see it: honest, professional and with atmosphere. No stock photo look — images you immediately connect with the boat. Whether it's a sales listing, charter catalogue or trade fair — each image is edited for the exact platform it's used on. Delivery in 72 hours, cropped and ready for web, print and social.",
+    processDe:[["Vorgespräch","Kurzes Briefing per Telefon oder Mail — Bootsgröße, Zweck und gewünschter Stil."],["Shooting vor Ort","Exterieur, Interieur, Details und Lifestyle — meistens ein halber bis ganzer Tag."],["Bearbeitung","Professionelle Bildbearbeitung, Farbkorrektur, Zuschnitte für alle Formate."],["Lieferung","Fertige Bilder innerhalb von 72 Stunden — sofort einsetzbar."]],
+    processEn:[["Briefing","Short briefing by phone or email — boat size, purpose and desired style."],["On-site shoot","Exterior, interior, details and lifestyle — typically half a day to a full day."],["Editing","Professional image editing, colour correction, crops for all formats."],["Delivery","Finished images within 72 hours — ready to use immediately."]],
     audienceDe:[["Bootshändler","Du verkaufst Boote und brauchst Bilder, die den Unterschied zwischen Anfrage und Verkauf machen."],["Werften","Neubauten, Refits oder Restaurationen — professionell dokumentiert für Marketing und Kundenpräsentation."],["Charterunternehmen","Flotten, die online verkaufen müssen. Bilder, die Buchungen bringen, nicht nur Klicks."]],
     audienceEn:[["Boat dealers","You sell boats and need images that make the difference between an enquiry and a sale."],["Shipyards","New builds, refits or restorations — professionally documented for marketing and client presentations."],["Charter companies","Fleets that need to sell online. Images that drive bookings, not just clicks."]],
     resultDe:"Am Ende hast du einen kompletten Bildersatz, der direkt in dein Verkaufslisting, auf deine Website und in deine Social Media Kanäle kann. Kein Nachbearbeiten, kein Formatieren — alles fertig.",
     resultEn:"You end up with a complete image set that goes straight into your sales listing, your website and your social channels. No further editing, no formatting — everything ready."
   },
   "film": {
-    num:"L-02", call:"KILO-TWO",
+    num:"M-02", call:"KILO-TWO",
     titleDe:"Film & Imagevideo", titleEn:"Film & Brand Video",
     leadDe:"Bewegung, die verkauft — und jeden Frame, der den Käufer bewegt.",
     leadEn:"Motion that sells — and every frame that moves the buyer.",
     introDe:["Imagevideos, Werbefilme und Reels für dein Boot oder deine Werft. Mit Drohnenaufnahmen und professioneller Kameratechnik.","Professionell bearbeitet, geschnitten in Versionen für Web, Social Media und Verkauf — alles aus einer Produktion."],
     introEn:["Brand films, ads and reels for your boat or yard. With drone footage and professional camera work.","Professionally edited, cut into versions for web, social media and sales — all from one production."],
     inc:[["Imagefilm & Werbespot","Brand film & ad spot"],["Verkaufsvideo & Charterfilm","Sales video & charter film"],["Drohnenaufnahmen","Drone footage"],["Professionelle Farbbearbeitung","Professional colour grading"],["Schnitt für Web & Social","Cuts for web & social"]],
-    specs:[["Kamera","Kinokamera","Camera","Cinema camera"],["Auflösung","Hochauflösend","Resolution","High resolution"]],
+    specs:[["Kamera","Kinokamera","Camera","Cinema camera"],["Auflösung","Hochauflösend","Resolution","High resolution"],["Dauer","2–3 Wochen","Lead time","2–3 weeks"]],
     detailDe:"Ein gutes Video verkauft ein Boot schneller als jedes Exposé. Ich produziere Imagefilme, Verkaufsvideos und Social Media Reels — alles aus einer Produktion. Drohnenaufnahmen vom Wasser, Kamerafahrten an Deck, Lifestyle-Szenen und Detailaufnahmen. Danach wird professionell geschnitten, farblich bearbeitet und in verschiedenen Formaten geliefert: ein langer Film für die Website, kurze Versionen für Instagram und YouTube, und Snippets für Ads.",
     detailEn:"A good video sells a boat faster than any brochure. I produce brand films, sales videos and social media reels — all from one production. Drone footage from the water, tracking shots on deck, lifestyle scenes and detail close-ups. Then professionally edited, colour-graded and delivered in multiple formats: a long version for the website, short cuts for Instagram and YouTube, and snippets for ads.",
-    processDe:[["Konzept & Briefing","Wir besprechen Ziel, Stil und Einsatzzweck — Verkauf, Charter, Imageaufbau oder alles zusammen."],["Drehtag","Ein bis zwei Tage vor Ort mit professioneller Kameratechnik und Drohne."],["Postproduktion","Schnitt, Farbbearbeitung, Musik und Sounddesign — alles auf Kino-Niveau."],["Übergabe & Formate","Fertig geschnitten in allen Formaten: Web, Social, Ads und Messe."]],
-    processEn:[["Concept & briefing","We discuss the goal, style and use — sales, charter, brand building or all three."],["Shoot day","One to two days on location with professional camera gear and drone."],["Post-production","Edit, colour grading, music and sound design — all at cinema level."],["Handover & formats","Final cut in all formats: web, social, ads and trade fairs."]],
+    processDe:[["Konzept & Briefing","Wir besprechen Ziel, Stil und Einsatzzweck — Verkauf, Charter, Imageaufbau oder alles zusammen."],["Drehtag","Ein bis zwei Tage vor Ort mit professioneller Kameratechnik und Drohne."],["Postproduktion","Schnitt, Farbbearbeitung, Musik und Sounddesign — alles auf Kino-Niveau."],["Lieferung & Formate","Fertig geschnitten in allen Formaten: Web, Social, Ads und Messe."]],
+    processEn:[["Concept & briefing","We discuss the goal, style and use — sales, charter, brand building or all three."],["Shoot day","One to two days on location with professional camera gear and drone."],["Post-production","Edit, colour grading, music and sound design — all at cinema level."],["Delivery & formats","Final cut in all formats: web, social, ads and trade fairs."]],
     audienceDe:[["Bootshändler","Jedes Listing verdient ein Video. Bewegtbild zeigt, was Fotos nicht können — Raumgefühl, Fahreigenschaften, Atmosphäre."],["Werften","Baufortschritte, Stapelläufe, Testfahrten — professionell festgehalten für Kunden und Marketing."],["Charterunternehmen","Chartervideos, die Buchungen bringen. Emotionen verkaufen die Erfahrung, nicht die Kabinengröße."]],
     audienceEn:[["Boat dealers","Every listing deserves a video. Motion shows what photos can't — sense of space, handling, atmosphere."],["Shipyards","Build progress, launches, sea trials — professionally captured for clients and marketing."],["Charter companies","Charter videos that drive bookings. Emotions sell the experience, not the cabin size."]],
     resultDe:"Du bekommst einen kompletten Filmsatz: Langversion, Social Cuts, Reels und Werbeclips — fertig produziert und sofort einsetzbar auf allen Kanälen.",
     resultEn:"You get a complete film package: long version, social cuts, reels and ad clips — fully produced and ready to use across all channels."
   },
   "ai-visuals": {
-    num:"L-03", call:"ALPHA-ONE",
-    titleDe:"KI Visuals & Exposé", titleEn:"AI Visuals & Copy",
+    num:"M-03", call:"ALPHA-ONE",
+    titleDe:"KI-Visuals & Exposé", titleEn:"AI Visuals & Copy",
     leadDe:"So sieht dein Boot aus, bevor es fertig ist — und die Unterlagen, die es verkaufen.",
     leadEn:"See your boat before it is finished — and the materials that sell it.",
     introDe:["Smarte Bildbearbeitung: Hintergrund und Himmel optimieren, realistische Vorschauen für Umbauten und Neubauten.","KI generierte Verkaufsunterlagen und Texte — genau in deinem Stil, in jeder Sprache."],
     introEn:["Smart image editing: optimise backgrounds and skies, realistic previews for refits and new builds.","AI generated sales materials and copy — precisely in your brand voice, in any language."],
     inc:[["KI Bildbearbeitung","AI image editing"],["Wasseroptimierung","Water optimisation"],["Vorschau für Umbau & Neubau","Preview for refit & new build"],["KI Verkaufsunterlagen","AI sales materials"],["Markenstimme & Tonalität","Brand voice & tone"]],
-    specs:[["Einsatz","Refit · Neubau","Use","Refit · newbuild"],["Sprachen","beliebig","Languages","any"]],
+    specs:[["Einsatz","Refit · Neubau","Use","Refit · newbuild"],["Sprachen","beliebig","Languages","any"],["Dauer","3–7 Tage","Lead time","3–7 days"]],
     detailDe:"KI ist kein Spielzeug — richtig eingesetzt, spart es dir Wochen. Ich nutze KI, um Boote zu visualisieren, bevor sie fertig sind: Refits, Neubauten, Farbvarianten und Interieur-Optionen. Gleichzeitig erstelle ich mit KI deine Verkaufsunterlagen, Exposés und Texte — in deinem Stil, in jeder Sprache. Das Ergebnis sieht nicht nach KI aus, sondern nach deiner Marke.",
     detailEn:"AI isn't a toy — used properly, it saves you weeks. I use AI to visualise boats before they're finished: refits, new builds, colour options and interior layouts. At the same time I create your sales materials, exposés and copy with AI — in your brand voice, in any language. The result doesn't look like AI — it looks like your brand.",
     processDe:[["Material & Briefing","Du schickst mir Pläne, Fotos oder Skizzen — ich mache daraus fotorealistische Visualisierungen."],["KI Rendering","Verschiedene Optionen, Farbvarianten und Perspektiven — bis es perfekt ist."],["Texterstellung","Exposés, Beschreibungen und Marketingtexte — automatisch in deiner Markensprache."],["Freigabe & Export","Du bekommst alles druckfertig und digital — inkl. mehrsprachiger Versionen."]],
@@ -988,35 +975,35 @@ const MODULES = {
     resultEn:"You get photorealistic visualisations of your boat plus finished sales materials in any language — all from one source."
   },
   "ai-sales": {
-    num:"L-04", call:"ALPHA-TWO",
-    titleDe:"KI Sales & Systemoptimierung", titleEn:"AI Sales & System Optimisation",
-    leadDe:"Dein digitaler Assistent und smartes System — Anfragen automatisieren, Prozesse optimieren, Umsatz steigern.",
-    leadEn:"Your digital assistant and smart system — automate enquiries, optimise processes, increase revenue.",
-    introDe:["Automatische Anfragenbearbeitung, Chatbot für Charteranfragen rund um die Uhr und smarte Preiseinschätzung per KI.","Systemoptimierung mit KI: Prozesse analysieren, Engpässe finden und automatisieren. Dazu personalisierte Mailkampagnen mit Anbindung an dein bestehendes System."],
-    introEn:["Automated enquiry handling, 24/7 chatbot for charter enquiries and AI assisted market pricing.","System optimisation with AI: analyse processes, find bottlenecks and automate. Plus personalised email campaigns integrated with your existing system."],
-    inc:[["24/7 Chatbot","24/7 chatbot"],["Anfragenbewertung","Enquiry assessment"],["KI Preiseinschätzung","AI pricing"],["Systemoptimierung","System optimisation"],["Prozessautomatisierung","Process automation"],["Mailkampagnen","Email campaigns"]],
-    specs:[["Modell","Monatlich","Model","Monthly"],["Verfügbar","24/7","Available","24/7"]],
-    detailDe:"Dein Chatbot beantwortet Charteranfragen, gibt Preisinformationen und qualifiziert Interessenten — rund um die Uhr, auch wenn du gerade auf See bist. Dazu analysiere ich dein bestehendes System mit KI: Wo gehen Anfragen verloren? Welche Prozesse lassen sich automatisieren? Ich optimiere deine Abläufe, richte automatische Mailkampagnen ein und sorge dafür, dass jede Anfrage am richtigen Platz landet.",
-    detailEn:"Your chatbot answers charter enquiries, provides pricing and qualifies leads — 24/7, even when you're at sea. On top of that, I analyse your existing system with AI: Where do enquiries get lost? Which processes can be automated? I optimise your workflows, set up automated email campaigns and make sure every enquiry lands in the right place.",
-    processDe:[["Systemanalyse","Ich schaue mir an, wie du heute Anfragen bearbeitest, wo Prozesse haken und was sich automatisieren lässt."],["Chatbot & KI Setup","Dein Bot wird auf deine Flotte, Preise und häufige Fragen trainiert. Gleichzeitig optimiere ich dein System."],["Automatisierung","Workflows, Mailkampagnen und Prozesse werden automatisiert — personalisiert, nicht generisch."],["Go Live & Optimierung","Alles geht live, ich überwache und optimiere laufend."]],
-    processEn:[["System analysis","I look at how you handle enquiries today, where processes stall and what can be automated."],["Chatbot & AI setup","Your bot is trained on your fleet, pricing and common questions. At the same time I optimise your system."],["Automation","Workflows, email campaigns and processes are automated — personalised, not generic."],["Go live & optimisation","Everything goes live, I monitor and optimise continuously."]],
+    num:"M-04", call:"ALPHA-TWO",
+    titleDe:"KI-Sales & Chatbot", titleEn:"AI Sales & Chatbot",
+    leadDe:"Dein digitaler Assistent, der nie schläft — beantwortet Anfragen, während du unterwegs bist.",
+    leadEn:"Your digital assistant that never sleeps — answering enquiries while you are away.",
+    introDe:["Automatische Anfragenbearbeitung und Chatbot für Charteranfragen rund um die Uhr. Smarte Preiseinschätzung per KI.","Personalisierte Mailkampagnen mit Anbindung an dein bestehendes System — jede Anfrage landet sortiert am richtigen Platz."],
+    introEn:["Automated enquiry handling and 24/7 chatbot for charter enquiries. AI assisted market pricing.","Personalised email campaigns integrated with your existing system — every enquiry routed to the right place."],
+    inc:[["24/7 Chatbot","24/7 chatbot"],["Anfragenbewertung","Enquiry assessment"],["KI Preiseinschätzung","AI pricing"],["E-Mail-Automation","Email automation"],["Systemanbindung","System integration"]],
+    specs:[["Modell","Monatlich","Model","Monthly"],["Verfügbar","24/7","Available","24/7"],["Setup","1–2 Wochen","Setup","1–2 weeks"]],
+    detailDe:"Dein Chatbot beantwortet Charteranfragen, gibt Preisinformationen und qualifiziert Interessenten — rund um die Uhr, auch wenn du gerade auf See bist. Dazu kommt eine smarte Preiseinschätzung per KI und automatische E-Mail-Kampagnen, die Interessenten warmhalten, bis sie bereit sind zu buchen. Alles wird an dein bestehendes System angebunden — kein neues Tool, kein Umlernen.",
+    detailEn:"Your chatbot answers charter enquiries, provides pricing and qualifies leads — 24/7, even when you're at sea. On top of that, AI-powered pricing estimates and automated email campaigns that keep prospects warm until they're ready to book. Everything connects to your existing system — no new tools, no retraining.",
+    processDe:[["Systemanalyse","Ich schaue mir an, wie du heute Anfragen bearbeitest und wo es hakt."],["Chatbot Setup","Dein Bot wird auf deine Flotte, Preise und häufige Fragen trainiert."],["E-Mail Automation","Automatische Follow-ups und Kampagnen für Interessenten — personalisiert, nicht generisch."],["Go-Live & Optimierung","Der Bot geht live, ich überwache und optimiere laufend."]],
+    processEn:[["System analysis","I look at how you handle enquiries today and where things get stuck."],["Chatbot setup","Your bot is trained on your fleet, pricing and common questions."],["Email automation","Automatic follow-ups and campaigns for prospects — personalised, not generic."],["Go-live & optimisation","The bot goes live, I monitor and optimise continuously."]],
     audienceDe:[["Charterunternehmen","Dutzende Anfragen pro Tag, aber kein Team, das sofort antworten kann. Der Bot übernimmt."],["Bootshändler","Interessenten wollen schnelle Antworten zu Preis, Zustand und Verfügbarkeit — automatisch geliefert."],["Werften","Erstgespräch automatisieren, damit du dich auf die ernsthaften Projekte konzentrieren kannst."]],
     audienceEn:[["Charter companies","Dozens of enquiries per day but no team to respond instantly. The bot takes over."],["Boat dealers","Prospects want fast answers on price, condition and availability — delivered automatically."],["Shipyards","Automate the initial conversation so you can focus on the serious projects."]],
-    resultDe:"Ein Chatbot, der sofort antwortet, optimierte Systemprozesse, automatische Mailkampagnen und eine KI Preiseinschätzung — alles angebunden an dein System.",
-    resultEn:"A chatbot that responds instantly, optimised system processes, automated email campaigns and AI pricing — all connected to your system."
+    resultDe:"Ein Chatbot, der sofort antwortet, E-Mail-Kampagnen, die automatisch laufen, und eine KI Preiseinschätzung — alles angebunden an dein System.",
+    resultEn:"A chatbot that responds instantly, email campaigns that run automatically, and AI pricing — all connected to your system."
   },
   "social": {
-    num:"L-05", call:"BRAVO-ONE",
+    num:"M-05", call:"BRAVO-ONE",
     titleDe:"Social & Content", titleEn:"Social & Content",
     leadDe:"Präsenz, die zwischen den Drehs weiterläuft — kuratiert für die Bootswelt.",
     leadEn:"Presence that keeps running between shoots — curated for the boating world.",
-    introDe:["Social Media Management für Instagram, Facebook, YouTube und TikTok. Redaktionsplan, Reels und geplante Postings.","Kuratierte Influencer Kooperationen aus der Bootswelt — Reichweite, die zur richtigen Zielgruppe passt."],
+    introDe:["Social-Media-Management für Instagram, Facebook, YouTube und TikTok. Redaktionsplan, Reels und geplante Postings.","Kuratierte Influencer-Kooperationen aus der Bootswelt — Reichweite, die zur richtigen Zielgruppe passt."],
     introEn:["Social media management across Instagram, Facebook, YouTube and TikTok. Editorial calendar, reels and drops.","Curated influencer collabs from the boating world — reach that matches the right audience."],
-    inc:[["Redaktionsplan & Content","Editorial calendar & content"],["Reels & Shortform","Reels & shortform"],["Community Management","Community management"],["Influencer Kooperationen","Influencer collabs"],["IG · FB · YT · TikTok","IG · FB · YT · TikTok"]],
+    inc:[["Redaktionsplan & Content","Editorial calendar & content"],["Reels & Shortform","Reels & shortform"],["Community-Management","Community management"],["Influencer-Kooperationen","Influencer collabs"],["IG · FB · YT · TikTok","IG · FB · YT · TikTok"]],
     specs:[["Modell","Monatlich","Model","Monthly"],["Kanäle","4","Channels","4"],["Rhythmus","monatlich","Cadence","monthly"]],
     detailDe:"Ich übernehme deine Social Media Kanäle komplett: Redaktionsplan, Inhalte erstellen, Reels produzieren und alles regelmäßig posten. Dazu Community Management — ich beantworte Kommentare und Nachrichten, damit deine Kanäle lebendig bleiben. Und wenn Influencer aus der Bootswelt Sinn machen, organisiere ich die Kooperation. Du musst dich um nichts kümmern.",
     detailEn:"I take over your social channels completely: editorial calendar, content creation, reels production and regular posting. Plus community management — I respond to comments and messages to keep your channels alive. And when influencer collabs from the boating world make sense, I organise them. You don't have to lift a finger.",
-    processDe:[["Kanalanalyse","Was läuft gut, was nicht? Ich checke deine bisherigen Kanäle und Inhalte."],["Redaktionsplan","Monatlicher Content Plan mit Themen, Formaten und Posting Zeiten."],["Content Produktion","Reels, Bilder, Texte — ich erstelle alles und du gibst frei."],["Posting & Community","Regelmäßiges Posting und aktives Community Management auf allen Kanälen."]],
+    processDe:[["Kanalanalyse","Was läuft gut, was nicht? Ich checke deine bisherigen Kanäle und Inhalte."],["Redaktionsplan","Monatlicher Content-Plan mit Themen, Formaten und Posting-Zeiten."],["Content Produktion","Reels, Bilder, Texte — ich erstelle alles und du gibst frei."],["Posting & Community","Regelmäßiges Posting und aktives Community Management auf allen Kanälen."]],
     processEn:[["Channel audit","What's working, what's not? I review your existing channels and content."],["Editorial calendar","Monthly content plan with topics, formats and posting times."],["Content production","Reels, images, copy — I create everything and you approve."],["Posting & community","Regular posting and active community management across all channels."]],
     audienceDe:[["Bootshändler","Dein Liegeplatz ist voll, aber online sieht das keiner. Social Media ändert das."],["Charterunternehmen","Charterboote verkaufen sich über Emotion und Lifestyle — genau das zeigen wir."],["Werften","Baufortschritte, Stapelläufe und Handwerk — Content, der zeigt, was ihr drauf habt."]],
     audienceEn:[["Boat dealers","Your marina is full but nobody sees it online. Social media changes that."],["Charter companies","Charter boats sell through emotion and lifestyle — that's exactly what we show."],["Shipyards","Build progress, launches and craftsmanship — content that shows what you're capable of."]],
@@ -1024,51 +1011,51 @@ const MODULES = {
     resultEn:"Active, professional social channels that are consistently updated — without you having to create content yourself."
   },
   "paid-seo": {
-    num:"L-06", call:"BRAVO-TWO",
-    titleDe:"Onlinewerbung & Sichtbarkeit", titleEn:"Online Ads & Visibility",
-    leadDe:"Bezahlte Werbeanzeigen und Suchmaschinenoptimierung — damit die richtigen Käufer dich finden.",
-    leadEn:"Paid advertising and search engine optimisation — so the right buyers find you.",
-    introDe:["Bezahlte Werbeanzeigen auf Google, Meta und YouTube — speziell für Bootshändler, Charter und Werften.","Dazu Suchmaschinenoptimierung für den Bootsmarkt mit sauberem Tracking und Reporting — gezielte Reichweite statt Streuverlust."],
-    introEn:["Paid advertising on Google, Meta and YouTube — built for boat dealers, charter and shipyards.","Plus search engine optimisation for the boat market with clean tracking and reporting — targeted reach, not wasted spend."],
-    inc:[["Google & Meta Werbeanzeigen","Google & Meta ads"],["YouTube Werbung","YouTube ads"],["Suchmaschinenoptimierung","Search engine optimisation"],["Tracking & Reporting","Tracking & reporting"],["Kreative Skalierung","Creative scaling"]],
+    num:"M-06", call:"BRAVO-TWO",
+    titleDe:"Paid & SEO", titleEn:"Paid & SEO",
+    leadDe:"Sichtbarkeit als Vermögen — Kreativ, Tracking und Skalierung in einer Hand.",
+    leadEn:"Visibility as an asset — creative, tracking and scaling under one roof.",
+    introDe:["Google Ads, Meta Ads und YouTube Werbung, gebaut für Bootshändler, Charter und Werften.","SEO für den Bootsmarkt mit sauberem Tracking und Reporting — kreative Skalierung statt Streuverlust."],
+    introEn:["Google Ads, Meta Ads and YouTube ads, built for boat dealers, charter and shipyards.","SEO for the boat market with clean tracking and reporting — creative scaling, not wasted spend."],
+    inc:[["Google & Meta Ads","Google & Meta Ads"],["YouTube Werbung","YouTube ads"],["SEO für Bootsmarkt","SEO for boat market"],["Tracking & Reporting","Tracking & reporting"],["Kreativ & Skalierung","Creative & scaling"]],
     specs:[["Ø Sichtbarkeit","+312 %","Avg visibility","+312%"],["Modell","Monatlich","Model","Monthly"],["Reporting","wöchentlich","Reporting","weekly"]],
-    detailDe:"Ich erstelle bezahlte Werbeanzeigen auf Google, Meta und YouTube — speziell für die Bootsbranche. Dazu richte ich das Tracking ein und skaliere, was funktioniert. Und ich optimiere deine Website für Suchmaschinen, damit du bei den richtigen Suchanfragen auftauchst. Kein Streuverlust, kein Rätselraten — sauberes Tracking und regelmäßiges Reporting zeigen dir genau, was dein Budget bringt.",
-    detailEn:"I create paid ads on Google, Meta and YouTube — built for the boating industry. I set up tracking and scale what works. And I optimise your website for search engines, so you appear for the right queries. No wasted spend, no guesswork — clean tracking and regular reporting show you exactly what your budget delivers.",
-    processDe:[["Analyse & Strategie","Welche Kanäle, welche Keywords, welches Budget — basierend auf deinem Markt und Standort."],["Kampagnen Aufbau","Werbeanzeigen erstellen, Landingpages optimieren, Tracking einrichten."],["Laufende Optimierung","Was funktioniert, wird skaliert. Was nicht, wird gestoppt. Regelmäßiges Reporting."],["Suchmaschinenoptimierung","Technische Optimierung, Content und Linkaufbau — damit du auch organisch gefunden wirst."]],
-    processEn:[["Analysis & strategy","Which channels, which keywords, which budget — based on your market and location."],["Campaign setup","Create ads, optimise landing pages, set up tracking."],["Ongoing optimisation","What works gets scaled. What doesn't gets stopped. Regular reporting."],["Search engine optimisation","Technical optimisation, content and link building — so you're found organically too."]],
-    audienceDe:[["Bootshändler","Du willst, dass Käufer dich finden, nicht umgekehrt. Werbeanzeigen und Suchmaschinenoptimierung sorgen dafür."],["Charterunternehmen","Saisonale Kampagnen, die rechtzeitig laufen und Buchungen bringen, wenn du sie brauchst."],["Werften","Sichtbarkeit bei Bootseigentümern, die einen Refit oder Neubau planen."]],
-    audienceEn:[["Boat dealers","You want buyers to find you, not the other way around. Ads and search optimisation make it happen."],["Charter companies","Seasonal campaigns that run on time and bring bookings when you need them."],["Shipyards","Visibility among boat owners planning a refit or new build."]],
-    resultDe:"Laufende Werbekampagnen mit sauberem Tracking, regelmäßigem Reporting und einer Suchmaschinenoptimierung, die langfristig organische Reichweite aufbaut.",
-    resultEn:"Running ad campaigns with clean tracking, regular reporting and search engine optimisation that builds organic reach long-term."
+    detailDe:"Google Ads, Meta Ads und YouTube Werbung — speziell gebaut für die Bootsbranche. Ich erstelle die Anzeigen, richte das Tracking ein und skaliere, was funktioniert. Dazu SEO: deine Website wird so optimiert, dass sie bei den richtigen Suchanfragen auftaucht. Kein Streuverlust, kein Rätselraten — sauberes Tracking und wöchentliches Reporting zeigen dir genau, was dein Budget bringt.",
+    detailEn:"Google Ads, Meta Ads and YouTube ads — built specifically for the boating industry. I create the ads, set up tracking and scale what works. Plus SEO: your website optimised to appear for the right searches. No wasted spend, no guesswork — clean tracking and weekly reporting show you exactly what your budget delivers.",
+    processDe:[["Analyse & Strategie","Welche Kanäle, welche Keywords, welches Budget — basierend auf deinem Markt und Standort."],["Kampagnen Aufbau","Anzeigen erstellen, Landingpages optimieren, Tracking einrichten."],["Laufende Optimierung","Was funktioniert, wird skaliert. Was nicht, wird gestoppt. Wöchentliches Reporting."],["SEO Langfristig","Technische Optimierung, Content und Linkaufbau — damit du auch organisch gefunden wirst."]],
+    processEn:[["Analysis & strategy","Which channels, which keywords, which budget — based on your market and location."],["Campaign setup","Create ads, optimise landing pages, set up tracking."],["Ongoing optimisation","What works gets scaled. What doesn't gets stopped. Weekly reporting."],["Long-term SEO","Technical optimisation, content and link building — so you're found organically too."]],
+    audienceDe:[["Bootshändler","Du willst, dass Käufer dich finden, nicht umgekehrt. Ads und SEO sorgen dafür."],["Charterunternehmen","Saisonale Kampagnen, die rechtzeitig laufen und Buchungen bringen, wenn du sie brauchst."],["Werften","Sichtbarkeit bei Bootseigentümern, die einen Refit oder Neubau planen."]],
+    audienceEn:[["Boat dealers","You want buyers to find you, not the other way around. Ads and SEO make it happen."],["Charter companies","Seasonal campaigns that run on time and bring bookings when you need them."],["Shipyards","Visibility among boat owners planning a refit or new build."]],
+    resultDe:"Laufende Werbekampagnen mit sauberem Tracking, wöchentlichem Report und einer SEO Strategie, die langfristig organischen Traffic aufbaut.",
+    resultEn:"Running ad campaigns with clean tracking, weekly reports and an SEO strategy that builds organic traffic long-term."
   },
   "websites": {
-    num:"L-07", call:"DELTA-ONE",
+    num:"M-07", call:"DELTA-ONE",
     titleDe:"Websites & Showrooms", titleEn:"Websites & Showrooms",
     leadDe:"Der digitale Showroom, der nie schließt — von der Idee bis zur fertigen Website.",
     leadEn:"The digital showroom that never closes — from idea to finished website.",
-    introDe:["Landingpages, Verkaufsseiten, Online Showrooms und digitale Kataloge. Optimiert für alle Plattformen und Mobilgeräte.","Designt, gebaut und online gestellt — alles aus einer Hand, sauber an dein bestehendes System angebunden."],
+    introDe:["Landingpages, Verkaufsseiten, Online-Showrooms und digitale Kataloge. Optimiert für alle Plattformen und Mobilgeräte.","Designt, gebaut und online gestellt — alles aus einer Hand, sauber an dein bestehendes System angebunden."],
     introEn:["Landing pages, sales pages, online showrooms and digital catalogues. Optimised for all platforms and mobile.","Designed, built and shipped — one source for every enquiry, cleanly integrated with your existing system."],
-    inc:[["Landingpages & Verkaufsseiten","Landing & sales pages"],["Online Showroom","Online showroom"],["Digitale Kataloge","Digital catalogues"],["Inseratoptimierung","Listing optimisation"],["Von Idee bis Launch","From idea to launch"]],
-    specs:[["Plattform","Web · Mobile","Platform","Web · mobile"],["Stack","modern","Stack","modern"]],
-    detailDe:"Ob Landingpage, Verkaufsseite, Online Showroom oder kompletter digitaler Katalog — ich baue dir eine Website, die auf allen Geräten funktioniert und genau auf dein Geschäft zugeschnitten ist. Kein Baukasten, sondern individuelles Design. Dazu Inseratoptimierung: deine Listings auf Plattformen wie Boat24 oder YachtWorld werden so aufbereitet, dass sie auffallen und Anfragen bringen.",
+    inc:[["Landing- & Verkaufsseiten","Landing & sales pages"],["Online-Showroom","Online showroom"],["Digitale Kataloge","Digital catalogues"],["Inseratoptimierung","Listing optimisation"],["Von Idee bis Launch","From idea to launch"]],
+    specs:[["Plattform","Web · Mobile","Platform","Web · mobile"],["Stack","modern","Stack","modern"],["Dauer","3–6 Wochen","Lead time","3–6 weeks"]],
+    detailDe:"Ob Landingpage, Verkaufsseite, Online-Showroom oder kompletter digitaler Katalog — ich baue dir eine Website, die auf allen Geräten funktioniert und genau auf dein Geschäft zugeschnitten ist. Kein Baukasten, sondern individuelles Design. Dazu Inseratoptimierung: deine Listings auf Plattformen wie Boat24 oder YachtWorld werden so aufbereitet, dass sie auffallen und Anfragen bringen.",
     detailEn:"Whether landing page, sales page, online showroom or complete digital catalogue — I build you a website that works on all devices and is tailored exactly to your business. No template builder — individual design. Plus listing optimisation: your listings on platforms like Boat24 or YachtWorld are prepared to stand out and generate enquiries.",
-    processDe:[["Briefing & Konzept","Zielgruppe, Inhalte und Funktionen besprechen — was soll die Seite leisten?"],["Design & Prototyp","Visuelles Konzept, Feedbackrunde und Feinschliff — bevor eine Zeile Code geschrieben wird."],["Entwicklung","Responsive Umsetzung, schnelle Ladezeiten, sauberer Code und SEO Grundlagen."],["Launch & Übergabe","Die Seite geht live, du bekommst eine Einweisung und alle Zugänge."]],
+    processDe:[["Briefing & Konzept","Zielgruppe, Inhalte und Funktionen besprechen — was soll die Seite leisten?"],["Design & Prototyp","Visuelles Konzept, Feedback-Runde und Feinschliff — bevor eine Zeile Code geschrieben wird."],["Entwicklung","Responsive Umsetzung, schnelle Ladezeiten, sauberer Code und SEO-Grundlagen."],["Launch & Übergabe","Die Seite geht live, du bekommst eine Einweisung und alle Zugänge."]],
     processEn:[["Briefing & concept","Discuss target audience, content and features — what should the site achieve?"],["Design & prototype","Visual concept, feedback round and refinement — before a line of code is written."],["Development","Responsive build, fast load times, clean code and SEO basics."],["Launch & handover","The site goes live, you get a walkthrough and all access credentials."]],
-    audienceDe:[["Bootshändler","Eine Verkaufsseite, die deine Boote so zeigt, wie sie es verdienen — nicht wie ein PDF."],["Charterunternehmen","Ein Online Showroom, in dem Kunden stöbern und direkt anfragen können."],["Werften","Digitale Kataloge und Projektseiten, die dein Handwerk repräsentieren."]],
+    audienceDe:[["Bootshändler","Eine Verkaufsseite, die deine Boote so zeigt, wie sie es verdienen — nicht wie ein PDF."],["Charterunternehmen","Ein Online-Showroom, in dem Kunden stöbern und direkt anfragen können."],["Werften","Digitale Kataloge und Projektseiten, die dein Handwerk repräsentieren."]],
     audienceEn:[["Boat dealers","A sales page that shows your boats the way they deserve — not like a PDF."],["Charter companies","An online showroom where customers can browse and enquire directly."],["Shipyards","Digital catalogues and project pages that represent your craftsmanship."]],
     resultDe:"Eine fertige, professionelle Website, die auf allen Geräten funktioniert, schnell lädt und für Suchmaschinen optimiert ist — plus optimierte Inserate auf Bootsportalen.",
     resultEn:"A finished, professional website that works on all devices, loads fast and is SEO-optimised — plus optimised listings on boat platforms."
   },
   "funnel-crm": {
-    num:"L-08", call:"SIERRA-ONE",
+    num:"M-08", call:"SIERRA-ONE",
     titleDe:"Verkaufssystem & Reputation", titleEn:"Verkaufssystem & Reputation",
     leadDe:"Von der Anfrage zur Buchung — automatisch. Das System hinter deinem Verkauf.",
     leadEn:"From enquiry to booking — automated. The system behind your sale.",
     introDe:["Digitale Verkaufsprozesse und Systemaufbau, Einrichtung und Automatisierung deines bestehenden Systems.","Bewertungsmanagement und Online Reputation — damit aus Sichtbarkeit Vertrauen und aus Vertrauen Umsatz wird."],
     introEn:["Digital sales processes and system setup, configuration and automation of your existing tools.","Review management and online reputation — turning visibility into trust, and trust into revenue."],
-    inc:[["Verkaufsprozess","Sales process"],["Systemeinrichtung","System setup"],["Automatisierung & Workflows","Automation & workflows"],["Bewertungsmanagement","Review management"],["Online Reputation","Online reputation"]],
-    specs:[["System","Dein bestehendes Tool","System","Your existing tool"],["Modell","Monatlich + Erfolg","Model","Monthly + success"]],
-    detailDe:"Von der Anfrage zur Buchung — ohne manuelle Schritte. Ich baue dir ein Verkaufssystem, das automatisch arbeitet: Anfragen werden sortiert, Followups laufen von selbst, und dein Bewertungsmanagement sorgt dafür, dass aus Sichtbarkeit auch Vertrauen wird. Alles basiert auf deinem bestehenden System — kein Umstieg, kein neues Tool. Dazu kommt aktives Reputationsmanagement: Bewertungen einsammeln, beantworten und als Verkaufsargument nutzen.",
+    inc:[["Verkaufsprozess","Sales process"],["Systemeinrichtung","System setup"],["Automatisierung & Workflows","Automation & workflows"],["Bewertungsmanagement","Review management"],["Online-Reputation","Online reputation"]],
+    specs:[["System","Dein bestehendes Tool","System","Your existing tool"],["Modell","Monatlich + Erfolg","Model","Monthly + success"],["Setup","2–4 Wochen","Setup","2–4 weeks"]],
+    detailDe:"Von der Anfrage zur Buchung — ohne manuelle Schritte. Ich baue dir ein Verkaufssystem, das automatisch arbeitet: Anfragen werden sortiert, Follow-ups laufen von selbst, und dein Bewertungsmanagement sorgt dafür, dass aus Sichtbarkeit auch Vertrauen wird. Alles basiert auf deinem bestehenden System — kein Umstieg, kein neues Tool. Dazu kommt aktives Reputationsmanagement: Bewertungen einsammeln, beantworten und als Verkaufsargument nutzen.",
     detailEn:"From enquiry to booking — without manual steps. I build you a sales system that works automatically: enquiries are sorted, follow-ups run on their own, and your review management ensures that visibility turns into trust. Everything is based on your existing system — no migration, no new tools. Plus active reputation management: collecting reviews, responding and using them as a sales argument.",
     processDe:[["Bestandsaufnahme","Welches System nutzt du? Wo gehen Anfragen verloren? Ich finde die Lücken."],["Systemeinrichtung","Automatisierung, Workflows und Vorlagen — angepasst an deinen Verkaufsprozess."],["Reputation Setup","Bewertungen automatisch anfragen, zentral beantworten und auf deiner Website zeigen."],["Laufende Betreuung","Monatliche Optimierung, Reporting und Anpassung bei Bedarf."]],
     processEn:[["Inventory","Which system do you use? Where do enquiries get lost? I find the gaps."],["System setup","Automation, workflows and templates — adapted to your sales process."],["Reputation setup","Automatically request reviews, respond centrally and display on your website."],["Ongoing support","Monthly optimisation, reporting and adjustments as needed."]],
@@ -1078,22 +1065,22 @@ const MODULES = {
     resultEn:"An automatic sales system that doesn't lose a single enquiry, plus active review management that builds trust — all on your existing system."
   },
   "beratung": {
-    num:"L-09", call:"ECHO-ONE",
-    titleDe:"Marketingberatung", titleEn:"Marketing Consulting",
-    leadDe:"Klarheit. Strategie, Standortbestimmung und der nächste Schritt.",
-    leadEn:"Clarity. Strategy, status assessment and the next move.",
+    num:"M-09", call:"ECHO-ONE",
+    titleDe:"Marketing-Beratung", titleEn:"Marketing Consulting",
+    leadDe:"Eine Stunde Klarheit. Strategie, Standortbestimmung und der nächste Schritt.",
+    leadEn:"One hour of clarity. Strategy, status assessment and the next move.",
     introDe:["Die allgemeine Beratungsstunde: ein fokussiertes Gespräch über deine Marke, deinen Markt und konkrete nächste Schritte — unabhängig vom einzelnen Modul.","Ich schaue mir an, wo du stehst, schärfe deine Positionierung und lege einen konkreten Plan für die nächsten Schritte fest."],
     introEn:["A focused consulting session about your brand, your market and concrete next steps — independent of any single module.","I assess where you stand, sharpen your positioning and set a concrete roadmap for the next steps."],
-    inc:[["Standortbestimmung","Status assessment"],["Markenpositionierung","Brand positioning"],["Kanal und Budgetstrategie","Channel & budget strategy"],["Kampagnenfahrplan","Campaign roadmap"],["Handlungsempfehlungen","Action recommendations"]],
-    specs:[["Format","Call · vor Ort","Format","Call · on-site"],["Anschluss","schriftliches Resümee","Follow-up","written summary"]],
-    detailDe:"Ich schaue mir an, wo du stehst, und sage dir, was ich tun würde. Kein Verkaufsgespräch, kein Upselling — ein ehrliches Gespräch über deine Marke, deinen Markt und die nächsten konkreten Schritte. Danach bekommst du ein schriftliches Resümee mit priorisierten Handlungsempfehlungen. Du entscheidest dann, ob du etwas davon mit mir umsetzt oder alleine weitergehst.",
+    inc:[["Standortbestimmung","Status assessment"],["Markenpositionierung","Brand positioning"],["Kanal- & Budgetstrategie","Channel & budget strategy"],["Kampagnen-Fahrplan","Campaign roadmap"],["Handlungsempfehlungen","Action recommendations"]],
+    specs:[["Format","Call · vor Ort","Format","Call · on-site"],["Dauer","60 Minuten","Duration","60 minutes"],["Anschluss","schriftliches Resümee","Follow-up","written summary"]],
+    detailDe:"Eine Stunde, in der ich mir anschaue, wo du stehst, und dir sage, was ich tun würde. Kein Verkaufsgespräch, kein Upselling — ein ehrliches Gespräch über deine Marke, deinen Markt und die nächsten konkreten Schritte. Danach bekommst du ein schriftliches Resümee mit priorisierten Handlungsempfehlungen. Du entscheidest dann, ob du etwas davon mit mir umsetzt oder alleine weitergehst.",
     detailEn:"One hour where I look at where you stand and tell you what I would do. No sales pitch, no upselling — an honest conversation about your brand, your market and the next concrete steps. Afterwards you receive a written summary with prioritised recommendations. You then decide whether to implement any of it with me or go it alone.",
-    processDe:[["Vorbereitung","Du schickst mir vorab deine Website, Kanäle und aktuelle Zahlen — damit ich vorbereitet bin."],["Gespräch","Per Call oder vor Ort. Fokussiert, strukturiert, keine Floskeln."],["Resümee","Schriftliche Zusammenfassung mit konkreten Empfehlungen."],["Optional: Umsetzung","Wenn du willst, setze ich die Empfehlungen direkt um — mit den passenden Modulen."]],
-    processEn:[["Preparation","You send me your website, channels and current numbers in advance — so I come prepared."],["Session","By call or on-site. Focused, structured, no fluff."],["Summary","Written summary with concrete recommendations."],["Optional: implementation","If you want, I implement the recommendations directly — with the right modules."]],
+    processDe:[["Vorbereitung","Du schickst mir vorab deine Website, Kanäle und aktuelle Zahlen — damit ich vorbereitet bin."],["Gespräch","60 Minuten per Call oder vor Ort. Fokussiert, strukturiert, keine Floskeln."],["Resümee","Schriftliche Zusammenfassung mit konkreten Empfehlungen — innerhalb von 48 Stunden."],["Optional: Umsetzung","Wenn du willst, setze ich die Empfehlungen direkt um — mit den passenden Modulen."]],
+    processEn:[["Preparation","You send me your website, channels and current numbers in advance — so I come prepared."],["Session","60 minutes by call or on-site. Focused, structured, no fluff."],["Summary","Written summary with concrete recommendations — within 48 hours."],["Optional: implementation","If you want, I implement the recommendations directly — with the right modules."]],
     audienceDe:[["Neustarter in der Bootsbranche","Du willst digital durchstarten, weißt aber nicht, wo anfangen. Hier bekommst du Klarheit."],["Etablierte Unternehmen","Du machst schon Marketing, aber es bringt nicht genug. Ich zeige dir, woran es liegt."],["Vor großen Investitionen","Bevor du viel Geld in Marketing steckst, reden wir einmal darüber, ob die Richtung stimmt."]],
     audienceEn:[["New to the boat industry","You want to go digital but don't know where to start. This gives you clarity."],["Established businesses","You're already doing marketing but it's not delivering enough. I show you why."],["Before big investments","Before you put serious money into marketing, let's talk about whether the direction is right."]],
-    resultDe:"Eine klare Standortbestimmung, priorisierte Handlungsempfehlungen und ein schriftliches Resümee.",
-    resultEn:"A clear status assessment, prioritised action items and a written summary."
+    resultDe:"Eine klare Standortbestimmung, priorisierte Handlungsempfehlungen und ein schriftliches Resümee — in 60 Minuten.",
+    resultEn:"A clear status assessment, prioritised action items and a written summary — in 60 minutes."
   }
 };
 
@@ -1132,12 +1119,12 @@ const MODULES = {
       '<div class="morph-sticky">'+
         '<div class="morph-stage" id="morph-stage">'+
           '<div class="morph-intro">'+
-            '<div class="mi-kicker"><span>'+m.num+'</span><span class="sep">·</span><span>'+(lang==='de'?'MODUL':'MODULE')+'</span></div>'+
+            '<div class="mi-kicker"><span>'+m.num+'</span><span class="sep">·</span><span>'+(lang==='de'?'MODUL':'MODULE')+'</span><span class="sep">·</span><span>CALLSIGN '+m.call+'</span></div>'+
             '<h1 class="mi-h">'+(lang==='de'?m.titleDe:m.titleEn)+'</h1>'+
             '<p class="mi-sub">'+(lang==='de'?'Scrollen zum Erkunden':'Scroll to explore')+'</p>'+
           '</div>'+
           '<div class="morph-arc-content">'+
-            '<span class="ma-k">'+m.num+'</span>'+
+            '<span class="ma-k">'+m.num+' · CALLSIGN '+m.call+'</span>'+
             '<p class="ma-lead">'+(lang==='de'?m.leadDe:m.leadEn)+'</p>'+
           '</div>'+
           '<div class="morph-cards"></div>'+
@@ -1172,7 +1159,7 @@ const MODULES = {
       '<div class="aih-inner">'+
         '<div class="aih-stage" id="aih-stage"><div class="aih-orbit" id="aih-orbit">'+aihCards+'</div></div>'+
         '<div class="aih-content">'+
-          '<div class="aih-k"><span>'+m.num+'</span><span class="sep">·</span><span>'+(lang==='de'?'MODUL':'MODULE')+'</span></div>'+
+          '<div class="aih-k"><span>'+m.num+'</span><span class="sep">·</span><span>'+(lang==='de'?'MODUL':'MODULE')+'</span><span class="sep">·</span><span>CALLSIGN '+m.call+'</span></div>'+
           '<h1>'+(lang==='de'?m.titleDe:m.titleEn)+'</h1>'+
           '<p class="aih-lead">'+(lang==='de'?m.leadDe:m.leadEn)+'</p>'+
           '<a class="aih-cta" href="index.html#contact">'+(lang==='de'?'Briefing anfragen':'Request a briefing')+' <span class="arr">→</span></a>'+
@@ -1186,7 +1173,7 @@ const MODULES = {
     '<section class="film-hero" id="film-hero">'+
       '<div class="fh-canvas" id="fh-canvas"></div>'+
       '<div class="fh-overlay">'+
-        '<div class="fh-kicker"><span>'+m.num+'</span><span class="sep">·</span><span>'+(lang==='de'?'MODUL':'MODULE')+'</span></div>'+
+        '<div class="fh-kicker"><span>'+m.num+'</span><span class="sep">·</span><span>'+(lang==='de'?'MODUL':'MODULE')+'</span><span class="sep">·</span><span>CALLSIGN '+m.call+'</span></div>'+
         '<h1 class="fh-h">'+(lang==='de'?m.titleDe:m.titleEn)+'</h1>'+
       '</div>'+
       '<div class="fh-hint">'+
@@ -1210,7 +1197,7 @@ const MODULES = {
     '<section class="ws-hero" id="ws-hero">'+
       '<div class="ws-sticky">'+
         '<div class="ws-title" id="ws-title">'+
-          '<div class="ws-k"><span>'+m.num+'</span><span class="sep">·</span><span>'+(lang==='de'?'MODUL':'MODULE')+'</span></div>'+
+          '<div class="ws-k"><span>'+m.num+'</span><span class="sep">·</span><span>'+(lang==='de'?'MODUL':'MODULE')+'</span><span class="sep">·</span><span>CALLSIGN '+m.call+'</span></div>'+
           '<h1>'+(lang==='de'?m.titleDe:m.titleEn)+'</h1>'+
           '<p class="ws-lead">'+(lang==='de'?m.leadDe:m.leadEn)+'</p>'+
         '</div>'+
@@ -1239,7 +1226,7 @@ const MODULES = {
       '<canvas class="dh-canvas" id="dh-canvas"></canvas>'+
       '<div class="dh-grid"></div>'+
       '<div class="dh-inner">'+
-        '<div class="dh-badge">'+m.num+'</div>'+
+        '<div class="dh-badge">'+m.num+' · CALLSIGN '+m.call+'</div>'+
         '<div class="dh-frame">'+
           '<span class="pls tl"></span><span class="pls tr"></span><span class="pls bl"></span><span class="pls br"></span>'+
           '<h1>'+dhH1+'</h1>'+
@@ -1265,14 +1252,14 @@ const MODULES = {
   };
   function csvg(d){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+d+'</svg>'; }
   var csActs = (lang==='de'
-    ? [['cal','Charteranfrage'],['tag','Preis schätzen'],['clock','Verfügbarkeit'],['user','Lead qualifizieren'],['phone','Termin buchen'],['help','FAQ beantworten']]
+    ? [['cal','Charter‑Anfrage'],['tag','Preis schätzen'],['clock','Verfügbarkeit'],['user','Lead qualifizieren'],['phone','Termin buchen'],['help','FAQ beantworten']]
     : [['cal','Charter inquiry'],['tag','Estimate price'],['clock','Availability'],['user','Qualify lead'],['phone','Book a call'],['help','Answer FAQ']]
     ).map(function(a){ return '<button class="cs-act" type="button" data-q="'+a[1]+'">'+csvg(CS_ICONS[a[0]])+'<span>'+a[1]+'</span></button>'; }).join('');
   var chatHero =
     '<section class="cs" id="cs">'+
       '<div class="cs-moon"></div><div class="cs-stars"></div>'+
       '<div class="cs-top">'+
-        '<div class="cs-k"><span>'+m.num+'</span><span class="sep">·</span><span>'+(lang==='de'?'MODUL':'MODULE')+'</span></div>'+
+        '<div class="cs-k"><span>'+m.num+'</span><span class="sep">·</span><span>'+(lang==='de'?'MODUL':'MODULE')+'</span><span class="sep">·</span><span>CALLSIGN '+m.call+'</span></div>'+
         '<h1>'+(lang==='de'?m.titleDe:m.titleEn)+'</h1>'+
         '<p>'+(lang==='de'?m.leadDe:m.leadEn)+'</p>'+
       '</div>'+
@@ -1302,9 +1289,9 @@ const MODULES = {
       '<div class="ph2-top"><span class="ph2-brand">JKK · '+(lang==='de'?m.titleDe:m.titleEn)+'</span>'+
         '<a class="ph2-pill" href="index.html#contact">'+(lang==='de'?'Briefing':'Get in touch')+'</a></div>'+
       '<div class="ph2-panel">'+
-        '<div class="ph2-row"><h1 class="ph2-h">'+(lang==='de'?'WERBUNG':'ADS')+'</h1><p class="ph2-lead">'+(lang==='de'?m.leadDe:m.leadEn)+'</p></div>'+
-        '<div class="ph2-row"><div class="ph2-logos">'+ph2Logos+'</div><h1 class="ph2-h">'+(lang==='de'?'SICHTBARKEIT':'VISIBILITY')+'</h1></div>'+
-        '<div class="ph2-row end"><h1 class="ph2-h ul">'+(lang==='de'?'REICHWEITE.':'REACH.')+'</h1><a class="ph2-pill big" href="index.html#contact">'+(lang==='de'?'Briefing anfragen':'Request a briefing')+'</a></div>'+
+        '<div class="ph2-row"><h1 class="ph2-h">PAID</h1><p class="ph2-lead">'+(lang==='de'?m.leadDe:m.leadEn)+'</p></div>'+
+        '<div class="ph2-row"><div class="ph2-logos">'+ph2Logos+'</div><h1 class="ph2-h">'+(lang==='de'?'REICHWEITE':'REACH')+'</h1></div>'+
+        '<div class="ph2-row end"><h1 class="ph2-h ul">'+(lang==='de'?'SKALIEREN.':'SCALE.')+'</h1><a class="ph2-pill big" href="index.html#contact">'+(lang==='de'?'Briefing anfragen':'Request a briefing')+'</a></div>'+
       '</div>'+
       '<div class="ph2-mq-wrap"><p class="ph2-mq-label">'+(lang==='de'?'Kanäle, die ich bediene':'Channels I run')+'</p>'+
         '<div class="ph2-mq"><div class="ph2-mq-track">'+ph2Cards+ph2Cards+'</div></div></div>'+
@@ -1315,8 +1302,8 @@ const MODULES = {
     ? [['Verkauf','Verkaufsprozess','fleet/yacht-2.jpg'],
        ['System','Einrichtung','fleet/yacht-4.jpg'],
        ['Automation','Workflows & Trigger','fleet/yacht-1.jpg'],
-       ['Reputation','Bewertungsmanagement','fleet/yacht-5.jpg'],
-       ['Vertrauen','Online Reputation','fleet/yacht-3.jpg']]
+       ['Reputation','Bewertungs­management','fleet/yacht-5.jpg'],
+       ['Vertrauen','Online‑Reputation','fleet/yacht-3.jpg']]
     : [['Sales','Sales process','fleet/yacht-2.jpg'],
        ['System','Setup','fleet/yacht-4.jpg'],
        ['Automation','Workflows & triggers','fleet/yacht-1.jpg'],
@@ -1332,7 +1319,7 @@ const MODULES = {
       '<div class="crh-grid"></div>'+
       '<div class="crh-inner">'+
         '<div class="crh-left">'+
-          '<div class="crh-k"><span>'+m.num+'</span><span class="sep">·</span><span>'+(lang==='de'?'MODUL':'MODULE')+'</span></div>'+
+          '<div class="crh-k"><span>'+m.num+'</span><span class="sep">·</span><span>'+(lang==='de'?'MODUL':'MODULE')+'</span><span class="sep">·</span><span>CALLSIGN '+m.call+'</span></div>'+
           '<ul class="crh-list" id="crh-list">'+crhList+'</ul>'+
           '<p class="crh-sub">'+(lang==='de'?m.leadDe:m.leadEn)+'</p>'+
           '<a class="crh-cta" href="index.html#contact">'+(lang==='de'?'Briefing anfragen':'Request a briefing')+' <span class="arr">→</span></a>'+
@@ -1438,8 +1425,8 @@ const MODULES = {
       ? [['Verkaufsprozess','Von der Anfrage zur Buchung — ein durchgängiger Pfad, der alles automatisch an die richtige Stelle lenkt.','fleet/yacht-2.jpg'],
          ['Systemeinrichtung','Saubere Einrichtung deines Systems — jede Anfrage sortiert, nichts geht verloren.','fleet/yacht-4.jpg'],
          ['Automation & Workflows','Automatische Abläufe, die im Hintergrund laufen, während du dich um dein Geschäft kümmerst.','fleet/yacht-1.jpg'],
-         ['Bewertungsmanagement','Mehr echte Bewertungen, schneller beantwortet — Reputation, die sich selbst aufbaut.','fleet/yacht-5.jpg'],
-         ['Online Reputation','Aus Sichtbarkeit wird Vertrauen, aus Vertrauen wird Umsatz — messbar über jeden Kanal.','fleet/yacht-3.jpg'],
+         ['Bewertungs­management','Mehr echte Bewertungen, schneller beantwortet — Reputation, die sich selbst aufbaut.','fleet/yacht-5.jpg'],
+         ['Online‑Reputation','Aus Sichtbarkeit wird Vertrauen, aus Vertrauen wird Umsatz — messbar über jeden Kanal.','fleet/yacht-3.jpg'],
          ['Übersicht & Reporting','Ein Dashboard für deinen ganzen Verkauf — vom ersten Klick bis zur unterschriebenen Buchung.','fleet/show-2.jpg']]
       : [['Sales process','From enquiry to booking — one continuous path that routes everything to the right place automatically.','fleet/yacht-2.jpg'],
          ['System setup','A clean system setup — every enquiry sorted, nothing lost.','fleet/yacht-4.jpg'],
@@ -1467,8 +1454,8 @@ const MODULES = {
     return [
       {id:1, short:(de?'Standort':'Status'), title:(de?'Standortbestimmung':'Status assessment'), date:(de?'Schritt 01':'Step 01'), status:'completed', energy:100, related:[2], icon:'compass', content:(de?'Wo stehst du heute? Marke, Markt und Maßnahmen im Istzustand — ehrlich erfasst.':'Where do you stand today? Brand, market and measures — honestly assessed.')},
       {id:2, short:(de?'Positionierung':'Positioning'), title:(de?'Markenpositionierung':'Brand positioning'), date:(de?'Schritt 02':'Step 02'), status:'completed', energy:86, related:[1,3], icon:'target', content:(de?'Wofür du am Wasser stehst — geschärft zu einer Position, die verkauft.':'What you stand for on the water — sharpened into a position that sells.')},
-      {id:3, short:(de?'Strategie':'Strategy'), title:(de?'Kanal und Budgetstrategie':'Channel & budget strategy'), date:(de?'Schritt 03':'Step 03'), status:'in-progress', energy:60, related:[2,4], icon:'layers', content:(de?'Welche Kanäle, welches Budget, welche Reihenfolge — ohne Streuverlust.':'Which channels, which budget, which order — without wasted spend.')},
-      {id:4, short:(de?'Fahrplan':'Roadmap'), title:(de?'Kampagnenfahrplan':'Campaign roadmap'), date:(de?'Schritt 04':'Step 04'), status:'pending', energy:34, related:[3,5], icon:'route', content:(de?'Eine konkrete Roadmap für die nächsten 90 Tage — terminiert und priorisiert.':'A concrete roadmap for the next 90 days — scheduled and prioritised.')},
+      {id:3, short:(de?'Strategie':'Strategy'), title:(de?'Kanal‑ & Budgetstrategie':'Channel & budget strategy'), date:(de?'Schritt 03':'Step 03'), status:'in-progress', energy:60, related:[2,4], icon:'layers', content:(de?'Welche Kanäle, welches Budget, welche Reihenfolge — ohne Streuverlust.':'Which channels, which budget, which order — without wasted spend.')},
+      {id:4, short:(de?'Fahrplan':'Roadmap'), title:(de?'Kampagnen‑Fahrplan':'Campaign roadmap'), date:(de?'Schritt 04':'Step 04'), status:'pending', energy:34, related:[3,5], icon:'route', content:(de?'Eine konkrete Roadmap für die nächsten 90 Tage — terminiert und priorisiert.':'A concrete roadmap for the next 90 days — scheduled and prioritised.')},
       {id:5, short:(de?'Empfehlungen':'Actions'), title:(de?'Handlungsempfehlungen':'Action recommendations'), date:(de?'Schritt 05':'Step 05'), status:'pending', energy:14, related:[4], icon:'check', content:(de?'Priorisierte nächste Schritte — schriftlich zusammengefasst zum Mitnehmen.':'Prioritised next steps — summarised in writing to take away.')}
     ];
   }
@@ -1511,7 +1498,7 @@ const MODULES = {
     }).join('');
     return '<section class="rot" id="rot">'+
       '<div class="rot-stage" id="rot-stage">'+
-        '<div class="rot-head"><div class="ok">'+(de?'// DER BERATUNGSABLAUF':'// THE CONSULTING PROCESS')+'</div>'+
+        '<div class="rot-head"><div class="ok">'+(de?'// DER BERATUNGS‑ABLAUF':'// THE CONSULTING PROCESS')+'</div>'+
           '<h2>'+(de?'Eine Stunde,<br>fünf Schritte zur Klarheit':'One hour,<br>five steps to clarity')+'</h2>'+
           '<p>'+(de?'Knoten antippen':'Tap a node')+'</p></div>'+
         '<div class="rot-orbit" id="rot-orbit">'+
@@ -1650,8 +1637,8 @@ const MODULES = {
     var GBASE='#1f6f63', GSTR='#69d8c2';
     var METRICS = (lang==='de'
       ? [[IC.clock,'Reaktionszeit','1,4 Std','down'],
-         [IC.target,'Booking Conversion','32 %','up'],
-         [IC.star,'Reputation Score','4,9 / 5','up']]
+         [IC.target,'Booking‑Conversion','32 %','up'],
+         [IC.star,'Reputation‑Score','4,9 / 5','up']]
       : [[IC.clock,'Lead response time','1.4 hrs','down'],
          [IC.target,'Booking conversion','32%','up'],
          [IC.star,'Reputation score','4.9 / 5','up']]);
@@ -1810,7 +1797,7 @@ const MODULES = {
         beDe:'Original · Tageslicht', beEn:'Original · daylight',
         afDe:'KI · Nachtszene', afEn:'AI · night scene',
         capDe:'Tag-zu-Nacht · KI-Umwandlung', capEn:'Day-to-night · AI transformation',
-        imgBefore:'fleet/cmp-day.jpg', imgAfter:'fleet/cmp-night.jpg' }
+        imgBefore:'fleet/cmp-day.png', imgAfter:'fleet/cmp-night.png' }
     ];
     var CHEV =
       '<svg class="cv-l" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>'+
@@ -1899,8 +1886,8 @@ const MODULES = {
     };
     function svg(d){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+d+'</svg>'; }
     var feats = (lang==='de'
-      ? [['zap','Schnell','Performanceoptimiert. In Sekunden geladen, auf jedem Netz.'],
-         ['device','Mobil first','Für jedes Gerät und jede Plattform gebaut.'],
+      ? [['zap','Schnell','Performance‑optimiert. In Sekunden geladen, auf jedem Netz.'],
+         ['device','Mobil‑first','Für jedes Gerät und jede Plattform gebaut.'],
          ['link','Systemanbindung','Jede Anfrage landet sauber am richtigen Platz.'],
          ['loop','Immer offen','Der Showroom, der nie schließt — rund um die Uhr.']]
       : [['zap','Fast','Performance‑tuned. Loads in seconds, on any connection.'],
@@ -1916,7 +1903,7 @@ const MODULES = {
           '<div class="k">'+(lang==='de'?'// GEBAUT FÜR DEN VERKAUF':'// BUILT FOR THE SALE')+'</div>'+
           '<h2>'+(lang==='de'?'Gebaut, um zu verkaufen.':'Built to sell.')+'</h2>'+
           '<p>'+(lang==='de'
-            ? 'Vom Wireframe bis Go Live — Showrooms, Verkaufsseiten und Kataloge, die aus Besuchern Anfragen machen.'
+            ? 'Vom Wireframe bis Go‑Live — Showrooms, Verkaufsseiten und Kataloge, die aus Besuchern Anfragen machen.'
             : 'From wireframe to go‑live — showrooms, sales pages and catalogues that turn visitors into inquiries.')+'</p>'+
         '</div>'+
         '<div class="f7-stage"><div class="f7-skew"><div class="f7-shot" style="background-image:linear-gradient(rgba(0,0,0,.32),rgba(0,0,0,.46)),url(fleet/up-princess-cliff.webp);background-size:cover;background-position:center;">'+
@@ -2011,28 +1998,25 @@ const MODULES = {
 
     // parallax floating cluster (banner)
     var PF = [
-      {t:'8%', l:'11%',  w:96,  h:96,  d:0.5, k:'REEL',  img:'fleet/up-aerial-wake.jpeg'},
-      {t:'10%',l:'31%',  w:112, h:112, d:1,   k:'POST',  img:'fleet/up-bow-sunset.webp', gold:true},
-      {t:'2%', l:'52%',  w:152, h:200, d:2,   k:'STORY', img:'fleet/up-deck-lounge.webp'},
-      {t:'0%', l:'82%',  w:124, h:124, d:1,   k:'SHORT', img:'fleet/up-riva-dive.webp'},
-      {t:'40%',l:'2%',   w:140, h:140, d:1,   k:'CLIP',  img:'fleet/up-sloop-canal.jpeg'},
-      {t:'68%',l:'78%',  w:140, h:184, d:2,   k:'EDIT',  img:'fleet/up-princess-cliff.webp', gold:true},
-      {t:'72%',l:'14%',  w:204, h:148, d:4,   k:'DROP',  img:'fleet/up-fairline-cove.jpeg'},
-      {t:'80%',l:'49%',  w:124, h:124, d:1,   k:'POLL',  img:'fleet/yacht-2.jpg'}
+      {t:'8%', l:'11%',  w:96,  h:96,  d:0.5, k:'REEL'},
+      {t:'10%',l:'31%',  w:112, h:112, d:1,   k:'POST', gold:true},
+      {t:'2%', l:'52%',  w:152, h:200, d:2,   k:'STORY'},
+      {t:'0%', l:'82%',  w:124, h:124, d:1,   k:'SHORT'},
+      {t:'40%',l:'2%',   w:140, h:140, d:1,   k:'CLIP'},
+      {t:'68%',l:'78%',  w:140, h:184, d:2,   k:'EDIT', gold:true},
+      {t:'72%',l:'14%',  w:204, h:148, d:4,   k:'DROP'},
+      {t:'80%',l:'49%',  w:124, h:124, d:1,   k:'POLL'}
     ];
     var pfTiles = PF.map(function(p,i){
-      var bgStyle = p.img
-        ? 'background-image:linear-gradient(rgba(0,0,0,.52),rgba(0,0,0,.64)),url('+p.img+');background-size:cover;background-position:center;'
-        : '';
       return '<div class="pf-el" data-depth="'+p.d+'" style="top:'+p.t+';left:'+p.l+'">'+
-        '<div class="pf-tile'+(p.gold?' gold':'')+'" style="width:'+p.w+'px;height:'+p.h+'px;transition-delay:'+(i*0.12)+'s;'+bgStyle+'">'+
+        '<div class="pf-tile'+(p.gold?' gold':'')+'" style="width:'+p.w+'px;height:'+p.h+'px;transition-delay:'+(i*0.12)+'s">'+
           '<span class="k">'+p.k+'</span></div></div>';
     }).join('');
     var pfHtml =
       '<section class="pf" id="pf">'+
         '<div class="pf-stage" id="pf-stage">'+pfTiles+'</div>'+
         '<div class="pf-center">'+
-          '<div class="pf-k">'+m.num+'</div>'+
+          '<div class="pf-k">'+m.num+' · CALLSIGN '+m.call+'</div>'+
           '<h2>'+(lang==='de'?m.titleDe:m.titleEn)+'</h2>'+
           '<p class="pf-sub">'+(lang==='de'?'Präsenz zwischen den Drehs.':'Presence between the shoots.')+'</p>'+
         '</div>'+
@@ -2073,18 +2057,18 @@ const MODULES = {
     var GROUPS = (lang==='de'
       ? [
         {name:'Instagram', glyph:'IG', slides:[
-          {t:'Reels Drop', c:'Hochformat Cut aus dem Dreh — geschnitten für den Feed.'},
+          {t:'Reels‑Drop', c:'Hochformat‑Cut aus dem Dreh — geschnitten für den Feed.'},
           {t:'Carousel', c:'Detail, Lifestyle, Spec — eine Story in fünf Frames.'},
-          {t:'Story Poll', c:'Community Frage zum nächsten Angebot.'} ]},
+          {t:'Story‑Poll', c:'Community Frage zum nächsten Angebot.'} ]},
         {name:'TikTok', glyph:'TT', slides:[
           {t:'Hook in 3 s', c:'Bewegung, die den Daumen stoppt.'},
-          {t:'Sound Trend', c:'Auf den richtigen Trend getimt.'} ]},
+          {t:'Sound‑Trend', c:'Auf den richtigen Trend getimt.'} ]},
         {name:'YouTube', glyph:'YT', slides:[
-          {t:'Charterreel', c:'Langform für den Kanal — mit Kapiteln.'},
-          {t:'Shorts', c:'Vertikaler Recut für maximale Reichweite.'} ]},
+          {t:'Charter‑Reel', c:'Langform für den Kanal — mit Kapiteln.'},
+          {t:'Shorts', c:'Vertikaler Re‑Cut für maximale Reichweite.'} ]},
         {name:'Redaktion', glyph:'CAL', slides:[
           {t:'Redaktionsplan', c:'Vier Wochen Content — geplant und freigegeben.'},
-          {t:'Editorial Drop', c:'Themenserie über alle Kanäle synchron.'} ]},
+          {t:'Editorial Drop', c:'Themen‑Serie über alle Kanäle synchron.'} ]},
         {name:'Influencer', glyph:'COL', slides:[
           {t:'Kooperation', c:'Kuratierte Creator aus der Bootswelt.'} ]}
       ]
@@ -2236,7 +2220,7 @@ const MODULES = {
     faPanel.className='fa-panel'; faPanel.hidden=true;
     faPanel.innerHTML =
       '<div class="fa-h">'+
-        '<div class="st"><i></i>'+(lang==='de'?'KI ASSISTENT':'AI ASSISTANT')+'</div>'+
+        '<div class="st"><i></i>'+(lang==='de'?'KI‑ASSISTENT':'AI ASSISTANT')+'</div>'+
         '<div class="tags"><span class="fa-tag">JKK·AI</span><span class="fa-tag pro">PRO</span>'+
           '<button class="fa-x" aria-label="'+(lang==='de'?'Schließen':'Close')+'">'+XICO+'</button></div>'+
       '</div>'+
@@ -2386,15 +2370,7 @@ const MODULES = {
 
   function mountOrbitGallery(){
     var host = document.getElementById('orbit-canvas');
-    if(!host) return;
-    if(typeof THREE === 'undefined'){
-      // three.js nur bei Bedarf nachladen (spart ~600 KB auf allen anderen Modulseiten)
-      var s = document.createElement('script');
-      s.src = 'https://unpkg.com/three@0.158.0/build/three.min.js';
-      s.onload = function(){ mountOrbitGallery(); };
-      document.head.appendChild(s);
-      return;
-    }
+    if(!host || typeof THREE === 'undefined') return;
     var IMAGES = ['fleet/up-bow-sunset.webp','fleet/up-deck-lounge.webp','fleet/up-riva-dive.webp',
       'fleet/up-aerial-wake.jpeg','fleet/up-princess-cliff.webp','fleet/up-fairline-cove.jpeg','fleet/up-sloop-canal.jpeg'];
     var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -2478,7 +2454,6 @@ const MODULES = {
 </script>
 
 
-<script src="consent-tracking.js"></script>
 <script src="admin/tracker.js"></script>
 </body>
 </html>
