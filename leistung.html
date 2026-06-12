@@ -671,8 +671,8 @@
 <div class="grid-bg"></div>
 <div class="wrap">
   <div class="bar">
-    <a class="home" href="index.html#services"><span class="arr" style="font-family:var(--display);font-weight:900">←</span> <span class="mk">jkkjerome.de</span> / <span data-de>Leistung</span><span data-en>Service</span></a>
-    <a href="index.html#services"><span data-de>Alle Leistungen</span><span data-en>All services</span></a>
+    <a class="home" href="/services"><span class="arr" style="font-family:var(--display);font-weight:900">←</span> <span class="mk">jkkjerome.de</span> / <span data-de>Leistung</span><span data-en>Service</span></a>
+    <a href="/services"><span data-de>Alle Leistungen</span><span data-en>All services</span></a>
   </div>
 
   <main id="view"></main>
@@ -1118,7 +1118,7 @@ const MODULES = {
   const view = document.getElementById('view');
 
   if(!m){
-    view.innerHTML = '<div class="nf">'+(lang==='de'?'Leistung nicht gefunden — ':'Service not found — ')+'<a href="index.html#services">'+(lang==='de'?'zurück zu den Leistungen':'back to services')+'</a></div>';
+    view.innerHTML = '<div class="nf">'+(lang==='de'?'Leistung nicht gefunden — ':'Service not found — ')+'<a href="/services">'+(lang==='de'?'zurück zu den Leistungen':'back to services')+'</a></div>';
     return;
   }
 
@@ -1175,7 +1175,7 @@ const MODULES = {
           '<div class="aih-k"><span>'+m.num+'</span><span class="sep">·</span><span>'+(lang==='de'?'MODUL':'MODULE')+'</span></div>'+
           '<h1>'+(lang==='de'?m.titleDe:m.titleEn)+'</h1>'+
           '<p class="aih-lead">'+(lang==='de'?m.leadDe:m.leadEn)+'</p>'+
-          '<a class="aih-cta" href="index.html#contact">'+(lang==='de'?'Briefing anfragen':'Request a briefing')+' <span class="arr">→</span></a>'+
+          '<a class="aih-cta" href="/#contact">'+(lang==='de'?'Briefing anfragen':'Request a briefing')+' <span class="arr">→</span></a>'+
         '</div>'+
         '<div class="aih-feats">'+aihFeats+'</div>'+
       '</div>'+
@@ -1248,8 +1248,8 @@ const MODULES = {
         '<p class="dh-welcome">'+(lang==='de'?m.leadDe:m.leadEn)+'</p>'+
         '<p class="dh-para">'+(lang==='de'?'Kuratiert für die Bootswelt — ':'Curated for the boating world — ')+'<span class="tw" id="dh-tw"></span></p>'+
         '<div class="dh-cta">'+
-          '<span class="dh-shine"><a class="btn primary" href="index.html#contact">'+(lang==='de'?'Briefing anfragen':'Request a briefing')+' <span class="arr">→</span></a></span>'+
-          '<a class="btn ghost" href="index.html#services">'+(lang==='de'?'Alle Module':'All modules')+'</a>'+
+          '<span class="dh-shine"><a class="btn primary" href="/#contact">'+(lang==='de'?'Briefing anfragen':'Request a briefing')+' <span class="arr">→</span></a></span>'+
+          '<a class="btn ghost" href="/services">'+(lang==='de'?'Alle Module':'All modules')+'</a>'+
         '</div>'+
       '</div>'+
     '</section>';
@@ -1300,11 +1300,11 @@ const MODULES = {
       '<canvas class="ph2-wave" id="ph2-wave"></canvas>'+
       '<div class="ph2-veil"></div>'+
       '<div class="ph2-top"><span class="ph2-brand">JKK · '+(lang==='de'?m.titleDe:m.titleEn)+'</span>'+
-        '<a class="ph2-pill" href="index.html#contact">'+(lang==='de'?'Briefing':'Get in touch')+'</a></div>'+
+        '<a class="ph2-pill" href="/#contact">'+(lang==='de'?'Briefing':'Get in touch')+'</a></div>'+
       '<div class="ph2-panel">'+
         '<div class="ph2-row"><h1 class="ph2-h">'+(lang==='de'?'WERBUNG':'ADS')+'</h1><p class="ph2-lead">'+(lang==='de'?m.leadDe:m.leadEn)+'</p></div>'+
         '<div class="ph2-row"><div class="ph2-logos">'+ph2Logos+'</div><h1 class="ph2-h">'+(lang==='de'?'SICHTBARKEIT':'VISIBILITY')+'</h1></div>'+
-        '<div class="ph2-row end"><h1 class="ph2-h ul">'+(lang==='de'?'REICHWEITE.':'REACH.')+'</h1><a class="ph2-pill big" href="index.html#contact">'+(lang==='de'?'Briefing anfragen':'Request a briefing')+'</a></div>'+
+        '<div class="ph2-row end"><h1 class="ph2-h ul">'+(lang==='de'?'REICHWEITE.':'REACH.')+'</h1><a class="ph2-pill big" href="/#contact">'+(lang==='de'?'Briefing anfragen':'Request a briefing')+'</a></div>'+
       '</div>'+
       '<div class="ph2-mq-wrap"><p class="ph2-mq-label">'+(lang==='de'?'Kanäle, die ich bediene':'Channels I run')+'</p>'+
         '<div class="ph2-mq"><div class="ph2-mq-track">'+ph2Cards+ph2Cards+'</div></div></div>'+
@@ -1335,7 +1335,7 @@ const MODULES = {
           '<div class="crh-k"><span>'+m.num+'</span><span class="sep">·</span><span>'+(lang==='de'?'MODUL':'MODULE')+'</span></div>'+
           '<ul class="crh-list" id="crh-list">'+crhList+'</ul>'+
           '<p class="crh-sub">'+(lang==='de'?m.leadDe:m.leadEn)+'</p>'+
-          '<a class="crh-cta" href="index.html#contact">'+(lang==='de'?'Briefing anfragen':'Request a briefing')+' <span class="arr">→</span></a>'+
+          '<a class="crh-cta" href="/#contact">'+(lang==='de'?'Briefing anfragen':'Request a briefing')+' <span class="arr">→</span></a>'+
         '</div>'+
         '<div class="crh-preview" id="crh-preview">'+
           '<img class="crh-pv-base" src="'+crhItems[0][2]+'" alt="" />'+
@@ -1421,8 +1421,8 @@ const MODULES = {
     '<div class="specs">'+specHtml+'</div>'+
     resultHtml +
     '<div class="cta-row">'+
-      '<a class="btn primary" href="index.html#contact">'+(lang==='de'?'Briefing anfragen':'Request a briefing')+' <span class="arr">→</span></a>'+
-      '<a class="btn ghost" href="index.html#services">'+(lang==='de'?'Alle Module':'All modules')+'</a>'+
+      '<a class="btn primary" href="/#contact">'+(lang==='de'?'Briefing anfragen':'Request a briefing')+' <span class="arr">→</span></a>'+
+      '<a class="btn ghost" href="/services">'+(lang==='de'?'Alle Module':'All modules')+'</a>'+
     '</div>';
 
   // ── 3D orbit gallery — Photography only ──
@@ -1700,7 +1700,7 @@ const MODULES = {
     var CHL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>';
     var CHR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>';
     var cards = items.map(function(it,i){
-      return '<a class="ghc-card" href="index.html#contact">'+
+      return '<a class="ghc-card" href="/#contact">'+
         '<div class="ghc-img"><img src="'+it[2]+'" alt="" /><div class="ghc-fade"></div></div>'+
         '<div class="ghc-txt">'+
           '<span class="ghc-n">'+String(i+1).padStart(2,'0')+'</span>'+
