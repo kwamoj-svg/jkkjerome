@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Impressum · JKK Jerome | Anbieterkennzeichnung</title>
+<meta name="description" content="Impressum und Anbieterkennzeichnung gemäß §5 TMG. Verantwortlich für jkkjerome.de — Film, Fotografie und KI Marketing für die Bootsbranche." />
+<meta name="robots" content="index,follow" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@200;300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Archivo:wght@400;500;700;900&family=Archivo+Narrow:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../subpages.css" />
+<link rel="icon" href="../favicon.ico" sizes="32x32" />
+<link rel="icon" href="../favicon.png" type="image/png" sizes="512x512" />
+<link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+</head>
+<body>
+
+<!-- ─── TELEMETRY STRIP ─── -->
+<div class="telem">
+  <div class="cell c1"><span class="blink"></span><span class="k">SYS</span><span class="v">LEGAL</span></div>
+  <div class="cell c2"><span class="k">UTC</span><span class="v" id="utc">—</span></div>
+  <div class="cell c3"><span class="k">DOC</span><span class="v">IMPRESSUM · §5 TMG</span></div>
+  <div class="cell c4"><span class="k">STANDORT</span><span class="v">BIELEFELD · DE</span></div>
+  <div class="cell c5"><span class="k">REV</span><span class="v">2026.01</span></div>
+</div>
+
+<!-- ─── SUB NAV ─── -->
+<nav class="subnav">
+  <a class="brand" href="../index.html">
+    <img class="mark" src="../logo-chrome.png" alt="Jerome Kwamo" />
+    <small>// BIELEFELD · DE</small>
+  </a>
+  <div class="nav-mid">
+    <a href="../index.html">ATELIER</a>
+    <a href="../blog/index.html">JOURNAL</a>
+    <a href="./impressum.html" class="active">IMPRESSUM</a>
+    <a href="./datenschutz.html">DATENSCHUTZ</a>
+  </div>
+  <div class="nav-right">
+    <a class="back" href="../index.html">← ZUM ATELIER</a>
+  </div>
+</nav>
+
+<!-- ─── PAGE ─── -->
+<main class="page">
+
+  <header class="page-head">
+    <div class="id">
+      <span>DOKUMENT</span>
+      <span class="num">L·01</span>
+      <span>RECHTLICHE ANGABEN</span>
+      <span class="tick"></span>
+    </div>
+    <h1>IMPRESSUM <span class="o">&amp; ANBIETERKENNZEICHNUNG</span>.</h1>
+    <p class="lede">Pflichtangaben gemäß §5 Telemediengesetz (TMG) sowie §18 Medienstaatsvertrag (MStV). Verantwortlich für die Inhalte dieser Website.</p>
+    <div class="meta-r">
+      <span>STAND<span class="v">JAN 2026</span></span>
+      <span>JURISDIKTION<span class="v">DE · BIELEFELD</span></span>
+      <span>REV<span class="v">2026.01</span></span>
+      <span>STATUS<span class="v">AKTIV</span></span>
+    </div>
+  </header>
+
+  <article class="read">
+
+    <h2 data-n="01">Anbieter</h2>
+    <p>Diese Website wird betrieben durch:</p>
+    <dl class="kv">
+      <dt>Inhaber</dt><dd>Jerome Kwamo-Kamdem</dd>
+      <dt>Firmierung</dt><dd>Jerome Kwamo — Film, Fotografie &amp; KI Marketing</dd>
+      <dt>Anschrift</dt><dd>33739 Bielefeld<br />Deutschland</dd>
+      <dt>Telefon</dt><dd><a href="tel:+4915167457949">+49 151 67457949</a></dd>
+      <dt>E-Mail</dt><dd><a href="mailto:contact@jkkjerome.de">contact@jkkjerome.de</a></dd>
+      <dt>Web</dt><dd>jkkjerome.de</dd>
+    </dl>
+
+    <h2 data-n="02">Vertretungsberechtigter</h2>
+    <p>Inhaltlich und rechtlich verantwortlich gem. §18 Abs. 2 MStV ist Jerome Kwamo-Kamdem, Anschrift wie oben.</p>
+
+    <h2 data-n="03">Register &amp; Umsatzsteuer</h2>
+    <dl class="kv">
+      <dt>Rechtsform</dt><dd>Einzelunternehmen</dd>
+      <dt>Registereintrag</dt><dd>Keine Eintragung im Handelsregister (nicht eintragungspflichtig)</dd>
+    </dl>
+
+    <h2 data-n="04">Berufsbezeichnung</h2>
+    <dl class="kv">
+      <dt>Berufsbezeichnung</dt><dd>Fotograf, Filmproduzent, Marketingberater</dd>
+      <dt>Verliehen in</dt><dd>Deutschland</dd>
+    </dl>
+
+    <h2 data-n="05">Streitschlichtung</h2>
+    <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">ec.europa.eu/consumers/odr</a>. Unsere E-Mail-Adresse finden Sie oben im Impressum.</p>
+    <p>Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+
+    <h2 data-n="06">Haftung für Inhalte</h2>
+    <p>Als Diensteanbieter sind wir gem. §7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
+    <p>Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden entsprechender Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</p>
+
+    <h2 data-n="07">Haftung für Links</h2>
+    <p>Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
+    <p>Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</p>
+
+    <h2 data-n="08">Urheberrecht</h2>
+    <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+    <p>Sämtliche auf dieser Website gezeigten Bildwerke, Filmsequenzen, KI gestützte Renderings sowie Markendarstellungen sind, soweit nicht anders gekennzeichnet, geistiges Eigentum von Jerome Kwamo-Kamdem bzw. der jeweiligen Auftraggeber. Eine Verwendung außerhalb des Kontexts dieser Website ist ohne ausdrückliche Genehmigung untersagt.</p>
+
+    <h2 data-n="09">Vertraulichkeit</h2>
+    <p>Ein Großteil meiner Arbeiten erfolgt unter Vertraulichkeitsvereinbarungen mit Auftraggebern aus der Bootsbranche und verwandten Bereichen. Dargestellte Projekte sind, sofern nicht anders gekennzeichnet, freigegeben oder anonymisiert. Anfragen zu nicht öffentlich gezeigten Arbeiten bitte direkt per Mail.</p>
+
+    <p style="margin-top:48px;color:var(--fg-3);font-size:13px;font-family:var(--mono);letter-spacing:.1em">// ENDE DOKUMENT · L·01</p>
+
+  </article>
+
+  <div class="art-foot">
+    <a href="../index.html"><span class="arr">←</span> ZURÜCK ZUM ATELIER</a>
+    <a href="./datenschutz.html">WEITER · DATENSCHUTZ <span class="arr">→</span></a>
+  </div>
+
+</main>
+
+<!-- ─── FOOTER ─── -->
+<footer class="subfoot">
+  <div class="b"><img class="mark" src="../logo-chrome.png" alt="Jerome Kwamo" /><strong>Visual Ops</strong></div>
+  <div class="mid">
+    <a href="../index.html">ATELIER</a>
+    <a href="../blog/index.html">JOURNAL</a>
+    <a href="./impressum.html">IMPRESSUM</a>
+    <a href="./datenschutz.html">DATENSCHUTZ</a>
+  </div>
+  <div class="right">© 2026 · Jerome Kwamo</div>
+</footer>
+
+<script>
+  // UTC clock
+  (function(){
+    const el = document.getElementById('utc');
+    if(!el) return;
+    function tick(){
+      const d = new Date();
+      const h = String(d.getUTCHours()).padStart(2,'0');
+      const m = String(d.getUTCMinutes()).padStart(2,'0');
+      const s = String(d.getUTCSeconds()).padStart(2,'0');
+      el.textContent = `${h}:${m}:${s}`;
+    }
+    tick();setInterval(tick, 1000);
+  })();
+</script>
+
+
+<script src="../admin/tracker.js"></script>
+</body>
+</html>

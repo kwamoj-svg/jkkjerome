@@ -920,7 +920,7 @@
 <script>
 const MODULES = {
   "photography": {
-    num:"M-01", call:"KILO-ONE",
+    num:"L-01", call:"KILO-ONE",
     titleDe:"Fotografie", titleEn:"Photography",
     leadDe:"Das eine Bild, das den Käufer bewegt — vom Hafenliegeplatz bis ins Detail der Eignerkabine.",
     leadEn:"The one frame that moves the buyer — from dockside to the detail of the owner's cabin.",
@@ -938,7 +938,7 @@ const MODULES = {
     resultEn:"You end up with a complete image set that goes straight into your sales listing, your website and your social channels. No further editing, no formatting — everything ready."
   },
   "film": {
-    num:"M-02", call:"KILO-TWO",
+    num:"L-02", call:"KILO-TWO",
     titleDe:"Film & Imagevideo", titleEn:"Film & Brand Video",
     leadDe:"Bewegung, die verkauft — und jeden Frame, der den Käufer bewegt.",
     leadEn:"Motion that sells — and every frame that moves the buyer.",
@@ -956,7 +956,7 @@ const MODULES = {
     resultEn:"You get a complete film package: long version, social cuts, reels and ad clips — fully produced and ready to use across all channels."
   },
   "ai-visuals": {
-    num:"M-03", call:"ALPHA-ONE",
+    num:"L-03", call:"ALPHA-ONE",
     titleDe:"KI Visuals & Exposé", titleEn:"AI Visuals & Copy",
     leadDe:"So sieht dein Boot aus, bevor es fertig ist — und die Unterlagen, die es verkaufen.",
     leadEn:"See your boat before it is finished — and the materials that sell it.",
@@ -974,7 +974,7 @@ const MODULES = {
     resultEn:"You get photorealistic visualisations of your boat plus finished sales materials in any language — all from one source."
   },
   "ai-sales": {
-    num:"M-04", call:"ALPHA-TWO",
+    num:"L-04", call:"ALPHA-TWO",
     titleDe:"KI Sales & Systemoptimierung", titleEn:"AI Sales & System Optimisation",
     leadDe:"Dein digitaler Assistent und smartes System — Anfragen automatisieren, Prozesse optimieren, Umsatz steigern.",
     leadEn:"Your digital assistant and smart system — automate enquiries, optimise processes, increase revenue.",
@@ -992,7 +992,7 @@ const MODULES = {
     resultEn:"A chatbot that responds instantly, optimised system processes, automated email campaigns and AI pricing — all connected to your system."
   },
   "social": {
-    num:"M-05", call:"BRAVO-ONE",
+    num:"L-05", call:"BRAVO-ONE",
     titleDe:"Social & Content", titleEn:"Social & Content",
     leadDe:"Präsenz, die zwischen den Drehs weiterläuft — kuratiert für die Bootswelt.",
     leadEn:"Presence that keeps running between shoots — curated for the boating world.",
@@ -1010,7 +1010,7 @@ const MODULES = {
     resultEn:"Active, professional social channels that are consistently updated — without you having to create content yourself."
   },
   "paid-seo": {
-    num:"M-06", call:"BRAVO-TWO",
+    num:"L-06", call:"BRAVO-TWO",
     titleDe:"Onlinewerbung & Sichtbarkeit", titleEn:"Online Ads & Visibility",
     leadDe:"Bezahlte Werbeanzeigen und Suchmaschinenoptimierung — damit die richtigen Käufer dich finden.",
     leadEn:"Paid advertising and search engine optimisation — so the right buyers find you.",
@@ -1028,7 +1028,7 @@ const MODULES = {
     resultEn:"Running ad campaigns with clean tracking, regular reporting and search engine optimisation that builds organic reach long-term."
   },
   "websites": {
-    num:"M-07", call:"DELTA-ONE",
+    num:"L-07", call:"DELTA-ONE",
     titleDe:"Websites & Showrooms", titleEn:"Websites & Showrooms",
     leadDe:"Der digitale Showroom, der nie schließt — von der Idee bis zur fertigen Website.",
     leadEn:"The digital showroom that never closes — from idea to finished website.",
@@ -1046,7 +1046,7 @@ const MODULES = {
     resultEn:"A finished, professional website that works on all devices, loads fast and is SEO-optimised — plus optimised listings on boat platforms."
   },
   "funnel-crm": {
-    num:"M-08", call:"SIERRA-ONE",
+    num:"L-08", call:"SIERRA-ONE",
     titleDe:"Verkaufssystem & Reputation", titleEn:"Verkaufssystem & Reputation",
     leadDe:"Von der Anfrage zur Buchung — automatisch. Das System hinter deinem Verkauf.",
     leadEn:"From enquiry to booking — automated. The system behind your sale.",
@@ -1064,7 +1064,7 @@ const MODULES = {
     resultEn:"An automatic sales system that doesn't lose a single enquiry, plus active review management that builds trust — all on your existing system."
   },
   "beratung": {
-    num:"M-09", call:"ECHO-ONE",
+    num:"L-09", call:"ECHO-ONE",
     titleDe:"Marketingberatung", titleEn:"Marketing Consulting",
     leadDe:"Klarheit. Strategie, Standortbestimmung und der nächste Schritt.",
     leadEn:"Clarity. Strategy, status assessment and the next move.",
@@ -1118,12 +1118,12 @@ const MODULES = {
       '<div class="morph-sticky">'+
         '<div class="morph-stage" id="morph-stage">'+
           '<div class="morph-intro">'+
-            '<div class="mi-kicker"><span>'+m.num+'</span><span class="sep">·</span><span>'+(lang==='de'?'MODUL':'MODULE')+'</span><span class="sep">·</span><span>CALLSIGN '+m.call+'</span></div>'+
+            '<div class="mi-kicker"><span>'+m.num+'</span><span class="sep">·</span><span>'+(lang==='de'?'MODUL':'MODULE')+'</span></div>'+
             '<h1 class="mi-h">'+(lang==='de'?m.titleDe:m.titleEn)+'</h1>'+
             '<p class="mi-sub">'+(lang==='de'?'Scrollen zum Erkunden':'Scroll to explore')+'</p>'+
           '</div>'+
           '<div class="morph-arc-content">'+
-            '<span class="ma-k">'+m.num+' · CALLSIGN '+m.call+'</span>'+
+            '<span class="ma-k">'+m.num+'</span>'+
             '<p class="ma-lead">'+(lang==='de'?m.leadDe:m.leadEn)+'</p>'+
           '</div>'+
           '<div class="morph-cards"></div>'+
@@ -1158,7 +1158,7 @@ const MODULES = {
       '<div class="aih-inner">'+
         '<div class="aih-stage" id="aih-stage"><div class="aih-orbit" id="aih-orbit">'+aihCards+'</div></div>'+
         '<div class="aih-content">'+
-          '<div class="aih-k"><span>'+m.num+'</span><span class="sep">·</span><span>'+(lang==='de'?'MODUL':'MODULE')+'</span><span class="sep">·</span><span>CALLSIGN '+m.call+'</span></div>'+
+          '<div class="aih-k"><span>'+m.num+'</span><span class="sep">·</span><span>'+(lang==='de'?'MODUL':'MODULE')+'</span></div>'+
           '<h1>'+(lang==='de'?m.titleDe:m.titleEn)+'</h1>'+
           '<p class="aih-lead">'+(lang==='de'?m.leadDe:m.leadEn)+'</p>'+
           '<a class="aih-cta" href="index.html#contact">'+(lang==='de'?'Briefing anfragen':'Request a briefing')+' <span class="arr">→</span></a>'+
@@ -1172,7 +1172,7 @@ const MODULES = {
     '<section class="film-hero" id="film-hero">'+
       '<div class="fh-canvas" id="fh-canvas"></div>'+
       '<div class="fh-overlay">'+
-        '<div class="fh-kicker"><span>'+m.num+'</span><span class="sep">·</span><span>'+(lang==='de'?'MODUL':'MODULE')+'</span><span class="sep">·</span><span>CALLSIGN '+m.call+'</span></div>'+
+        '<div class="fh-kicker"><span>'+m.num+'</span><span class="sep">·</span><span>'+(lang==='de'?'MODUL':'MODULE')+'</span></div>'+
         '<h1 class="fh-h">'+(lang==='de'?m.titleDe:m.titleEn)+'</h1>'+
       '</div>'+
       '<div class="fh-hint">'+
@@ -1196,7 +1196,7 @@ const MODULES = {
     '<section class="ws-hero" id="ws-hero">'+
       '<div class="ws-sticky">'+
         '<div class="ws-title" id="ws-title">'+
-          '<div class="ws-k"><span>'+m.num+'</span><span class="sep">·</span><span>'+(lang==='de'?'MODUL':'MODULE')+'</span><span class="sep">·</span><span>CALLSIGN '+m.call+'</span></div>'+
+          '<div class="ws-k"><span>'+m.num+'</span><span class="sep">·</span><span>'+(lang==='de'?'MODUL':'MODULE')+'</span></div>'+
           '<h1>'+(lang==='de'?m.titleDe:m.titleEn)+'</h1>'+
           '<p class="ws-lead">'+(lang==='de'?m.leadDe:m.leadEn)+'</p>'+
         '</div>'+
@@ -1225,7 +1225,7 @@ const MODULES = {
       '<canvas class="dh-canvas" id="dh-canvas"></canvas>'+
       '<div class="dh-grid"></div>'+
       '<div class="dh-inner">'+
-        '<div class="dh-badge">'+m.num+' · CALLSIGN '+m.call+'</div>'+
+        '<div class="dh-badge">'+m.num+'</div>'+
         '<div class="dh-frame">'+
           '<span class="pls tl"></span><span class="pls tr"></span><span class="pls bl"></span><span class="pls br"></span>'+
           '<h1>'+dhH1+'</h1>'+
@@ -1258,7 +1258,7 @@ const MODULES = {
     '<section class="cs" id="cs">'+
       '<div class="cs-moon"></div><div class="cs-stars"></div>'+
       '<div class="cs-top">'+
-        '<div class="cs-k"><span>'+m.num+'</span><span class="sep">·</span><span>'+(lang==='de'?'MODUL':'MODULE')+'</span><span class="sep">·</span><span>CALLSIGN '+m.call+'</span></div>'+
+        '<div class="cs-k"><span>'+m.num+'</span><span class="sep">·</span><span>'+(lang==='de'?'MODUL':'MODULE')+'</span></div>'+
         '<h1>'+(lang==='de'?m.titleDe:m.titleEn)+'</h1>'+
         '<p>'+(lang==='de'?m.leadDe:m.leadEn)+'</p>'+
       '</div>'+
@@ -1318,7 +1318,7 @@ const MODULES = {
       '<div class="crh-grid"></div>'+
       '<div class="crh-inner">'+
         '<div class="crh-left">'+
-          '<div class="crh-k"><span>'+m.num+'</span><span class="sep">·</span><span>'+(lang==='de'?'MODUL':'MODULE')+'</span><span class="sep">·</span><span>CALLSIGN '+m.call+'</span></div>'+
+          '<div class="crh-k"><span>'+m.num+'</span><span class="sep">·</span><span>'+(lang==='de'?'MODUL':'MODULE')+'</span></div>'+
           '<ul class="crh-list" id="crh-list">'+crhList+'</ul>'+
           '<p class="crh-sub">'+(lang==='de'?m.leadDe:m.leadEn)+'</p>'+
           '<a class="crh-cta" href="index.html#contact">'+(lang==='de'?'Briefing anfragen':'Request a briefing')+' <span class="arr">→</span></a>'+
@@ -2015,7 +2015,7 @@ const MODULES = {
       '<section class="pf" id="pf">'+
         '<div class="pf-stage" id="pf-stage">'+pfTiles+'</div>'+
         '<div class="pf-center">'+
-          '<div class="pf-k">'+m.num+' · CALLSIGN '+m.call+'</div>'+
+          '<div class="pf-k">'+m.num+'</div>'+
           '<h2>'+(lang==='de'?m.titleDe:m.titleEn)+'</h2>'+
           '<p class="pf-sub">'+(lang==='de'?'Präsenz zwischen den Drehs.':'Presence between the shoots.')+'</p>'+
         '</div>'+

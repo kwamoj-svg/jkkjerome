@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Chatbot f&uuml;r Bootsh&auml;ndler · Journal — JKK Jerome</title>
+<meta name="description" content="KI Chatbot fuer die Bootswebsite." />
+<meta name="robots" content="index,follow" />
+<link rel="canonical" href="https://jkkjerome.de/blog/chatbot-bootshaendler-einrichten.html" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@200;300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Archivo:wght@400;500;700;900&family=Archivo+Narrow:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../subpages.css" />
+
+<style>
+  .read.article .drop{
+    font-family:var(--display);font-weight:900;
+    font-size:5.6em;line-height:.82;
+    float:left;margin:6px 14px -6px 0;
+    color:#fff;
+    text-shadow:0 0 30px rgba(214,180,120,.18);
+  }
+  .read.article .pull{
+    margin:44px 0;padding:0 0 0 22px;
+    border-left:2px solid var(--gold);
+    font-family:var(--serif);font-style:normal;
+    font-size:clamp(22px, 2.6vw, 30px);line-height:1.35;
+    color:#fff;letter-spacing:-.005em;
+  }
+  .read.article .pull .attr{
+    display:block;margin-top:14px;
+    font-family:var(--mono);font-style:normal;font-size:11px;letter-spacing:.22em;
+    color:var(--fg-3);text-transform:uppercase;
+  }
+</style>
+<link rel="icon" href="../favicon.ico" sizes="32x32" />
+<link rel="icon" href="../favicon.png" type="image/png" sizes="512x512" />
+<link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Chatbot für Bootshändler",
+  "description": "KI Chatbot fuer die Bootswebsite.",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Person",
+    "name": "JKK Jerome",
+    "url": "https://jkkjerome.de"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "JKK Jerome",
+    "url": "https://jkkjerome.de"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://jkkjerome.de/blog/chatbot-bootshaendler-einrichten.html"
+  }
+}
+</script>
+</head>
+<body>
+
+<!-- ─── TELEMETRY STRIP ─── -->
+<div class="telem">
+  <div class="cell c1"><span class="blink"></span><span class="k">SYS</span><span class="v">JOURNAL</span></div>
+  <div class="cell c2"><span class="k">UTC</span><span class="v" id="utc">—</span></div>
+  <div class="cell c3"><span class="k">DOC</span><span class="v">NOTIZ · 019 · LOT 2026·05</span></div>
+  <div class="cell c4"><span class="k">STANDORT</span><span class="v">HAMBURG · DE</span></div>
+  <div class="cell c5"><span class="k">LESEZEIT</span><span class="v">~7 MIN</span></div>
+</div>
+
+<!-- ─── SUB NAV ─── -->
+<nav class="subnav">
+  <a class="brand" href="../index.html">
+    <img class="mark" src="../logo-chrome.png" alt="JKK Jerome" />
+    <small>// HAMBURG · DE</small>
+  </a>
+  <div class="nav-mid">
+    <a href="../index.html">ATELIER</a>
+    <a href="./index.html" class="active">JOURNAL</a>
+    <a href="../legal/impressum.html">IMPRESSUM</a>
+    <a href="../legal/datenschutz.html">DATENSCHUTZ</a>
+  </div>
+  <div class="nav-right">
+    <a class="back" href="./index.html">&larr; JOURNAL</a>
+  </div>
+</nav>
+
+<!-- ─── PAGE ─── -->
+<main class="page">
+
+  <header class="page-head">
+    <div class="id">
+      <span>NOTIZ</span>
+      <span class="num">019</span>
+      <span>KI</span>
+      <span class="tick"></span>
+    </div>
+    <h1>CHATBOT <span class="o">F&Uuml;R BOOTSH&Auml;NDLER</span>.</h1>
+    <p class="lede">Wie du einen KI Chatbot auf deiner Bootswebsite einrichtest und warum er mehr ist als ein digitaler Anrufbeantworter.</p>
+    <div class="meta-r">
+      <span>VER&Ouml;FFENTLICHT<span class="v">20 MAI 2026</span></span>
+      <span>AUTOR<span class="v">JKK Jerome</span></span>
+      <span>KATEGORIE<span class="v">KI</span></span>
+      <span>LESEZEIT<span class="v">~7 MIN</span></span>
+    </div>
+  </header>
+
+  <article class="read article wide">
+
+    <p><span class="drop">S</span>telle dir vor, es ist Sonntagabend. Ein Interessent sitzt auf dem Sofa, scrollt durch deine Website und hat eine Frage zu einer Bavaria Cruiser, die du gerade im Bestand hast. Er will wissen, ob das Boot besichtigt werden kann und was der Liegeplatz kostet. Er schreibt eine Mail. Du liest sie Montag fr&uuml;h. Dann antwortest du Montag Nachmittag, weil der Morgen voller Termine war. Inzwischen hat der Interessent bei drei anderen H&auml;ndlern angefragt. Einer hat sofort geantwortet. Nicht du.</p>
+
+    <p>Genau hier setzt ein Chatbot an. Nicht als Spielerei, nicht als Technik Demonstration, sondern als Werkzeug, das deine Erreichbarkeit auf 24 Stunden am Tag erweitert, ohne dass du 24 Stunden am Tag arbeiten musst.</p>
+
+    <h2 data-n="01">Was ein Chatbot f&uuml;r Bootsh&auml;ndler leisten kann</h2>
+    <p>Ein guter Chatbot ist kein universeller Assistent. Er ist ein Spezialist. Und je enger du seinen Bereich definierst, desto besser funktioniert er. F&uuml;r einen Bootsh&auml;ndler sieht das so aus:</p>
+    <ul>
+      <li><strong>Verf&uuml;gbarkeitsanfragen.</strong> Ist das Boot noch da? Wo liegt es? Kann ich es besichtigen?</li>
+      <li><strong>Technische Basisdaten.</strong> L&auml;nge, Breite, Motorisierung, Baujahr. Alles, was auf dem Datenblatt steht.</li>
+      <li><strong>Preisrahmen.</strong> Nicht den exakten Preis verhandeln, aber eine Orientierung geben.</li>
+      <li><strong>Terminvorschl&auml;ge.</strong> Wann ist eine Besichtigung m&ouml;glich? Der Bot kann Zeiten vorschlagen und dich benachrichtigen.</li>
+      <li><strong>Kontaktdaten erfassen.</strong> Name, Telefonnummer, bevorzugte Uhrzeit. Strukturiert, nicht als Freitext.</li>
+    </ul>
+    <p>Das klingt simpel. Es ist simpel. Und genau das ist der Punkt. Ein Chatbot muss nicht alles k&ouml;nnen. Er muss die h&auml;ufigsten Fragen zuverl&auml;ssig beantworten und den Rest an dich weiterleiten.</p>
+
+    <h2 data-n="02">Was passiert, wenn der Bot nicht weiterwei&szlig;</h2>
+    <p>Das ist die entscheidende Frage. Und die Antwort bestimmt, ob dein Chatbot dem Kunden hilft oder ihn frustriert. Ein schlecht eingerichteter Bot antwortet auf alles, auch auf Fragen, die er nicht beantworten kann. Das Ergebnis: falsche Informationen, ver&auml;rgerte Kunden, verlorenes Vertrauen.</p>
+    <p>Ein gut eingerichteter Bot sagt: &bdquo;Das kann ich dir nicht beantworten. Aber ich leite deine Frage an Jerome weiter. Er meldet sich morgen fr&uuml;h bei dir.&ldquo; Und dann tut er genau das. Er schickt dir eine Nachricht mit der Frage, dem Namen und der Kontaktm&ouml;glichkeit. Du rufst an. Der Kunde ist positiv &uuml;berrascht, weil er eine schnelle, strukturierte Antwort bekommt.</p>
+
+    <p class="pull">
+      &bdquo;Ein guter Chatbot wei&szlig;, was er nicht wei&szlig;. Und genau das macht ihn vertrauensw&uuml;rdig.&ldquo;
+      <span class="attr">// Praxiserfahrung, Hamburg, 2026</span>
+    </p>
+
+    <h2 data-n="03">Die Einrichtung: einfacher als du denkst</h2>
+    <p>Ich richte Chatbots f&uuml;r Bootsh&auml;ndler ein, die innerhalb weniger Tage live sind. Der Prozess sieht so aus:</p>
+    <p>Zuerst sammle ich alle relevanten Informationen. Dein Bootsbestand, h&auml;ufig gestellte Fragen, deine Tonart. Sprichst du deine Kunden locker an oder eher sachlich? Duzt du oder bist du formeller? Der Bot soll klingen wie du, nicht wie ein Callcenter.</p>
+    <p>Dann trainiere ich den Bot mit diesen Daten. Er lernt deine Boote, deine Antworten, deine Grenzen. Ich teste ihn mit typischen Anfragen und optimiere, bis die Antworten stimmen.</p>
+    <p>Schlie&szlig;lich binde ich ihn in deine <a href="../leistung.html?m=websites">Website</a> ein. Ein kleines Chat Fenster, das sich &ouml;ffnet, wenn ein Besucher auf die Seite kommt. Nicht aufdringlich. Nicht blinkend. Einfach da, wenn man es braucht.</p>
+
+    <h2 data-n="04">Was ein Chatbot nicht ersetzen kann</h2>
+    <p>Ich will ehrlich sein. Ein Chatbot ist kein Verk&auml;ufer. Er ist ein T&uuml;r&ouml;ffner. Er qualifiziert Anfragen, beantwortet Standardfragen und gibt dir Struktur. Aber das eigentliche Verkaufsgespr&auml;ch, die Besichtigung am Steg, das Handschlag Gef&uuml;hl, wenn ein Deal steht, das bleibt bei dir.</p>
+    <p>In der Bootsbranche kaufen Menschen von Menschen. Das wird sich nicht &auml;ndern. Was sich &auml;ndert, ist der Weg bis zum ersten echten Gespr&auml;ch. Und dieser Weg wird zunehmend digital. Ein Chatbot sorgt daf&uuml;r, dass dieser digitale Weg sich nicht anf&uuml;hlt wie ein leerer Showroom, sondern wie ein Empfang.</p>
+    <p>Wenn du wissen willst, wie ein <a href="../leistung.html?m=ai-sales">KI gest&uuml;tzter Vertriebsassistent</a> f&uuml;r dein Gesch&auml;ft aussehen kann, erkl&auml;re ich dir das gerne in einem pers&ouml;nlichen Gespr&auml;ch.</p>
+
+    <h2 data-n="05">Drei Fehler, die du vermeiden solltest</h2>
+    <p>Aus meiner Erfahrung mit mehreren Chatbot Projekten in der Bootsbranche:</p>
+    <ul>
+      <li><strong>Zu viel wollen.</strong> Ein Bot, der alles kann, kann nichts richtig. Starte mit den zehn h&auml;ufigsten Fragen. Erweitere sp&auml;ter.</li>
+      <li><strong>Keine Pflege.</strong> Dein Bestand &auml;ndert sich. Preise &auml;ndern sich. Wenn der Bot veraltete Informationen gibt, schadet er mehr als er hilft. Plane regelm&auml;&szlig;ige Updates ein.</li>
+      <li><strong>Keinen menschlichen R&uuml;ckfall.</strong> Jeder Bot braucht einen Punkt, an dem er sagt: &bdquo;Ich verbinde dich mit einem Menschen.&ldquo; Ohne diesen Punkt verlierst du Kunden.</li>
+    </ul>
+
+    <p class="callout">
+      <span class="k">// Notiz</span>
+      Ich richte KI Chatbots speziell f&uuml;r die Bootsbranche ein. Kein Standardprodukt, sondern ma&szlig;geschneidert f&uuml;r dein Gesch&auml;ft, deinen Bestand, deine Sprache. Wenn du das Thema angehen willst, melde dich.
+    </p>
+
+    <p>Die Frage ist nicht, ob deine Kunden einen Chatbot erwarten. Die Frage ist, wie lange du es dir leisten kannst, Sonntagabend Anfragen erst Montag Nachmittag zu beantworten. In einem Markt, in dem Geschwindigkeit &uuml;ber den Erstkontakt entscheidet, ist ein gut eingerichteter Bot kein Luxus. Er ist gesunder Menschenverstand.</p>
+
+    <p style="margin-top:48px;">
+      <strong>Du m&ouml;chtest einen Chatbot f&uuml;r deine Bootswebsite einrichten?</strong><br />
+      <a href="../index.html#contact">Schreib mir</a> und ich zeige dir, wie das in der Praxis aussieht.
+    </p>
+
+    <p style="margin-top:48px;color:var(--fg-3);font-size:13px;font-family:var(--mono);letter-spacing:.1em">// ENDE NOTIZ · 019 · LOT 2026·05</p>
+
+  </article>
+
+  <div class="art-foot">
+    <a href="./index.html"><span class="arr">&larr;</span> ALLE NOTIZEN</a>
+    <a href="../index.html">ATELIER &Ouml;FFNEN <span class="arr">&rarr;</span></a>
+  </div>
+
+</main>
+
+<!-- ─── FOOTER ─── -->
+<footer class="subfoot">
+  <div class="b"><img class="mark" src="../logo-chrome.png" alt="JKK Jerome" /><strong>JKK Jerome</strong></div>
+  <div class="mid">
+    <a href="../index.html">ATELIER</a>
+    <a href="./index.html">JOURNAL</a>
+    <a href="../legal/impressum.html">IMPRESSUM</a>
+    <a href="../legal/datenschutz.html">DATENSCHUTZ</a>
+  </div>
+  <div class="right">&copy; 2026 · JKK Jerome</div>
+</footer>
+
+<script>
+  (function(){
+    const el = document.getElementById('utc');
+    if(!el) return;
+    function tick(){
+      const d = new Date();
+      const h = String(d.getUTCHours()).padStart(2,'0');
+      const m = String(d.getUTCMinutes()).padStart(2,'0');
+      const s = String(d.getUTCSeconds()).padStart(2,'0');
+      el.textContent = `${h}:${m}:${s}`;
+    }
+    tick();setInterval(tick, 1000);
+  })();
+</script>
+
+<script src="../consent-tracking.js"></script>
+<script src="../admin/tracker.js"></script>
+</body>
+</html>

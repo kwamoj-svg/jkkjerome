@@ -7,7 +7,7 @@
 
   // ── Config ──
   var GA4_ID      = 'G-FCLGVR0C1X';
-  var CONSENT_KEY = 'jkk_consent';
+  var CONSENT_KEY = 'jkk_consent_v2';
 
   // Pfad zur Datenschutzerklärung relativ zum Seitenstandort ermitteln
   var segs = location.pathname.split('/').filter(Boolean);
@@ -39,18 +39,20 @@
       '.cb-btn.accept:hover{opacity:.88}';
     document.head.appendChild(style);
 
+    var lang = document.documentElement.lang === 'en' ? 'en' : 'de';
     var banner = document.createElement('div');
     banner.id = 'consent-banner';
     banner.setAttribute('role', 'dialog');
     banner.setAttribute('aria-label', 'Cookie-Einstellungen');
     banner.innerHTML =
       '<div class="cb-text">' +
-        '<span data-de>Ich nutze Cookies und Analysetools, um diese Website zu verbessern. Mehr dazu in der <a href="' + privacyHref + '">Datenschutzerklärung</a>.</span>' +
-        '<span data-en>I use cookies and analytics tools to improve this website. More in the <a href="' + privacyHref + '">privacy policy</a>.</span>' +
+        (lang === 'de'
+          ? 'Ich nutze Cookies und Analysetools, um diese Website zu verbessern. Mehr dazu in der <a href="' + privacyHref + '">Datenschutzerklärung</a>.'
+          : 'I use cookies and analytics tools to improve this website. More in the <a href="' + privacyHref + '">privacy policy</a>.') +
       '</div>' +
       '<div class="cb-btns">' +
-        '<button class="cb-btn" id="consent-decline" type="button"><span data-de>Nur notwendige</span><span data-en>Essential only</span></button>' +
-        '<button class="cb-btn accept" id="consent-accept" type="button"><span data-de>Alle akzeptieren</span><span data-en>Accept all</span></button>' +
+        '<button class="cb-btn" id="consent-decline" type="button">' + (lang === 'de' ? 'Nur notwendige' : 'Essential only') + '</button>' +
+        '<button class="cb-btn accept" id="consent-accept" type="button">' + (lang === 'de' ? 'Alle akzeptieren' : 'Accept all') + '</button>' +
       '</div>';
     document.body.appendChild(banner);
     return banner;

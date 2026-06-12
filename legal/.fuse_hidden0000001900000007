@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Datenschutz · JKK Jerome | DSGVO</title>
+<meta name="description" content="Datenschutzerklärung gemäß DSGVO für jkkjerome.de. Keine Tracking-Cookies, keine Werbe-Pixel, kein Profiling. Alle Infos zu Datenverarbeitung und deinen Rechten." />
+<meta name="robots" content="index,follow" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@200;300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Archivo:wght@400;500;700;900&family=Archivo+Narrow:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../subpages.css" />
+<link rel="icon" href="../favicon.ico" sizes="32x32" />
+<link rel="icon" href="../favicon.png" type="image/png" sizes="512x512" />
+<link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+</head>
+<body>
+
+<!-- ─── TELEMETRY STRIP ─── -->
+<div class="telem">
+  <div class="cell c1"><span class="blink"></span><span class="k">SYS</span><span class="v">LEGAL</span></div>
+  <div class="cell c2"><span class="k">UTC</span><span class="v" id="utc">—</span></div>
+  <div class="cell c3"><span class="k">DOC</span><span class="v">DATENSCHUTZ · DSGVO</span></div>
+  <div class="cell c4"><span class="k">STANDORT</span><span class="v">BIELEFELD · DE</span></div>
+  <div class="cell c5"><span class="k">REV</span><span class="v">2026.01</span></div>
+</div>
+
+<!-- ─── SUB NAV ─── -->
+<nav class="subnav">
+  <a class="brand" href="../index.html">
+    <img class="mark" src="../logo-chrome.png" alt="Jerome Kwamo" />
+    <small>// BIELEFELD · DE</small>
+  </a>
+  <div class="nav-mid">
+    <a href="../index.html">ATELIER</a>
+    <a href="../blog/index.html">JOURNAL</a>
+    <a href="./impressum.html">IMPRESSUM</a>
+    <a href="./datenschutz.html" class="active">DATENSCHUTZ</a>
+  </div>
+  <div class="nav-right">
+    <a class="back" href="../index.html">← ZUM ATELIER</a>
+  </div>
+</nav>
+
+<!-- ─── PAGE ─── -->
+<main class="page">
+
+  <header class="page-head">
+    <div class="id">
+      <span>DOKUMENT</span>
+      <span class="num">L·02</span>
+      <span>VERARBEITUNG · DSGVO</span>
+      <span class="tick"></span>
+    </div>
+    <h1>DATENSCHUTZ <span class="o">&amp; PRIVATSPHÄRE</span>.</h1>
+    <p class="lede">Informationen gemäß Art. 13 &amp; 14 DSGVO über Art, Umfang und Zweck der Verarbeitung personenbezogener Daten im Rahmen dieser Website und unserer Auftragsarbeiten.</p>
+    <div class="meta-r">
+      <span>RECHTSGRUNDLAGE<span class="v">DSGVO · BDSG</span></span>
+      <span>STAND<span class="v">JAN 2026</span></span>
+      <span>JURISDIKTION<span class="v">DE · EU</span></span>
+      <span>STATUS<span class="v">AKTIV</span></span>
+    </div>
+  </header>
+
+  <article class="read">
+
+    <p class="callout"><span class="k">In Kürze</span>Wir verarbeiten so wenig personenbezogene Daten wie möglich. Analyse- und Marketing-Tools (Google Analytics, Microsoft Clarity, Meta Pixel) werden erst nach ausdrücklicher Einwilligung über den Cookie-Banner geladen. Ohne Zustimmung werden keine Tracking-Cookies gesetzt. Server-Logs werden nach 14 Tagen anonymisiert.</p>
+
+    <h2 data-n="01">Verantwortlicher</h2>
+    <p>Verantwortlich für die Datenverarbeitung auf dieser Website im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:</p>
+    <dl class="kv">
+      <dt>Verantwortlicher</dt><dd>Jerome Kwamo-Kamdem</dd>
+      <dt>Anschrift</dt><dd>33739 Bielefeld, Deutschland</dd>
+      <dt>E-Mail</dt><dd><a href="mailto:contact@jkkjerome.de">contact@jkkjerome.de</a></dd>
+      <dt>Datenschutz</dt><dd><a href="mailto:contact@jkkjerome.de">contact@jkkjerome.de</a></dd>
+    </dl>
+    <p>Ein externer Datenschutzbeauftragter ist gem. §38 BDSG nicht bestellt; entsprechende Schwellwerte werden nicht überschritten.</p>
+
+    <h2 data-n="02">Allgemeine Hinweise</h2>
+    <p>Wir nehmen den Schutz Ihrer persönlichen Daten ernst und behandeln sie vertraulich entsprechend der gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung. Die Nutzung dieser Website ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit auf unseren Seiten personenbezogene Daten erhoben werden, erfolgt dies stets auf freiwilliger Basis.</p>
+    <p>Wir weisen darauf hin, dass die Datenübertragung im Internet (z. B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.</p>
+
+    <h2 data-n="03">Server-Logfiles</h2>
+    <p>Der Provider dieser Seiten erhebt und speichert automatisch Informationen in sogenannten Server-Logfiles, die Ihr Browser automatisch an uns übermittelt. Dies sind:</p>
+    <ul>
+      <li>Browsertyp und Browserversion</li>
+      <li>Verwendetes Betriebssystem</li>
+      <li>Referrer URL</li>
+      <li>Hostname des zugreifenden Rechners</li>
+      <li>Uhrzeit der Serveranfrage</li>
+      <li>IP-Adresse (anonymisiert nach 14 Tagen)</li>
+    </ul>
+    <p>Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Rechtsgrundlage für die Verarbeitung ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einem technisch fehlerfreien Betrieb).</p>
+
+    <h2 data-n="04">Kontaktformular &amp; E-Mail</h2>
+    <p>Wenn Sie uns per Kontaktformular oder E-Mail Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inkl. der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert.</p>
+    <p>Diese Daten geben wir nicht ohne Ihre Einwilligung weiter. Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung) bzw. Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der effektiven Bearbeitung).</p>
+    <p>Die von Ihnen im Kontaktformular eingegebenen Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung widerrufen oder der Zweck für die Speicherung entfällt — spätestens jedoch <strong>nach 36 Monaten</strong>. Zwingende gesetzliche Bestimmungen, insbesondere Aufbewahrungsfristen, bleiben unberührt.</p>
+
+    <h2 data-n="05">Cookies</h2>
+    <p>Diese Website verwendet ausschließlich <strong>technisch notwendige Cookies</strong>, sofern Sie aktiv mit interaktiven Funktionen interagieren (z. B. Sprachauswahl DE/EN). Es werden keine Tracking-, Marketing- oder Analyse-Cookies eingesetzt.</p>
+    <dl class="kv">
+      <dt>Notwendig</dt><dd>Sprachauswahl (DE/EN) · Dauer: 12 Monate</dd>
+      <dt>Analyse</dt><dd style="color:var(--gold)">Keine</dd>
+      <dt>Marketing</dt><dd style="color:var(--gold)">Keine</dd>
+      <dt>Drittanbieter</dt><dd style="color:var(--gold)">Keine</dd>
+    </dl>
+    <p>Sie können Ihren Browser so einstellen, dass Sie über das Setzen von Cookies informiert werden und Cookies nur im Einzelfall erlauben, die Annahme von Cookies für bestimmte Fälle oder generell ausschließen.</p>
+
+    <h2 data-n="06">Eingebundene Dienste</h2>
+    <p>Für Schriftarten, Analyse und Performance binden wir folgende externe Dienste ein. Analyse- und Marketing-Dienste werden <strong>erst nach ausdrücklicher Einwilligung</strong> über unseren Cookie-Banner geladen. Bei jeder Einbindung kann der Anbieter Ihre IP-Adresse erhalten:</p>
+    <dl class="kv">
+      <dt>Google Fonts</dt><dd>Schriftartenauslieferung · Anbieter: Google Ireland Ltd. · Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO</dd>
+      <dt>Hosting</dt><dd>Render Services, Inc. · 525 Brannan St, San Francisco, CA 94107, USA · Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO · Standardvertragsklauseln gem. Art. 46 Abs. 2 lit. c DSGVO</dd>
+      <dt>Google Analytics 4</dt><dd>Webanalyse · Anbieter: Google Ireland Ltd. · Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO (Einwilligung) · IP-Anonymisierung aktiv · Daten werden in der EU verarbeitet</dd>
+      <dt>Microsoft Clarity</dt><dd>Nutzungsanalyse und Heatmaps · Anbieter: Microsoft Ireland Operations Ltd. · Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</dd>
+      <dt>Meta Pixel</dt><dd>Conversion-Tracking für Meta-Werbung (Facebook/Instagram) · Anbieter: Meta Platforms Ireland Ltd. · Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</dd>
+      <dt>FormSubmit</dt><dd>Formularversand · Anbieter: FormSubmit.co · Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung)</dd>
+    </dl>
+    <p class="callout"><span class="k">Hinweis</span>Analyse- und Marketing-Cookies werden nur gesetzt, wenn Sie im Cookie-Banner auf „Alle akzeptieren" klicken. Bei „Nur notwendige" werden keine Tracking-Dienste geladen. Eine Auflistung aller Verarbeiter inkl. Vertragsstand können Sie jederzeit bei <a href="mailto:contact@jkkjerome.de">contact@jkkjerome.de</a> anfordern.</p>
+
+    <h2 data-n="07">Verarbeitung im Auftrag (Bild- &amp; Filmproduktion)</h2>
+    <p>Im Rahmen unserer Auftragsarbeiten (Fotografie, Film, KI-Pre-Vis) verarbeiten wir personenbezogene Daten Ihrer Mitarbeitenden, Crew oder Eigentümer — insbesondere Bildaufnahmen, Namen und Funktionsbezeichnungen.</p>
+    <p>Die Verarbeitung erfolgt auf Grundlage eines Auftragsverarbeitungsvertrags (AVV) gem. Art. 28 DSGVO, der vor Projektbeginn beidseitig unterzeichnet wird. Bildveröffentlichungen erfolgen ausschließlich mit dokumentierter Einwilligung der abgebildeten Personen (§22 KunstUrhG / Art. 6 Abs. 1 lit. a DSGVO).</p>
+
+    <h2 data-n="08">Ihre Rechte</h2>
+    <p>Sie haben jederzeit das Recht auf:</p>
+    <ul>
+      <li><strong>Auskunft</strong> (Art. 15 DSGVO) — welche Daten wir über Sie gespeichert haben</li>
+      <li><strong>Berichtigung</strong> (Art. 16 DSGVO) — Korrektur unrichtiger Daten</li>
+      <li><strong>Löschung</strong> (Art. 17 DSGVO) — „Recht auf Vergessenwerden"</li>
+      <li><strong>Einschränkung</strong> der Verarbeitung (Art. 18 DSGVO)</li>
+      <li><strong>Datenübertragbarkeit</strong> (Art. 20 DSGVO)</li>
+      <li><strong>Widerspruch</strong> gegen die Verarbeitung (Art. 21 DSGVO)</li>
+      <li><strong>Widerruf</strong> einer erteilten Einwilligung (Art. 7 Abs. 3 DSGVO)</li>
+    </ul>
+    <p>Zur Wahrnehmung dieser Rechte genügt eine formlose E-Mail an <a href="mailto:contact@jkkjerome.de">contact@jkkjerome.de</a>. Außerdem haben Sie das Recht auf Beschwerde bei einer Aufsichtsbehörde — für uns zuständig ist die Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen (LDI NRW), Postfach 20 04 44, 40102 Düsseldorf.</p>
+
+    <h2 data-n="09">Speicherdauer</h2>
+    <p>Sofern in dieser Datenschutzerklärung keine speziellere Speicherdauer genannt wurde, verbleiben Ihre personenbezogenen Daten bei uns, bis der Zweck für die Datenverarbeitung entfällt. Wenn Sie ein berechtigtes Löschungsersuchen geltend machen oder eine Einwilligung zur Datenverarbeitung widerrufen, werden Ihre Daten gelöscht, sofern wir keine anderen rechtlich zulässigen Gründe für die Speicherung haben (z. B. steuer- oder handelsrechtliche Aufbewahrungsfristen).</p>
+
+    <h2 data-n="10">SSL-/TLS-Verschlüsselung</h2>
+    <p>Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine SSL-/TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von <code style="font-family:var(--mono);color:var(--gold)">http://</code> auf <code style="font-family:var(--mono);color:var(--gold)">https://</code> wechselt und am Schloss-Symbol in deiner Browserzeile.</p>
+
+    <h2 data-n="11">Änderungen</h2>
+    <p>Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht oder um Änderungen unserer Leistungen umzusetzen. Für Ihren erneuten Besuch gilt dann die neue Datenschutzerklärung. Die jeweils aktuelle Version ist mit der Versionsnummer oben (<strong>REV 2026.01</strong>) kenntlich gemacht.</p>
+
+    <p style="margin-top:48px;color:var(--fg-3);font-size:13px;font-family:var(--mono);letter-spacing:.1em">// ENDE DOKUMENT · L·02</p>
+
+  </article>
+
+  <div class="art-foot">
+    <a href="./impressum.html"><span class="arr">←</span> ZURÜCK · IMPRESSUM</a>
+    <a href="../index.html">ZUM ATELIER <span class="arr">→</span></a>
+  </div>
+
+</main>
+
+<!-- ─── FOOTER ─── -->
+<footer class="subfoot">
+  <div class="b"><img class="mark" src="../logo-chrome.png" alt="Jerome Kwamo" /><strong>Visual Ops</strong></div>
+  <div class="mid">
+    <a href="../index.html">ATELIER</a>
+    <a href="../blog/index.html">JOURNAL</a>
+    <a href="./impressum.html">IMPRESSUM</a>
+    <a href="./datenschutz.html">DATENSCHUTZ</a>
+  </div>
+  <div class="right">© 2026 · Jerome Kwamo</div>
+</footer>
+
+<script>
+  (function(){
+    const el = document.getElementById('utc');
+    if(!el) return;
+    function tick(){
+      const d = new Date();
+      const h = String(d.getUTCHours()).padStart(2,'0');
+      const m = String(d.getUTCMinutes()).padStart(2,'0');
+      const s = String(d.getUTCSeconds()).padStart(2,'0');
+      el.textContent = `${h}:${m}:${s}`;
+    }
+    tick();setInterval(tick, 1000);
+  })();
+</script>
+
+
+<script src="../admin/tracker.js"></script>
+</body>
+</html>
