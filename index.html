@@ -1589,7 +1589,8 @@
 </head>
 <body>
 <script>
-/* Saubere URLs: /index.html -> /, stray #top entfernen, Logo/TOP sanft scrollen */
+/* Saubere URLs: /index.html -> /, stray #top entfernen, Logo/TOP sanft scrollen,
+   Sektions-Deeplinks (/ueber, /kontakt ...) per 404-Fallback zur Sektion scrollen */
 (function(){
   try{
     if(location.pathname.endsWith('/index.html')){
@@ -1606,6 +1607,19 @@
     window.scrollTo(0,0);
     document.documentElement.scrollTop=0;
   });
+  // Sektion ansteuern: bei Aufruf eines sauberen Sektionspfads (direkt oder via 404.html)
+  var SEC={'/ueber':'about','/faq':'faq','/kontakt':'contact','/system':'engine'};
+  function gotoSection(){
+    var sec=null, path=null;
+    var byPath=SEC[location.pathname.replace(/\/$/,'')];
+    if(byPath){ sec=byPath; path=location.pathname; }
+    else { try{ var s=sessionStorage.getItem('jkk_sec'); if(s){ sec=s; path=sessionStorage.getItem('jkk_secpath'); sessionStorage.removeItem('jkk_sec'); sessionStorage.removeItem('jkk_secpath'); } }catch(e){} }
+    if(!sec) return;
+    var el=document.getElementById(sec);
+    if(el){ window.scrollTo(0, el.getBoundingClientRect().top+window.scrollY-100); if(path){ try{history.replaceState(null,'',path);}catch(e){} } }
+  }
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',function(){setTimeout(gotoSection,500);}); }
+  else { setTimeout(gotoSection,500); }
 })();
 </script>
 <div class="ambient" aria-hidden="true">
@@ -1655,10 +1669,10 @@
 <nav>
   <a href="/" class="brand js-top"><img class="mark" src="logo-chrome.png" alt="JKK Jerome" /></a>
   <div class="nav-links" id="nav-links">
-    <a href="#services"><span class="nl-k">01 &middot; <span data-de>Leistungen</span><span data-en>Services</span></span><span class="nl-sub" data-de>Module &middot; Stack</span><span class="nl-sub" data-en>Modules &middot; Stack</span></a>
-    <a href="#about"><span class="nl-k">02 &middot; <span data-de>Über</span><span data-en>About</span></span><span class="nl-sub" data-de>Über mich</span><span class="nl-sub" data-en>Über miche</span></a>
-    <a href="#faq"><span class="nl-k">03 &middot; FAQ</span><span class="nl-sub" data-de>Häufige Fragen</span><span class="nl-sub" data-en>Common Questions</span></a>
-    <a href="#contact"><span class="nl-k">04 &middot; <span data-de>Kontakt</span><span data-en>Contact</span></span><span class="nl-sub" data-de>Offener Kanal</span><span class="nl-sub" data-en>Open Channel</span></a>
+    <a href="/services"><span class="nl-k">01 &middot; <span data-de>Leistungen</span><span data-en>Services</span></span><span class="nl-sub" data-de>Module &middot; Stack</span><span class="nl-sub" data-en>Modules &middot; Stack</span></a>
+    <a href="/ueber"><span class="nl-k">02 &middot; <span data-de>Über</span><span data-en>About</span></span><span class="nl-sub" data-de>Über mich</span><span class="nl-sub" data-en>Über miche</span></a>
+    <a href="/faq"><span class="nl-k">03 &middot; FAQ</span><span class="nl-sub" data-de>Häufige Fragen</span><span class="nl-sub" data-en>Common Questions</span></a>
+    <a href="/kontakt"><span class="nl-k">04 &middot; <span data-de>Kontakt</span><span data-en>Contact</span></span><span class="nl-sub" data-de>Offener Kanal</span><span class="nl-sub" data-en>Open Channel</span></a>
   </div>
   <div class="nav-right">
     <div class="lang" id="lang">
@@ -1685,10 +1699,10 @@
     <span class="live"><span data-de>Online</span><span data-en>Online</span></span>
   </div>
   <div class="d-links">
-    <a href="#services" style="--i:0"><span class="num">01</span><span><span class="lbl" data-de>Leistungen</span><span class="lbl" data-en>Services</span><br><span class="sub" data-de>Module &middot; Stack</span><span class="sub" data-en>Modules &middot; Stack</span></span><span class="num">→</span></a>
-    <a href="#about" style="--i:1"><span class="num">02</span><span><span class="lbl" data-de>Über</span><span class="lbl" data-en>About</span><br><span class="sub" data-de>Über mich</span><span class="sub" data-en>Über miche</span></span><span class="num">→</span></a>
-    <a href="#faq" style="--i:2"><span class="num">03</span><span><span class="lbl">FAQ</span><br><span class="sub" data-de>Häufige Fragen</span><span class="sub" data-en>Common Questions</span></span><span class="num">→</span></a>
-    <a href="#contact" style="--i:3"><span class="num">04</span><span><span class="lbl" data-de>Kontakt</span><span class="lbl" data-en>Contact</span><br><span class="sub" data-de>Offener Kanal</span><span class="sub" data-en>Open Channel</span></span><span class="num">→</span></a>
+    <a href="/services" style="--i:0"><span class="num">01</span><span><span class="lbl" data-de>Leistungen</span><span class="lbl" data-en>Services</span><br><span class="sub" data-de>Module &middot; Stack</span><span class="sub" data-en>Modules &middot; Stack</span></span><span class="num">→</span></a>
+    <a href="/ueber" style="--i:1"><span class="num">02</span><span><span class="lbl" data-de>Über</span><span class="lbl" data-en>About</span><br><span class="sub" data-de>Über mich</span><span class="sub" data-en>Über miche</span></span><span class="num">→</span></a>
+    <a href="/faq" style="--i:2"><span class="num">03</span><span><span class="lbl">FAQ</span><br><span class="sub" data-de>Häufige Fragen</span><span class="sub" data-en>Common Questions</span></span><span class="num">→</span></a>
+    <a href="/kontakt" style="--i:3"><span class="num">04</span><span><span class="lbl" data-de>Kontakt</span><span class="lbl" data-en>Contact</span><br><span class="sub" data-de>Offener Kanal</span><span class="sub" data-en>Open Channel</span></span><span class="num">→</span></a>
   </div>
   <div class="d-foot">
     <a href="mailto:contact@jkkjerome.de"><span>Mail</span><span>→</span></a>
@@ -2162,7 +2176,7 @@
       <button class="sr-thumb" data-i="05" type="button" aria-label="Vanquish"><img src="fleet/show-5-thumb.jpg" alt="" loading="lazy" /></button>
     </div>
 
-    <a class="sr-enter" href="#contact">
+    <a class="sr-enter" href="/kontakt">
       <span class="t" data-de>Anfragen</span><span class="t" data-en>Enquire</span>
       <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </a>
@@ -2508,8 +2522,8 @@
       <h2><span data-de>Ich nutze KI, um dir Zeit und Geld zu sparen.</span><span data-en>I use AI to save you time and money.</span></h2>
       <p><span data-de>Ob automatische Anfragen, smarte Bildbearbeitung oder fertige Verkaufstexte. Kein Hype, sondern echte Ergebnisse für dein Business.</span><span data-en>Whether automated enquiries, smart image editing or ready sales copy. No hype, just real results for your business.</span></p>
       <div class="ki-btns">
-        <a class="ki-btn primary" href="#contact"><span data-de>Kontakt aufnehmen</span><span data-en>Get in touch</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="ki-btn ghost" href="#services"><span data-de>Mehr erfahren</span><span data-en>Learn more</span></a>
+        <a class="ki-btn primary" href="/kontakt"><span data-de>Kontakt aufnehmen</span><span data-en>Get in touch</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="ki-btn ghost" href="/services"><span data-de>Mehr erfahren</span><span data-en>Learn more</span></a>
       </div>
     </div>
 
@@ -3700,7 +3714,7 @@
 
   <div class="faq-foot">
     <span data-de>Noch Fragen offen?</span><span data-en>Still have questions?</span>
-    <a href="#contact"><span data-de>Direkt anfragen</span><span data-en>Ask us directly</span> →</a>
+    <a href="/kontakt"><span data-de>Direkt anfragen</span><span data-en>Ask us directly</span> →</a>
   </div>
 </section>
 
@@ -3824,8 +3838,8 @@
     </div>
     <div class="fn-col">
       <span class="k" data-de>// ATELIER</span><span class="k" data-en>// ATELIER</span>
-      <a href="#engine"><span data-de>System</span><span data-en>System</span></a>
-      <a href="#services"><span data-de>Module</span><span data-en>Modules</span></a>
+      <a href="/system"><span data-de>System</span><span data-en>System</span></a>
+      <a href="/services"><span data-de>Module</span><span data-en>Modules</span></a>
       <a href="info-center.html"><span data-de>Info Center</span><span data-en>Info Center</span></a>
     </div>
     <div class="fn-col">
@@ -4121,9 +4135,9 @@
   // map nav-link href targets to actual sections, plus the side rail
   const sectionIds = ['top','engine','services','contact'];
   const navLinkMap = {
-    engine:  document.querySelector('.nav-links a[href="#engine"]'),
-    services:document.querySelector('.nav-links a[href="#services"]'),
-    contact: document.querySelector('.nav-links a[href="#contact"]'),
+    engine:  document.querySelector('.nav-links a[href="/system"]'),
+    services:document.querySelector('.nav-links a[href="/services"]'),
+    contact: document.querySelector('.nav-links a[href="/kontakt"]'),
   };
   const railLinks = {};
   document.querySelectorAll('.rail a').forEach(a => { railLinks[a.dataset.target] = a; });
@@ -4171,19 +4185,23 @@
   window.addEventListener('resize', onScroll);
   onScroll();
 
-  // smooth-scroll for nav + rail anchor links (account for fixed header)
-  document.querySelectorAll('.nav-links a[href^="#"], .rail a[href^="#"], .brand[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const href = a.getAttribute('href');
-      const id = href.slice(1);
-      const el = id ? document.getElementById(id) : null;
-      if(!el) return;
-      e.preventDefault();
-      const offset = 100;
-      const top = el.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({top, behavior:'smooth'});
-      history.replaceState(null,'','#'+id);
-    });
+  // saubere Pfad-Navigation: Klick auf /services, /ueber, /faq, /kontakt, /system
+  // scrollt zur Sektion und setzt eine saubere URL (kein #, kein Reload)
+  // /services ist eine eigene Seite -> normaler Link. Diese Pfade sind Homepage-Sektionen.
+  const SECTION_PATHS = {'/ueber':'about','/faq':'faq','/kontakt':'contact','/system':'engine'};
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href]');
+    if(!a) return;
+    const href = a.getAttribute('href');
+    const id = SECTION_PATHS[href];
+    if(!id) return;
+    const el = document.getElementById(id);
+    if(!el) return;
+    e.preventDefault();
+    const top = el.getBoundingClientRect().top + window.scrollY - 100;
+    window.scrollTo(0, top);
+    document.documentElement.scrollTop = top;
+    try { history.pushState(null,'',href); } catch(err){}
   });
 
   /* ================================================ */

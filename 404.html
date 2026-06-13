@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>JKK Jerome</title>
+<style>
+  html,body{margin:0;height:100%;background:#000;color:#fff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+  .wrap{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center;padding:24px}
+  h1{font-size:clamp(28px,6vw,56px);font-weight:900;letter-spacing:-.02em;margin:0}
+  p{color:#b8b8b8;margin:0;font-size:15px}
+  a{display:inline-flex;align-items:center;gap:8px;margin-top:8px;color:#000;background:#fff;text-decoration:none;
+    font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:13px;padding:13px 30px;border:1px solid #fff}
+  a:hover{background:transparent;color:#fff}
+</style>
+<script>
+/* Saubere Sektionspfade (/ueber, /kontakt ...) zur Startseite weiterleiten und dort zur Sektion scrollen.
+   Alle anderen unbekannten Pfade zeigen die Fehlerseite. */
+(function(){
+  var map={'/ueber':'about','/faq':'faq','/kontakt':'contact','/system':'engine'};
+  var p=location.pathname.replace(/\/$/,'');
+  if(map[p]){
+    try{ sessionStorage.setItem('jkk_sec',map[p]); sessionStorage.setItem('jkk_secpath',p); }catch(e){}
+    location.replace('/');
+  }
+})();
+</script>
+</head>
+<body>
+<div class="wrap">
+  <h1>404</h1>
+  <p>Diese Seite gibt es nicht. Komm zurück an Bord.</p>
+  <a href="/">Zur Startseite &rarr;</a>
+</div>
+</body>
+</html>
