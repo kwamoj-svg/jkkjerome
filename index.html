@@ -4187,8 +4187,8 @@
 
   // saubere Pfad-Navigation: Klick auf /services, /ueber, /faq, /kontakt, /system
   // scrollt zur Sektion und setzt eine saubere URL (kein #, kein Reload)
-  // /services ist eine eigene Seite -> normaler Link. Diese Pfade sind Homepage-Sektionen.
-  const SECTION_PATHS = {'/ueber':'about','/faq':'faq','/kontakt':'contact','/system':'engine'};
+  // Homepage-Sektionen: Klick scrollt zur Sektion + setzt saubere URL (kein Reload).
+  const SECTION_PATHS = {'/services':'services','/ueber':'about','/faq':'faq','/kontakt':'contact','/system':'engine'};
   document.addEventListener('click', e => {
     const a = e.target.closest('a[href]');
     if(!a) return;
