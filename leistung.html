@@ -1209,10 +1209,10 @@ const MODULES = {
   // ── scroll-reveal 3D container hero — Websites & Showrooms ──
   var wsTileImgs = ['fleet/up-princess-cliff.webp','fleet/up-fairline-cove.jpeg','fleet/up-bow-sunset.webp','fleet/up-sloop-canal.jpeg','fleet/up-deck-lounge.webp','fleet/up-aerial-wake.jpeg'];
   var wsTiles = (lang==='de'
-    ? [['LISTING','Sportyacht 24m','€ —'],['LISTING','Flybridge 19m','€ —'],['LISTING','Explorer 31m','€ —'],
-       ['CHARTER','Catamaran 18m','€ — / Wo.'],['NEUBAU','Custom 28m','auf Anfrage'],['REFIT','Classic 22m','€ —']]
-    : [['LISTING','Sport yacht 24m','€ —'],['LISTING','Flybridge 19m','€ —'],['LISTING','Explorer 31m','€ —'],
-       ['CHARTER','Catamaran 18m','€ — / wk'],['NEWBUILD','Custom 28m','on request'],['REFIT','Classic 22m','€ —']]
+    ? [['LISTING','Boot 1','€ —'],['LISTING','Boot 2','€ —'],['LISTING','Boot 3','€ —'],
+       ['CHARTER','Boot 4','€ — / Wo.'],['NEUBAU','Boot 5','auf Anfrage'],['REFIT','Boot 6','€ —']]
+    : [['LISTING','Boat 1','€ —'],['LISTING','Boat 2','€ —'],['LISTING','Boat 3','€ —'],
+       ['CHARTER','Boat 4','€ — / wk'],['NEWBUILD','Boat 5','on request'],['REFIT','Boat 6','€ —']]
     ).map(function(t,i){
       return '<div class="ws-tile'+(i%5===0?' gold':'')+'" style="background-image:url('+wsTileImgs[i%wsTileImgs.length]+')"><span class="tl-k">'+t[0]+'</span>'+
         '<span class="tl-t">'+t[1]+'</span><span class="tl-p">'+t[2]+'</span></div>';
