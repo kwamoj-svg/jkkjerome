@@ -3981,7 +3981,7 @@
 
     async function applyLang(code, persist){
       setActive(code);
-      if(persist !== false){ try { localStorage.setItem('jkk_lang', code); } catch(e){} }
+      if(persist !== false){ try { localStorage.setItem('jkk_lang_v2', code); } catch(e){} }
 
       if(code === 'de'){
         document.documentElement.lang = 'de';
@@ -4058,45 +4058,41 @@
     setActive(document.documentElement.lang === 'de' ? 'de' : 'en');
     syncMobileLang();
 
-    // ── Sprachsteuerung: Deutsch ist Standard, Ausland → Englisch ──
-    // Priorität: 1) ?lang= URL-Override (E-Mail-Kampagnen)  2) gespeicherte manuelle Wahl  3) Geo-Erkennung
+    // ── Sprachsteuerung: Deutsch ist und bleibt Standard ──
+    // Nur wenn die IP eindeutig ein Nicht-DACH-Land meldet, wird auf Englisch gewechselt.
+    // KEIN Browser-Sprach-Fallback (englischer Browser in DE soll trotzdem Deutsch sehen).
+    // Bei IP-Fehler bleibt Deutsch (sicher für deutsche Besucher).
+    // Priorität: 1) ?lang= URL-Override  2) gespeicherte manuelle Wahl  3) Geo-IP
     try {
       var urlLang = null;
       try { urlLang = new URLSearchParams(location.search).get('lang'); } catch(e){}
-      const saved = localStorage.getItem('jkk_lang');
+      const saved = localStorage.getItem('jkk_lang_v2');
 
       if(urlLang && SUPPORTED[urlLang]){
         // 1) Kampagnen-Link / geteilter Link erzwingt eine Sprache — gewinnt über alles, wird gemerkt
         applyLang(urlLang);
         try { syncMobileLang(); } catch(e){}
       } else if(saved && SUPPORTED[saved]){
-        // 2) frühere manuelle Wahl des Besuchers respektieren ('de' ist schon Standard)
+        // 2) frühere manuelle Wahl respektieren ('de' ist schon Standard)
         if(saved !== 'de') applyLang(saved);
       } else {
-        // 3) Geo-Erkennung: Deutsch bleibt Standard, Ausland bekommt Englisch (nicht dauerhaft gespeichert)
+        // 3) Geo-IP: Deutsch bleibt Standard, nur Ausland bekommt Englisch
         const cached = sessionStorage.getItem('jkk_country');
         if(cached){
           const dach = (cached === 'DE' || cached === 'AT' || cached === 'CH');
           if(!dach) applyLang('en', false);
         } else {
-          // schnelle, flackerfreie Vorab-Schätzung über die Browsersprache
-          const browserLang = (navigator.language || navigator.userLanguage || 'de').split('-')[0].toLowerCase();
-          if(browserLang !== 'de') applyLang('en', false);
-
-          // danach echte Länderprüfung per IP — korrigiert die Schätzung
           fetch('https://ipapi.co/json/', {mode:'cors'})
             .then(r => r.json())
             .then(data => {
               const cc = (data.country_code || '').toUpperCase();
               try { sessionStorage.setItem('jkk_country', cc); } catch(e){}
-              // nur eingreifen, wenn der Besucher nicht selbst manuell gewählt hat
-              if(localStorage.getItem('jkk_lang')) return;
+              if(localStorage.getItem('jkk_lang_v2')) return; // manuelle Wahl nicht überschreiben
               const dach = (cc === 'DE' || cc === 'AT' || cc === 'CH');
-              const currentlyDe = document.documentElement.lang === 'de';
-              if(dach && !currentlyDe) applyLang('de', false);
-              if(!dach && currentlyDe) applyLang('en', false);
+              if(!dach && document.documentElement.lang === 'de') applyLang('en', false);
+              // DACH: bleibt Deutsch (Standard) — nichts zu tun
             })
-            .catch(() => {}); // still — Browser-Schätzung greift bereits
+            .catch(() => {}); // IP-Fehler -> Deutsch bleibt
         }
       }
     } catch(e){}
