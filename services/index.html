@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="robots" content="noindex,follow" />
+<link rel="canonical" href="https://www.jkkjerome.de/" />
+<title>Leistungen · JKK Jerome</title>
+<script>
+/* Keine eigene Seite — leitet zur Leistungs-Sektion der Startseite weiter.
+   noindex + canonical: Google konsolidiert auf die Startseite, kein 404. */
+(function(){
+  try{
+    sessionStorage.setItem('jkk_sec','services');
+    sessionStorage.setItem('jkk_secpath','/services');
+  }catch(e){}
+  location.replace('/');
+})();
+</script>
+</head>
+<body></body>
+</html>
