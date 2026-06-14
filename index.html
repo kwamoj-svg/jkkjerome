@@ -4054,6 +4054,8 @@
     function toggleDeEn(){ applyLang(document.documentElement.lang === 'de' ? 'en' : 'de'); syncMobileLang(); }
     if(langMobile) langMobile.addEventListener('click', toggleDeEn);
     if(langQuick) langQuick.addEventListener('click', toggleDeEn);
+    // Wähler-Anzeige (Code + Flagge + aktiver Menüpunkt) mit aktueller Sprache synchronisieren
+    setActive(document.documentElement.lang === 'de' ? 'de' : 'en');
     syncMobileLang();
 
     // ── Sprachsteuerung: Deutsch ist Standard, Ausland → Englisch ──
