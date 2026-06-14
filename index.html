@@ -1608,7 +1608,7 @@
     document.documentElement.scrollTop=0;
   });
   // Sektion ansteuern: bei Aufruf eines sauberen Sektionspfads (direkt oder via 404.html)
-  var SEC={'/ueber':'about','/faq':'faq','/kontakt':'contact','/system':'engine'};
+  var SEC={'/services':'services','/ueber':'about','/faq':'faq','/kontakt':'contact','/system':'engine'};
   function gotoSection(){
     var sec=null, path=null;
     var byPath=SEC[location.pathname.replace(/\/$/,'')];
